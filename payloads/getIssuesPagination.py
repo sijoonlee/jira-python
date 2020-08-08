@@ -1,16 +1,17 @@
 import json
+from config import config
 
-url = "https://{domain}.atlassian.net/rest/api/3/search"
+url = config.get("apiAddress") + "/search"
 method = "POST"
-def payload(projectKey, maxResults, startAt):
+def payload(projectKey, issueType ,maxResults, startAt):
     return json.dumps({
         "expand": [
             "changelog"
         ],
-        "jql": "project = {projectKey} AND issueType = Story".format(projectKey = projectKey),
+        "jql": "project = {projectKey} AND issueType = {issueType} AND status = 'In Progress'".format(projectKey = projectKey, issueType = issueType),
         "maxResults": maxResults,
         "fieldsByKeys": False,
         "fields": ["*all"], 
-        # "fields" : ["created", "updated", "priority", "assignee", "creator", "reporter", "status"],
+        # "fields" : ["issuetype", "summary", "created", "updated", "priority", "assignee", "creator", "reporter", "status", "timespent"],
         "startAt": startAt
     })

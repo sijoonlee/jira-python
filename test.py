@@ -1,5 +1,12 @@
+from config import config 
 
-import payloads.getProject
-import sys
-print(sys.modules.keys())
-print(globals().items())
+def abcd(**args):
+    print(len(args))
+    for key, value in args.items():
+        print(key, value)
+
+
+
+if __name__=="__main__":
+    
+    abcd(arg1 = "abcd", arg2 = "efg")

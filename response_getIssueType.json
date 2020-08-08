@@ -1,0 +1,91 @@
+[
+  {
+    "self": "https://codeenthusiast.atlassian.net/rest/api/3/issuetype/10000",
+    "id": "10000",
+    "description": "A big user story that needs to be broken down. Created by Jira Software - do not edit or delete.",
+    "iconUrl": "https://codeenthusiast.atlassian.net/images/icons/issuetypes/epic.svg",
+    "name": "Epic",
+    "untranslatedName": "Epic",
+    "subtask": false
+  },
+  {
+    "self": "https://codeenthusiast.atlassian.net/rest/api/3/issuetype/10001",
+    "id": "10001",
+    "description": "Stories track functionality or features expressed as user goals.",
+    "iconUrl": "https://codeenthusiast.atlassian.net/secure/viewavatar?size=medium&avatarId=10315&avatarType=issuetype",
+    "name": "Story",
+    "untranslatedName": "Story",
+    "subtask": false,
+    "avatarId": 10315,
+    "scope": {
+      "type": "PROJECT",
+      "project": {
+        "id": "10000"
+      }
+    }
+  },
+  {
+    "self": "https://codeenthusiast.atlassian.net/rest/api/3/issuetype/10002",
+    "id": "10002",
+    "description": "Tasks track small, distinct pieces of work.",
+    "iconUrl": "https://codeenthusiast.atlassian.net/secure/viewavatar?size=medium&avatarId=10318&avatarType=issuetype",
+    "name": "Task",
+    "untranslatedName": "Task",
+    "subtask": false,
+    "avatarId": 10318,
+    "scope": {
+      "type": "PROJECT",
+      "project": {
+        "id": "10000"
+      }
+    }
+  },
+  {
+    "self": "https://codeenthusiast.atlassian.net/rest/api/3/issuetype/10003",
+    "id": "10003",
+    "description": "Bugs track problems or errors.",
+    "iconUrl": "https://codeenthusiast.atlassian.net/secure/viewavatar?size=medium&avatarId=10303&avatarType=issuetype",
+    "name": "Bug",
+    "untranslatedName": "Bug",
+    "subtask": false,
+    "avatarId": 10303,
+    "scope": {
+      "type": "PROJECT",
+      "project": {
+        "id": "10000"
+      }
+    }
+  },
+  {
+    "self": "https://codeenthusiast.atlassian.net/rest/api/3/issuetype/10004",
+    "id": "10004",
+    "description": "\uc5d0\ud53d\uc740 \uad00\ub828 \ubc84\uadf8, \uc2a4\ud1a0\ub9ac \ubc0f \uc791\uc5c5\uc758 \uceec\ub809\uc158\uc744 \ucd94\uc801\ud569\ub2c8\ub2e4.",
+    "iconUrl": "https://codeenthusiast.atlassian.net/secure/viewavatar?size=medium&avatarId=10307&avatarType=issuetype",
+    "name": "\uc5d0\ud53d",
+    "untranslatedName": "\uc5d0\ud53d",
+    "subtask": false,
+    "avatarId": 10307,
+    "scope": {
+      "type": "PROJECT",
+      "project": {
+        "id": "10000"
+      }
+    }
+  },
+  {
+    "self": "https://codeenthusiast.atlassian.net/rest/api/3/issuetype/10005",
+    "id": "10005",
+    "description": "\ud558\uc704 \uc791\uc5c5\uc740 \ub300\ub7c9 \uc791\uc5c5 \uc77c\ubd80\uc778 \uc18c\uaddc\ubaa8 \uc5c5\ubb34\ub97c \ucd94\uc801\ud569\ub2c8\ub2e4.",
+    "iconUrl": "https://codeenthusiast.atlassian.net/secure/viewavatar?size=medium&avatarId=10316&avatarType=issuetype",
+    "name": "\ud558\uc704 \uc791\uc5c5",
+    "untranslatedName": "\ud558\uc704 \uc791\uc5c5",
+    "subtask": true,
+    "avatarId": 10316,
+    "scope": {
+      "type": "PROJECT",
+      "project": {
+        "id": "10000"
+      }
+    }
+  }
+]
