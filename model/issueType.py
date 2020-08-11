@@ -9,3 +9,13 @@ model = {
         {"name": "projectId", "references": "Project(id)"}
     ]
 }
+
+
+# Lookup table
+# @key : Field name in Database
+# @value: Field path in Jira response's json structure
+lookup = {
+    "id" : "id",
+    "name" : "name",
+    "projectId" : "scope->project->id"
+}

@@ -8,3 +8,15 @@ model = {
         {"name" : "active", "type" : "INTEGER"} # SQLite doesn't have boolean 0(false), 1(true)
     ]
 }
+
+
+# Lookup table
+# @key : Field name in Database
+# @value: Field path in Jira response's json structure
+lookup = {
+    "accountId" : "accountId",
+    "accountType" : "accountType",
+    "emailAddress" : "emailAddress",
+    "displayName" : "displayName",
+    "active" : "active"
+}

@@ -1,8 +1,9 @@
+# Database model
 model = {
     "name" : "Issue",
     "fields" : [
-        {"name" : "issueId", "type" : "TEXT", "option" : "PRIMARY KEY" },
-        {"name" : "issueName", "type" : "TEXT" },
+        {"name" : "id", "type" : "TEXT", "option" : "PRIMARY KEY" },
+        {"name" : "key", "type" : "TEXT" },
         {"name" : "summary", "type" : "TEXT" },
         {"name" : "created", "type" : "TEXT" }, # store it as TEXT and parse it as Date/Time later
         {"name" : "updated", "type" : "TEXT" },
@@ -26,4 +27,25 @@ model = {
         {"name": "reporterId", "references": "User(accountId)"},
         {"name": "assigneeId", "references": "User(accountId)"},
     ]
+}
+
+# Lookup table
+# @key : Field name in Database
+# @value: Field path in Jira response's json structure
+lookup = {
+    "id" : "id",
+    "key" : "key",
+    "summary" : "fields->summary",
+    "created" : "fields->created",
+    "updated" : "fields->updated",
+    "issueTypeId" : "fields->issuetype->id",
+    "priorityId" : "fields->priority->id",
+    "statusId" : "fields->status->id",
+    "projectId" : "fields->project->id",
+    "creatorId" : "fields->creator->accountId",
+    "reporterId" : "fields->reporter->accountId",
+    "assigneeId" : "fields->assignee->accountId",
+    "creatorName" : "fields->creator->displayName",
+    "reporterName" : "fields->reporter->displayName",
+    "assigneeName" : "fields->assignee->displayName",
 }

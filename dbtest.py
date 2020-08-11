@@ -1,6 +1,6 @@
 import os
 from db.sqlite3.connector import SqliteConnector
-from db.sqlite3.model import issue, priority, project, status, issueType, user
+from model import issue, priority, project, status, issueType, user
     
 
 if __name__=="__main__":
@@ -84,21 +84,21 @@ if __name__=="__main__":
 
     issueData = [
         {
-            "issueId":"1000", "issueName":"FirstIssue", "summary":"this is the first issue", 
+            "id":"1000", "key":"FirstIssue", "summary":"this is the first issue", 
             "created":"2020-08-06T11:44:57.334-0400", "updated":"2020-08-07T11:44:57.334-0400",
             "issueTypeId":"1", "priorityId":"1", "statusId":"2", "projectId":"1", 
             "creatorId":"USER_ID_1", "reporterId":"USER_ID_1", "assigneeId":"USER_ID_2",
             "creatorName":"USER_NAME_1", "reporterName":"USER_NAME_1", "assigneeName":"USER_NAME_2"
         },
         {
-            "issueId":"1001", "issueName":"SecondIssue", "summary":"this is the second issue", 
+            "id":"1001", "key":"SecondIssue", "summary":"this is the second issue", 
             "created":"2020-08-06T11:44:57.334-0400", "updated":"2020-08-07T11:44:57.334-0400",
             "issueTypeId":"2", "priorityId":"1", "statusId":"1", "projectId":"1", 
             "creatorId":"USER_ID_1", "reporterId":"USER_ID_1", "assigneeId":"USER_ID_2",
             "creatorName":"USER_NAME_1", "reporterName":"USER_NAME_1", "assigneeName":"USER_NAME_2"
         },
         {
-            "issueId":"1002", "issueName":"FirstIssue", "summary":"this is the first issue", 
+            "id":"1002", "key":"FirstIssue", "summary":"this is the first issue", 
             "created":"2020-08-06T11:44:57.334-0400", "updated":"2020-08-07T11:44:57.334-0400",
             "issueTypeId":"1", "priorityId":"1", "statusId":"1", "projectId":"2", 
             "creatorId":"USER_ID_1", "reporterId":"USER_ID_1", "assigneeId":"USER_ID_2",
@@ -108,12 +108,12 @@ if __name__=="__main__":
 
     dbConnector.insertRecords(issue.model, issueData)
 
-    selectedFields = ["Issue.issueId", "Issue.issueName", "Issue.projectId"]
+    selectedFields = ["Issue.id", "Issue.key", "Issue.projectId"]
     whereClause = 'projectId = "1" AND issueTypeId = "2"'
     result = dbConnector.queryTable("Issue", selectedFields, whereClause)
     print(result)
 
-    selectedFields = ["Project.key", "Issue.issueName", "Issue.reporterName", "Status.name"]
+    selectedFields = ["Project.key", "Issue.key", "Issue.reporterName", "Status.name"]
     joinClauses = [
         {"type":"LEFT", "tableName":"IssueType", "onClause":"Issue.issueTypeId = IssueType.id"},
         {"type":"LEFT", "tableName":"Project", "onClause":"Issue.projectId = Project.id"},
