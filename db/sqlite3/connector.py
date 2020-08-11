@@ -88,9 +88,15 @@ class SqliteConnector(object):
     # @param: whereClause - dictionary of fields that will be used in where clause 
     def queryTableStatement(self, tableName, selectedFieldNames, whereClause):
         
-        selectedFieldNames = ",".join(selectedFieldNames)
+        if len(selectedFieldNames) > 1:
+            selectedFieldNames = ",".join(selectedFieldNames)
+        elif len(selectedFieldNames) == 1:
+            selectedFieldNames = selectedFieldNames[0]
 
-        statement = 'select {fieldNames} from {table} where {clause}'.format(fieldNames=selectedFieldNames, table=tableName,  clause=whereClause)
+        statement = 'select {fieldNames} from {table}'.format(fieldNames=selectedFieldNames, table=tableName)
+        if whereClause is not None:
+            statement += ' where {}'.format(whereClause)
+
         return statement
 
     
