@@ -18,7 +18,7 @@ if __name__=="__main__":
     dbActions.reset(dbConnector)
     dbActions.update(dbConnector)
 
-    selectedFields = ["Project.key as projectKey", "Issue.key as issueKey", "Issue.reporterName", "Status.name as status"]
+    selectedFields = ["Project.key as projectKey", "Issue.key as issueKey", "Issue.reporterName", "Status.name as status", "Priority.name as priority"]
     joinClauses = [
         {"type":"LEFT", "tableName":"IssueType", "onClause":"Issue.issueTypeId = IssueType.id"},
         {"type":"LEFT", "tableName":"Project", "onClause":"Issue.projectId = Project.id"},

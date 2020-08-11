@@ -1,5 +1,5 @@
 model = {
-    "name" : "priority",
+    "name" : "Priority",
     "fields" : [
         { "name": "id", "type": "TEXT", "option" : "PRIMARY KEY" },
         { "name": "name" , "type": "TEXT"},
