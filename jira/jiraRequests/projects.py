@@ -1,8 +1,8 @@
 import json
 from requests.auth import HTTPBasicAuth
 from config import config
-from jiraEndpoints.getProjectPagination import method, url
-from jiraRequests.requestToJira import requestToJira
+from jira.jiraEndpoints.getProjectPagination import method, url
+from jira.jiraRequests.requestToJira import requestToJira
 
 def getProjectPagination(maxResults, startAt):
     formattedUrl = url.format(maxResults=maxResults, startAt=startAt)

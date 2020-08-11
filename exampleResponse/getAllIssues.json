@@ -134,7 +134,7 @@
         }
       },
       "customfield_10020": [
-        "com.atlassian.greenhopper.service.sprint.Sprint@7fc002e2[completeDate=2020-08-11T15:07:44.419Z,endDate=2020-09-01T13:41:07.000Z,goal=Test Custom Field,id=5,name=SP Sprint 2,rapidViewId=2,sequence=5,startDate=2020-08-11T13:41:17.461Z,state=CLOSED]"
+        "com.atlassian.greenhopper.service.sprint.Sprint@7f63cb25[completeDate=2020-08-11T15:07:44.419Z,endDate=2020-09-01T13:41:07.000Z,goal=Test Custom Field,id=5,name=SP Sprint 2,rapidViewId=2,sequence=5,startDate=2020-08-11T13:41:17.461Z,state=CLOSED]"
       ],
       "reporter": {
         "self": "https://codeenthusiast.atlassian.net/rest/api/3/user?accountId=5f25927ebedd1000154304d8",
@@ -261,8 +261,8 @@
         }
       },
       "customfield_10020": [
-        "com.atlassian.greenhopper.service.sprint.Sprint@1b38b8d7[completeDate=2020-08-11T13:40:59.447Z,endDate=2020-08-28T19:07:22.000Z,goal=,id=3,name=SP Sprint 1,rapidViewId=2,sequence=3,startDate=2020-08-07T19:07:29.401Z,state=CLOSED]",
-        "com.atlassian.greenhopper.service.sprint.Sprint@7fc002e2[completeDate=2020-08-11T15:07:44.419Z,endDate=2020-09-01T13:41:07.000Z,goal=Test Custom Field,id=5,name=SP Sprint 2,rapidViewId=2,sequence=5,startDate=2020-08-11T13:41:17.461Z,state=CLOSED]"
+        "com.atlassian.greenhopper.service.sprint.Sprint@49b509e9[completeDate=2020-08-11T13:40:59.447Z,endDate=2020-08-28T19:07:22.000Z,goal=,id=3,name=SP Sprint 1,rapidViewId=2,sequence=3,startDate=2020-08-07T19:07:29.401Z,state=CLOSED]",
+        "com.atlassian.greenhopper.service.sprint.Sprint@7f63cb25[completeDate=2020-08-11T15:07:44.419Z,endDate=2020-09-01T13:41:07.000Z,goal=Test Custom Field,id=5,name=SP Sprint 2,rapidViewId=2,sequence=5,startDate=2020-08-11T13:41:17.461Z,state=CLOSED]"
       ],
       "reporter": {
         "self": "https://codeenthusiast.atlassian.net/rest/api/3/user?accountId=5f25927ebedd1000154304d8",
@@ -336,7 +336,6 @@
         "accountType": "atlassian"
       },
       "created": "2020-08-06T11:47:11.657-0400",
-      "customfield_10020": null,
       "project": {
         "self": "https://codeenthusiast.atlassian.net/rest/api/3/project/10000",
         "id": "10000",
@@ -351,6 +350,7 @@
           "32x32": "https://codeenthusiast.atlassian.net/secure/projectavatar?size=medium&s=medium&pid=10000&avatarId=10415"
         }
       },
+      "customfield_10020": null,
       "reporter": {
         "self": "https://codeenthusiast.atlassian.net/rest/api/3/user?accountId=5f25927ebedd1000154304d8",
         "accountId": "5f25927ebedd1000154304d8",
@@ -423,6 +423,7 @@
         "accountType": "atlassian"
       },
       "created": "2020-08-06T11:46:04.134-0400",
+      "customfield_10020": null,
       "project": {
         "self": "https://codeenthusiast.atlassian.net/rest/api/3/project/10000",
         "id": "10000",
@@ -437,7 +438,6 @@
           "32x32": "https://codeenthusiast.atlassian.net/secure/projectavatar?size=medium&s=medium&pid=10000&avatarId=10415"
         }
       },
-      "customfield_10020": null,
       "reporter": {
         "self": "https://codeenthusiast.atlassian.net/rest/api/3/user?accountId=5f25927ebedd1000154304d8",
         "accountId": "5f25927ebedd1000154304d8",
@@ -597,6 +597,7 @@
         "accountType": "atlassian"
       },
       "created": "2020-08-06T11:45:54.230-0400",
+      "customfield_10020": null,
       "project": {
         "self": "https://codeenthusiast.atlassian.net/rest/api/3/project/10000",
         "id": "10000",
@@ -611,7 +612,6 @@
           "32x32": "https://codeenthusiast.atlassian.net/secure/projectavatar?size=medium&s=medium&pid=10000&avatarId=10415"
         }
       },
-      "customfield_10020": null,
       "reporter": {
         "self": "https://codeenthusiast.atlassian.net/rest/api/3/user?accountId=5f25927ebedd1000154304d8",
         "accountId": "5f25927ebedd1000154304d8",
@@ -713,7 +713,7 @@
         }
       },
       "customfield_10020": [
-        "com.atlassian.greenhopper.service.sprint.Sprint@665ef138[completeDate=<null>,endDate=2020-08-20T15:48:26.000Z,goal=do something,id=2,name=PJA Sprint 2,rapidViewId=1,sequence=2,startDate=2020-08-06T15:48:35.561Z,state=ACTIVE]"
+        "com.atlassian.greenhopper.service.sprint.Sprint@75e66dce[completeDate=<null>,endDate=2020-08-20T15:48:26.000Z,goal=do something,id=2,name=PJA Sprint 2,rapidViewId=1,sequence=2,startDate=2020-08-06T15:48:35.561Z,state=ACTIVE]"
       ],
       "reporter": {
         "self": "https://codeenthusiast.atlassian.net/rest/api/3/user?accountId=5f25927ebedd1000154304d8",
@@ -826,8 +826,8 @@
       },
       "created": "2020-08-06T11:44:46.714-0400",
       "customfield_10020": [
-        "com.atlassian.greenhopper.service.sprint.Sprint@59a65e3c[completeDate=2020-08-06T15:48:20.813Z,endDate=2020-08-20T15:45:09.000Z,goal=Understand Jira API,id=1,name=PJA Sprint 1,rapidViewId=1,sequence=1,startDate=2020-08-06T15:45:24.205Z,state=CLOSED]",
-        "com.atlassian.greenhopper.service.sprint.Sprint@665ef138[completeDate=<null>,endDate=2020-08-20T15:48:26.000Z,goal=do something,id=2,name=PJA Sprint 2,rapidViewId=1,sequence=2,startDate=2020-08-06T15:48:35.561Z,state=ACTIVE]"
+        "com.atlassian.greenhopper.service.sprint.Sprint@2ed008be[completeDate=2020-08-06T15:48:20.813Z,endDate=2020-08-20T15:45:09.000Z,goal=Understand Jira API,id=1,name=PJA Sprint 1,rapidViewId=1,sequence=1,startDate=2020-08-06T15:45:24.205Z,state=CLOSED]",
+        "com.atlassian.greenhopper.service.sprint.Sprint@75e66dce[completeDate=<null>,endDate=2020-08-20T15:48:26.000Z,goal=do something,id=2,name=PJA Sprint 2,rapidViewId=1,sequence=2,startDate=2020-08-06T15:48:35.561Z,state=ACTIVE]"
       ],
       "project": {
         "self": "https://codeenthusiast.atlassian.net/rest/api/3/project/10000",

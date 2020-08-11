@@ -1,12 +1,12 @@
-import os
+# import os
 from db.sqlite3.connector import SqliteConnector
 from model import issue, priority, project, status, issueType, user, sprint, sprintIssueLink
     
 
 if __name__=="__main__":
     
-    path = os.path.dirname(os.path.abspath(__file__))
-    dbFile = path + '/db/sqlite3/storage/db.sqlite'
+    # path = os.path.dirname(os.path.abspath(__file__))
+    dbFile = './db/sqlite3/storage/db.sqlite'
     dbConnector = SqliteConnector(dbFile)
 
     

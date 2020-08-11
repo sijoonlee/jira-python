@@ -1,8 +1,8 @@
 import json
 from requests.auth import HTTPBasicAuth
 from config import config
-from jiraEndpoints.getStatuses import method, url
-from jiraRequests.requestToJira import requestToJira
+from jira.jiraEndpoints.getStatuses import method, url
+from jira.jiraRequests.requestToJira import requestToJira
 
 def getStatuses():
     auth = HTTPBasicAuth(config['emailAccount'], config['apiToken'])

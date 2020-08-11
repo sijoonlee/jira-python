@@ -1,20 +1,13 @@
 from db.sqlite3.connector import SqliteConnector
-from jiraRequests.processResponse import processResponse
-from jiraRequests.processSprint import processSprint
+from jira.jiraRequests.processResponse import processResponse
+from jira.jiraRequests.processSprint import processSprint
 from utils.jsonUtil import readFileReport, writeFileReport
 from model import issue, issueType, priority, project, status, user, sprint, sprintIssueLink
-
-def func(**args):
-    print(args.items())
 
 
 
 if __name__=="__main__":
-    # data = {"a":"A", "b":"B"}
-    # func(**data)
 
-    # abc = "a->b->c"
-    # print(abc.split("->"))
     dbFile = './db/sqlite3/storage/db.sqlite'
     dbConnector = SqliteConnector(dbFile)
     

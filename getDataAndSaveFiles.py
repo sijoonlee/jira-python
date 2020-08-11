@@ -1,9 +1,9 @@
-from jiraRequests.projects import getProjectPagination, getAllProjects
-from jiraRequests.issueTypes import getIssueTypes
-from jiraRequests.statuses import getStatuses
-from jiraRequests.issues import getIssuesPagination, getAllIssues
-from jiraRequests.users import getAllUsers
-from jiraRequests.priorities import getPriorities
+from jira.jiraRequests.projects import getProjectPagination, getAllProjects
+from jira.jiraRequests.issueTypes import getIssueTypes
+from jira.jiraRequests.statuses import getStatuses
+from jira.jiraRequests.issues import getIssuesPagination, getAllIssues
+from jira.jiraRequests.users import getAllUsers
+from jira.jiraRequests.priorities import getPriorities
 from utils.jsonUtil import writeFileReport
 
 

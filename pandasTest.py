@@ -1,14 +1,14 @@
 import pandas as pd
 from db.sqlite3.connector import SqliteConnector
 from model import issue, priority, project, status, issueType, user, sprint, sprintIssueLink
-from jiraRequests.issues import getAllIssues
-from jiraRequests.issueTypes import getIssueTypes
-from jiraRequests.priorities import getPriorities
-from jiraRequests.projects import getAllProjects
-from jiraRequests.statuses import getStatuses
-from jiraRequests.users import getAllUsers
-from jiraRequests.processResponse import processResponse
-from jiraRequests.processSprint import processSprint
+from jira.jiraRequests.issues import getAllIssues
+from jira.jiraRequests.issueTypes import getIssueTypes
+from jira.jiraRequests.priorities import getPriorities
+from jira.jiraRequests.projects import getAllProjects
+from jira.jiraRequests.statuses import getStatuses
+from jira.jiraRequests.users import getAllUsers
+from jira.jiraRequests.processResponse import processResponse
+from jira.jiraRequests.processSprint import processSprint
 from businessLogic.metrics.issueType import getIssueTypeMetrics
 import businessLogic.db.dbActions as dbActions
 

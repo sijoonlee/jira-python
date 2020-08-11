@@ -1,8 +1,8 @@
 import json
 from requests.auth import HTTPBasicAuth
 from config import config
-from jiraEndpoints.getIssuesPagination import method, url, payloadGenerator
-from jiraRequests.requestToJira import requestToJira
+from jira.jiraEndpoints.getIssuesPagination import method, url, payloadGenerator
+from jira.jiraRequests.requestToJira import requestToJira
 
 def getFilteredIssues(projectKey, issueType):
     maxResults = 50
