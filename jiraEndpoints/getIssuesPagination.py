@@ -1,11 +1,9 @@
 import json
 from config import apiAddress
-DEFAULT_FIELDS = ["*all"]
-
-# [ "issuetype", "summary", "priority", "status", "project",
-#                    "created", "updated", # "timespent",
-#                    "assignee", "creator", "reporter"] # ["*all"] # to get all fields
-DEFAULT_EXPAND = [] #["changelog"] # unnecessary for now
+DEFAULT_FIELDS = [ "issuetype", "summary", "priority", "status", "project", "parent","customfield_10020",
+                   "created", "updated", # "timespent",
+                   "assignee", "creator", "reporter"] # ["*all"] # to get all fields
+DEFAULT_EXPAND = [] # ["changelog"] # unnecessary for now
 
 url = apiAddress + "/search"
 method = "POST"

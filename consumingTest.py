@@ -1,7 +1,8 @@
 from db.sqlite3.connector import SqliteConnector
 from jiraRequests.processResponse import processResponse
+from jiraRequests.processSprint import processSprint
 from utils.jsonUtil import readFileReport, writeFileReport
-from model import issue, issueType, priority, project, status, user
+from model import issue, issueType, priority, project, status, user, sprint, sprintIssueLink
 
 def func(**args):
     print(args.items())
@@ -23,6 +24,8 @@ if __name__=="__main__":
     dbConnector.dropTable(status.model)
     dbConnector.dropTable(project.model)
     dbConnector.dropTable(issue.model)
+    dbConnector.dropTable(sprint.model)
+    dbConnector.dropTable(sprintIssueLink.model)
     
     dbConnector.createTable(user.model)
     dbConnector.createTable(priority.model)
@@ -30,6 +33,8 @@ if __name__=="__main__":
     dbConnector.createTable(status.model)
     dbConnector.createTable(issueType.model)
     dbConnector.createTable(issue.model)
+    dbConnector.createTable(sprint.model)
+    dbConnector.createTable(sprintIssueLink.model)
 
     response = readFileReport("./exampleResponse/getAllProjects.json")
     dbReadyData = processResponse(project.lookup, response)
@@ -38,6 +43,11 @@ if __name__=="__main__":
     response = readFileReport("./exampleResponse/getAllIssues.json")
     dbReadyData = processResponse(issue.lookup, response)
     dbConnector.insertRecords(issue.model, dbReadyData)
+    
+    sprintRecordList, sprintIssueLinkRecordList = processSprint(response)
+    
+    dbConnector.insertRecords(sprint.model, sprintRecordList)
+    dbConnector.insertRecords(sprintIssueLink.model, sprintIssueLinkRecordList)
 
     response = readFileReport("./exampleResponse/getAllUsers.json")
     dbReadyData = processResponse(user.lookup, response)

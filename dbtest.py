@@ -1,6 +1,6 @@
 import os
 from db.sqlite3.connector import SqliteConnector
-from model import issue, priority, project, status, issueType, user
+from model import issue, priority, project, status, issueType, user, sprint, sprintIssueLink
     
 
 if __name__=="__main__":
@@ -16,7 +16,8 @@ if __name__=="__main__":
     dbConnector.dropTable(status.model)
     dbConnector.dropTable(project.model)
     dbConnector.dropTable(issue.model)
-    
+    dbConnector.dropTable(sprint.model)
+    dbConnector.dropTable(sprintIssueLink.model)
 
     dbConnector.createTable(user.model)
     dbConnector.createTable(priority.model)
@@ -24,6 +25,8 @@ if __name__=="__main__":
     dbConnector.createTable(status.model)
     dbConnector.createTable(issueType.model)
     dbConnector.createTable(issue.model)
+    dbConnector.createTable(sprint.model)
+    dbConnector.createTable(sprintIssueLink.model)
 
 
     userData = [
@@ -86,6 +89,7 @@ if __name__=="__main__":
         {
             "id":"1000", "key":"FirstIssue", "summary":"this is the first issue", 
             "created":"2020-08-06T11:44:57.334-0400", "updated":"2020-08-07T11:44:57.334-0400",
+            "parentId":"1001", "parentKey":"SecondIssue", "parentSummary":"this is the second issue",
             "issueTypeId":"1", "priorityId":"1", "statusId":"2", "projectId":"1", 
             "creatorId":"USER_ID_1", "reporterId":"USER_ID_1", "assigneeId":"USER_ID_2",
             "creatorName":"USER_NAME_1", "reporterName":"USER_NAME_1", "assigneeName":"USER_NAME_2"
@@ -108,6 +112,39 @@ if __name__=="__main__":
 
     dbConnector.insertRecords(issue.model, issueData)
 
+    sprintData = [
+        {
+            'id': '1', 'name': 'SP Sprint 1', 'goal': None, 'state': 'CLOSED', 
+            'startDate': '2020-08-057T19:07:29.401Z', 
+            'endDate': '2020-08-29T19:07:22.000Z', 
+            'completeDate': '2020-08-12T13:40:59.447Z'
+        },
+        {
+            'id': '2', 'name': 'SP Sprint 2', 'goal': "testing", 'state': 'CLOSED', 
+            'startDate': '2020-08-07T19:07:29.401Z', 
+            'endDate': '2020-08-28T19:07:22.000Z', 
+            'completeDate': '2020-08-11T13:40:59.447Z'
+        }
+    ]
+    dbConnector.insertRecords(sprint.model, sprintData)
+
+    sprintIssueLinkData = [
+        {
+            'sprintId': '1',
+            'issueId': '1000'
+        },
+        {
+            'sprintId': '2',
+            'issueId': '1000'
+        },
+        {
+            'sprintId': '1',
+            'issueId': '1001'
+        }
+    ]
+    dbConnector.insertRecords(sprintIssueLink.model, sprintIssueLinkData)
+
+
     selectedFields = ["Issue.id", "Issue.key", "Issue.projectId"]
     whereClause = 'projectId = "1" AND issueTypeId = "2"'
     result = dbConnector.queryTable("Issue", selectedFields, whereClause)
@@ -124,3 +161,13 @@ if __name__=="__main__":
     result = dbConnector.queryFromJoin(selectedFields, "Issue", joinClauses, whereClause)
     print(result)
     
+    selectedFields = ["Project.key", "Issue.key", "Issue.reporterName", "Status.name"]
+    joinClauses = [
+        {"type":"LEFT", "tableName":"IssueType", "onClause":"Issue.issueTypeId = IssueType.id"},
+        {"type":"LEFT", "tableName":"Project", "onClause":"Issue.projectId = Project.id"},
+        {"type":"LEFT", "tableName":"Status", "onClause":"Issue.statusId = Status.id"},
+        {"type":"LEFT", "tableName":"Priority", "onClause":"Issue.priorityId = Priority.id"}
+    ]
+    whereClause = 'Issue.projectId = "1"'
+    result = dbConnector.queryFromJoin(selectedFields, "Issue", joinClauses, whereClause)
+    print(result)

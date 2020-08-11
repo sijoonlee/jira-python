@@ -30,6 +30,16 @@ class SqliteConnector(object):
                 statement += ' {}'.format(fieldOption)
             if i < len(model["fields"]) - 1 :
                 statement += ','
+        
+        primaryKeys = model.get("primaryKeys", None)
+        if primaryKeys is not None:
+            statement += ',PRIMARY KEY ('
+            for i in range(len(primaryKeys)):
+                statement += primaryKeys[i]
+                if i < len(primaryKeys) - 1 :
+                    statement += ','
+            statement += ")"
+
         foreignKeys = model.get("foreignKeys", None)
         if foreignKeys is not None:
             statement += ','
@@ -39,6 +49,7 @@ class SqliteConnector(object):
                 if i < len(foreignKeys) - 1 :
                     statement += ','
         statement += ")"
+        print(statement)
         return statement
 
     def findTypeFromFieldName(self, model, fieldName):
