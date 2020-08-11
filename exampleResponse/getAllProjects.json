@@ -1,0 +1,42 @@
+[
+  {
+    "expand": "description,lead,issueTypes,url,projectKeys,permissions,insight",
+    "self": "https://codeenthusiast.atlassian.net/rest/api/3/project/10000",
+    "id": "10000",
+    "key": "PJA",
+    "name": "Practice-Jira-Api",
+    "avatarUrls": {
+      "48x48": "https://codeenthusiast.atlassian.net/secure/projectavatar?pid=10000&avatarId=10415",
+      "24x24": "https://codeenthusiast.atlassian.net/secure/projectavatar?size=small&s=small&pid=10000&avatarId=10415",
+      "16x16": "https://codeenthusiast.atlassian.net/secure/projectavatar?size=xsmall&s=xsmall&pid=10000&avatarId=10415",
+      "32x32": "https://codeenthusiast.atlassian.net/secure/projectavatar?size=medium&s=medium&pid=10000&avatarId=10415"
+    },
+    "projectTypeKey": "software",
+    "simplified": true,
+    "style": "next-gen",
+    "isPrivate": false,
+    "properties": {},
+    "entityId": "88dd4add-9f80-405c-ba9c-ef2d64ead145",
+    "uuid": "88dd4add-9f80-405c-ba9c-ef2d64ead145"
+  },
+  {
+    "expand": "description,lead,issueTypes,url,projectKeys,permissions,insight",
+    "self": "https://codeenthusiast.atlassian.net/rest/api/3/project/10001",
+    "id": "10001",
+    "key": "SP",
+    "name": "Second-Project",
+    "avatarUrls": {
+      "48x48": "https://codeenthusiast.atlassian.net/secure/projectavatar?pid=10001&avatarId=10404",
+      "24x24": "https://codeenthusiast.atlassian.net/secure/projectavatar?size=small&s=small&pid=10001&avatarId=10404",
+      "16x16": "https://codeenthusiast.atlassian.net/secure/projectavatar?size=xsmall&s=xsmall&pid=10001&avatarId=10404",
+      "32x32": "https://codeenthusiast.atlassian.net/secure/projectavatar?size=medium&s=medium&pid=10001&avatarId=10404"
+    },
+    "projectTypeKey": "software",
+    "simplified": true,
+    "style": "next-gen",
+    "isPrivate": false,
+    "properties": {},
+    "entityId": "a70730ef-1094-4dc6-a33d-67445a98b4a1",
+    "uuid": "a70730ef-1094-4dc6-a33d-67445a98b4a1"
+  }
+]

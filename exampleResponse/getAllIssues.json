@@ -1,0 +1,704 @@
+[
+  {
+    "expand": "operations,versionedRepresentations,editmeta,changelog,renderedFields",
+    "id": "10007",
+    "self": "https://codeenthusiast.atlassian.net/rest/api/3/issue/10007",
+    "key": "SP-2",
+    "fields": {
+      "summary": "2ndIssueOnSecondProject",
+      "issuetype": {
+        "self": "https://codeenthusiast.atlassian.net/rest/api/3/issuetype/10006",
+        "id": "10006",
+        "description": "Stories track functionality or features expressed as user goals.",
+        "iconUrl": "https://codeenthusiast.atlassian.net/secure/viewavatar?size=medium&avatarId=10315&avatarType=issuetype",
+        "name": "Story",
+        "subtask": false,
+        "avatarId": 10315,
+        "entityId": "f9e2bd2f-4bb0-4d7a-9163-08fc31aceaea"
+      },
+      "creator": {
+        "self": "https://codeenthusiast.atlassian.net/rest/api/3/user?accountId=5f25927ebedd1000154304d8",
+        "accountId": "5f25927ebedd1000154304d8",
+        "emailAddress": "shijoonlee@gmail.com",
+        "avatarUrls": {
+          "48x48": "https://secure.gravatar.com/avatar/40dbc4f354954495a23095916dd6cbcb?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FSL-6.png",
+          "24x24": "https://secure.gravatar.com/avatar/40dbc4f354954495a23095916dd6cbcb?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FSL-6.png",
+          "16x16": "https://secure.gravatar.com/avatar/40dbc4f354954495a23095916dd6cbcb?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FSL-6.png",
+          "32x32": "https://secure.gravatar.com/avatar/40dbc4f354954495a23095916dd6cbcb?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FSL-6.png"
+        },
+        "displayName": "Sijoon Lee",
+        "active": true,
+        "timeZone": "America/Toronto",
+        "accountType": "atlassian"
+      },
+      "created": "2020-08-07T15:07:12.088-0400",
+      "project": {
+        "self": "https://codeenthusiast.atlassian.net/rest/api/3/project/10001",
+        "id": "10001",
+        "key": "SP",
+        "name": "Second-Project",
+        "projectTypeKey": "software",
+        "simplified": true,
+        "avatarUrls": {
+          "48x48": "https://codeenthusiast.atlassian.net/secure/projectavatar?pid=10001&avatarId=10404",
+          "24x24": "https://codeenthusiast.atlassian.net/secure/projectavatar?size=small&s=small&pid=10001&avatarId=10404",
+          "16x16": "https://codeenthusiast.atlassian.net/secure/projectavatar?size=xsmall&s=xsmall&pid=10001&avatarId=10404",
+          "32x32": "https://codeenthusiast.atlassian.net/secure/projectavatar?size=medium&s=medium&pid=10001&avatarId=10404"
+        }
+      },
+      "reporter": {
+        "self": "https://codeenthusiast.atlassian.net/rest/api/3/user?accountId=5f25927ebedd1000154304d8",
+        "accountId": "5f25927ebedd1000154304d8",
+        "emailAddress": "shijoonlee@gmail.com",
+        "avatarUrls": {
+          "48x48": "https://secure.gravatar.com/avatar/40dbc4f354954495a23095916dd6cbcb?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FSL-6.png",
+          "24x24": "https://secure.gravatar.com/avatar/40dbc4f354954495a23095916dd6cbcb?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FSL-6.png",
+          "16x16": "https://secure.gravatar.com/avatar/40dbc4f354954495a23095916dd6cbcb?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FSL-6.png",
+          "32x32": "https://secure.gravatar.com/avatar/40dbc4f354954495a23095916dd6cbcb?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FSL-6.png"
+        },
+        "displayName": "Sijoon Lee",
+        "active": true,
+        "timeZone": "America/Toronto",
+        "accountType": "atlassian"
+      },
+      "assignee": null,
+      "priority": {
+        "self": "https://codeenthusiast.atlassian.net/rest/api/3/priority/3",
+        "iconUrl": "https://codeenthusiast.atlassian.net/images/icons/priorities/medium.svg",
+        "name": "Medium",
+        "id": "3"
+      },
+      "updated": "2020-08-07T15:07:12.088-0400",
+      "status": {
+        "self": "https://codeenthusiast.atlassian.net/rest/api/3/status/10003",
+        "description": "",
+        "iconUrl": "https://codeenthusiast.atlassian.net/",
+        "name": "To Do",
+        "id": "10003",
+        "statusCategory": {
+          "self": "https://codeenthusiast.atlassian.net/rest/api/3/statuscategory/2",
+          "id": 2,
+          "key": "new",
+          "colorName": "blue-gray",
+          "name": "To Do"
+        }
+      }
+    }
+  },
+  {
+    "expand": "operations,versionedRepresentations,editmeta,changelog,renderedFields",
+    "id": "10006",
+    "self": "https://codeenthusiast.atlassian.net/rest/api/3/issue/10006",
+    "key": "SP-1",
+    "fields": {
+      "summary": "1stIssueOnSecondProject",
+      "issuetype": {
+        "self": "https://codeenthusiast.atlassian.net/rest/api/3/issuetype/10006",
+        "id": "10006",
+        "description": "Stories track functionality or features expressed as user goals.",
+        "iconUrl": "https://codeenthusiast.atlassian.net/secure/viewavatar?size=medium&avatarId=10315&avatarType=issuetype",
+        "name": "Story",
+        "subtask": false,
+        "avatarId": 10315,
+        "entityId": "f9e2bd2f-4bb0-4d7a-9163-08fc31aceaea"
+      },
+      "creator": {
+        "self": "https://codeenthusiast.atlassian.net/rest/api/3/user?accountId=5f25927ebedd1000154304d8",
+        "accountId": "5f25927ebedd1000154304d8",
+        "emailAddress": "shijoonlee@gmail.com",
+        "avatarUrls": {
+          "48x48": "https://secure.gravatar.com/avatar/40dbc4f354954495a23095916dd6cbcb?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FSL-6.png",
+          "24x24": "https://secure.gravatar.com/avatar/40dbc4f354954495a23095916dd6cbcb?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FSL-6.png",
+          "16x16": "https://secure.gravatar.com/avatar/40dbc4f354954495a23095916dd6cbcb?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FSL-6.png",
+          "32x32": "https://secure.gravatar.com/avatar/40dbc4f354954495a23095916dd6cbcb?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FSL-6.png"
+        },
+        "displayName": "Sijoon Lee",
+        "active": true,
+        "timeZone": "America/Toronto",
+        "accountType": "atlassian"
+      },
+      "created": "2020-08-07T15:06:29.797-0400",
+      "project": {
+        "self": "https://codeenthusiast.atlassian.net/rest/api/3/project/10001",
+        "id": "10001",
+        "key": "SP",
+        "name": "Second-Project",
+        "projectTypeKey": "software",
+        "simplified": true,
+        "avatarUrls": {
+          "48x48": "https://codeenthusiast.atlassian.net/secure/projectavatar?pid=10001&avatarId=10404",
+          "24x24": "https://codeenthusiast.atlassian.net/secure/projectavatar?size=small&s=small&pid=10001&avatarId=10404",
+          "16x16": "https://codeenthusiast.atlassian.net/secure/projectavatar?size=xsmall&s=xsmall&pid=10001&avatarId=10404",
+          "32x32": "https://codeenthusiast.atlassian.net/secure/projectavatar?size=medium&s=medium&pid=10001&avatarId=10404"
+        }
+      },
+      "reporter": {
+        "self": "https://codeenthusiast.atlassian.net/rest/api/3/user?accountId=5f25927ebedd1000154304d8",
+        "accountId": "5f25927ebedd1000154304d8",
+        "emailAddress": "shijoonlee@gmail.com",
+        "avatarUrls": {
+          "48x48": "https://secure.gravatar.com/avatar/40dbc4f354954495a23095916dd6cbcb?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FSL-6.png",
+          "24x24": "https://secure.gravatar.com/avatar/40dbc4f354954495a23095916dd6cbcb?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FSL-6.png",
+          "16x16": "https://secure.gravatar.com/avatar/40dbc4f354954495a23095916dd6cbcb?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FSL-6.png",
+          "32x32": "https://secure.gravatar.com/avatar/40dbc4f354954495a23095916dd6cbcb?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FSL-6.png"
+        },
+        "displayName": "Sijoon Lee",
+        "active": true,
+        "timeZone": "America/Toronto",
+        "accountType": "atlassian"
+      },
+      "assignee": null,
+      "priority": {
+        "self": "https://codeenthusiast.atlassian.net/rest/api/3/priority/3",
+        "iconUrl": "https://codeenthusiast.atlassian.net/images/icons/priorities/medium.svg",
+        "name": "Medium",
+        "id": "3"
+      },
+      "updated": "2020-08-07T15:06:51.924-0400",
+      "status": {
+        "self": "https://codeenthusiast.atlassian.net/rest/api/3/status/10003",
+        "description": "",
+        "iconUrl": "https://codeenthusiast.atlassian.net/",
+        "name": "To Do",
+        "id": "10003",
+        "statusCategory": {
+          "self": "https://codeenthusiast.atlassian.net/rest/api/3/statuscategory/2",
+          "id": 2,
+          "key": "new",
+          "colorName": "blue-gray",
+          "name": "To Do"
+        }
+      }
+    }
+  },
+  {
+    "expand": "operations,versionedRepresentations,editmeta,changelog,renderedFields",
+    "id": "10005",
+    "self": "https://codeenthusiast.atlassian.net/rest/api/3/issue/10005",
+    "key": "PJA-6",
+    "fields": {
+      "summary": "Task Issue 1",
+      "issuetype": {
+        "self": "https://codeenthusiast.atlassian.net/rest/api/3/issuetype/10002",
+        "id": "10002",
+        "description": "Tasks track small, distinct pieces of work.",
+        "iconUrl": "https://codeenthusiast.atlassian.net/secure/viewavatar?size=medium&avatarId=10318&avatarType=issuetype",
+        "name": "Task",
+        "subtask": false,
+        "avatarId": 10318,
+        "entityId": "a526617e-30d2-450b-9375-e58d5999dcc9"
+      },
+      "creator": {
+        "self": "https://codeenthusiast.atlassian.net/rest/api/3/user?accountId=5f25927ebedd1000154304d8",
+        "accountId": "5f25927ebedd1000154304d8",
+        "emailAddress": "shijoonlee@gmail.com",
+        "avatarUrls": {
+          "48x48": "https://secure.gravatar.com/avatar/40dbc4f354954495a23095916dd6cbcb?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FSL-6.png",
+          "24x24": "https://secure.gravatar.com/avatar/40dbc4f354954495a23095916dd6cbcb?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FSL-6.png",
+          "16x16": "https://secure.gravatar.com/avatar/40dbc4f354954495a23095916dd6cbcb?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FSL-6.png",
+          "32x32": "https://secure.gravatar.com/avatar/40dbc4f354954495a23095916dd6cbcb?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FSL-6.png"
+        },
+        "displayName": "Sijoon Lee",
+        "active": true,
+        "timeZone": "America/Toronto",
+        "accountType": "atlassian"
+      },
+      "created": "2020-08-06T11:47:11.657-0400",
+      "project": {
+        "self": "https://codeenthusiast.atlassian.net/rest/api/3/project/10000",
+        "id": "10000",
+        "key": "PJA",
+        "name": "Practice-Jira-Api",
+        "projectTypeKey": "software",
+        "simplified": true,
+        "avatarUrls": {
+          "48x48": "https://codeenthusiast.atlassian.net/secure/projectavatar?pid=10000&avatarId=10415",
+          "24x24": "https://codeenthusiast.atlassian.net/secure/projectavatar?size=small&s=small&pid=10000&avatarId=10415",
+          "16x16": "https://codeenthusiast.atlassian.net/secure/projectavatar?size=xsmall&s=xsmall&pid=10000&avatarId=10415",
+          "32x32": "https://codeenthusiast.atlassian.net/secure/projectavatar?size=medium&s=medium&pid=10000&avatarId=10415"
+        }
+      },
+      "reporter": {
+        "self": "https://codeenthusiast.atlassian.net/rest/api/3/user?accountId=5f25927ebedd1000154304d8",
+        "accountId": "5f25927ebedd1000154304d8",
+        "emailAddress": "shijoonlee@gmail.com",
+        "avatarUrls": {
+          "48x48": "https://secure.gravatar.com/avatar/40dbc4f354954495a23095916dd6cbcb?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FSL-6.png",
+          "24x24": "https://secure.gravatar.com/avatar/40dbc4f354954495a23095916dd6cbcb?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FSL-6.png",
+          "16x16": "https://secure.gravatar.com/avatar/40dbc4f354954495a23095916dd6cbcb?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FSL-6.png",
+          "32x32": "https://secure.gravatar.com/avatar/40dbc4f354954495a23095916dd6cbcb?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FSL-6.png"
+        },
+        "displayName": "Sijoon Lee",
+        "active": true,
+        "timeZone": "America/Toronto",
+        "accountType": "atlassian"
+      },
+      "assignee": null,
+      "priority": {
+        "self": "https://codeenthusiast.atlassian.net/rest/api/3/priority/3",
+        "iconUrl": "https://codeenthusiast.atlassian.net/images/icons/priorities/medium.svg",
+        "name": "Medium",
+        "id": "3"
+      },
+      "updated": "2020-08-06T11:47:11.657-0400",
+      "status": {
+        "self": "https://codeenthusiast.atlassian.net/rest/api/3/status/10000",
+        "description": "",
+        "iconUrl": "https://codeenthusiast.atlassian.net/",
+        "name": "To Do",
+        "id": "10000",
+        "statusCategory": {
+          "self": "https://codeenthusiast.atlassian.net/rest/api/3/statuscategory/2",
+          "id": 2,
+          "key": "new",
+          "colorName": "blue-gray",
+          "name": "To Do"
+        }
+      }
+    }
+  },
+  {
+    "expand": "operations,versionedRepresentations,editmeta,changelog,renderedFields",
+    "id": "10004",
+    "self": "https://codeenthusiast.atlassian.net/rest/api/3/issue/10004",
+    "key": "PJA-5",
+    "fields": {
+      "summary": "And more",
+      "issuetype": {
+        "self": "https://codeenthusiast.atlassian.net/rest/api/3/issuetype/10004",
+        "id": "10004",
+        "description": "\uc5d0\ud53d\uc740 \uad00\ub828 \ubc84\uadf8, \uc2a4\ud1a0\ub9ac \ubc0f \uc791\uc5c5\uc758 \uceec\ub809\uc158\uc744 \ucd94\uc801\ud569\ub2c8\ub2e4.",
+        "iconUrl": "https://codeenthusiast.atlassian.net/secure/viewavatar?size=medium&avatarId=10307&avatarType=issuetype",
+        "name": "\uc5d0\ud53d",
+        "subtask": false,
+        "avatarId": 10307,
+        "entityId": "6ff76647-316e-42f9-a7a9-12737e2c3b73"
+      },
+      "creator": {
+        "self": "https://codeenthusiast.atlassian.net/rest/api/3/user?accountId=5f25927ebedd1000154304d8",
+        "accountId": "5f25927ebedd1000154304d8",
+        "emailAddress": "shijoonlee@gmail.com",
+        "avatarUrls": {
+          "48x48": "https://secure.gravatar.com/avatar/40dbc4f354954495a23095916dd6cbcb?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FSL-6.png",
+          "24x24": "https://secure.gravatar.com/avatar/40dbc4f354954495a23095916dd6cbcb?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FSL-6.png",
+          "16x16": "https://secure.gravatar.com/avatar/40dbc4f354954495a23095916dd6cbcb?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FSL-6.png",
+          "32x32": "https://secure.gravatar.com/avatar/40dbc4f354954495a23095916dd6cbcb?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FSL-6.png"
+        },
+        "displayName": "Sijoon Lee",
+        "active": true,
+        "timeZone": "America/Toronto",
+        "accountType": "atlassian"
+      },
+      "created": "2020-08-06T11:46:04.134-0400",
+      "project": {
+        "self": "https://codeenthusiast.atlassian.net/rest/api/3/project/10000",
+        "id": "10000",
+        "key": "PJA",
+        "name": "Practice-Jira-Api",
+        "projectTypeKey": "software",
+        "simplified": true,
+        "avatarUrls": {
+          "48x48": "https://codeenthusiast.atlassian.net/secure/projectavatar?pid=10000&avatarId=10415",
+          "24x24": "https://codeenthusiast.atlassian.net/secure/projectavatar?size=small&s=small&pid=10000&avatarId=10415",
+          "16x16": "https://codeenthusiast.atlassian.net/secure/projectavatar?size=xsmall&s=xsmall&pid=10000&avatarId=10415",
+          "32x32": "https://codeenthusiast.atlassian.net/secure/projectavatar?size=medium&s=medium&pid=10000&avatarId=10415"
+        }
+      },
+      "reporter": {
+        "self": "https://codeenthusiast.atlassian.net/rest/api/3/user?accountId=5f25927ebedd1000154304d8",
+        "accountId": "5f25927ebedd1000154304d8",
+        "emailAddress": "shijoonlee@gmail.com",
+        "avatarUrls": {
+          "48x48": "https://secure.gravatar.com/avatar/40dbc4f354954495a23095916dd6cbcb?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FSL-6.png",
+          "24x24": "https://secure.gravatar.com/avatar/40dbc4f354954495a23095916dd6cbcb?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FSL-6.png",
+          "16x16": "https://secure.gravatar.com/avatar/40dbc4f354954495a23095916dd6cbcb?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FSL-6.png",
+          "32x32": "https://secure.gravatar.com/avatar/40dbc4f354954495a23095916dd6cbcb?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FSL-6.png"
+        },
+        "displayName": "Sijoon Lee",
+        "active": true,
+        "timeZone": "America/Toronto",
+        "accountType": "atlassian"
+      },
+      "assignee": null,
+      "priority": {
+        "self": "https://codeenthusiast.atlassian.net/rest/api/3/priority/3",
+        "iconUrl": "https://codeenthusiast.atlassian.net/images/icons/priorities/medium.svg",
+        "name": "Medium",
+        "id": "3"
+      },
+      "updated": "2020-08-06T11:46:13.892-0400",
+      "status": {
+        "self": "https://codeenthusiast.atlassian.net/rest/api/3/status/10000",
+        "description": "",
+        "iconUrl": "https://codeenthusiast.atlassian.net/",
+        "name": "To Do",
+        "id": "10000",
+        "statusCategory": {
+          "self": "https://codeenthusiast.atlassian.net/rest/api/3/statuscategory/2",
+          "id": 2,
+          "key": "new",
+          "colorName": "blue-gray",
+          "name": "To Do"
+        }
+      }
+    }
+  },
+  {
+    "expand": "operations,versionedRepresentations,editmeta,changelog,renderedFields",
+    "id": "10003",
+    "self": "https://codeenthusiast.atlassian.net/rest/api/3/issue/10003",
+    "key": "PJA-4",
+    "fields": {
+      "summary": "Write Python App",
+      "issuetype": {
+        "self": "https://codeenthusiast.atlassian.net/rest/api/3/issuetype/10004",
+        "id": "10004",
+        "description": "\uc5d0\ud53d\uc740 \uad00\ub828 \ubc84\uadf8, \uc2a4\ud1a0\ub9ac \ubc0f \uc791\uc5c5\uc758 \uceec\ub809\uc158\uc744 \ucd94\uc801\ud569\ub2c8\ub2e4.",
+        "iconUrl": "https://codeenthusiast.atlassian.net/secure/viewavatar?size=medium&avatarId=10307&avatarType=issuetype",
+        "name": "\uc5d0\ud53d",
+        "subtask": false,
+        "avatarId": 10307,
+        "entityId": "6ff76647-316e-42f9-a7a9-12737e2c3b73"
+      },
+      "creator": {
+        "self": "https://codeenthusiast.atlassian.net/rest/api/3/user?accountId=5f25927ebedd1000154304d8",
+        "accountId": "5f25927ebedd1000154304d8",
+        "emailAddress": "shijoonlee@gmail.com",
+        "avatarUrls": {
+          "48x48": "https://secure.gravatar.com/avatar/40dbc4f354954495a23095916dd6cbcb?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FSL-6.png",
+          "24x24": "https://secure.gravatar.com/avatar/40dbc4f354954495a23095916dd6cbcb?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FSL-6.png",
+          "16x16": "https://secure.gravatar.com/avatar/40dbc4f354954495a23095916dd6cbcb?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FSL-6.png",
+          "32x32": "https://secure.gravatar.com/avatar/40dbc4f354954495a23095916dd6cbcb?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FSL-6.png"
+        },
+        "displayName": "Sijoon Lee",
+        "active": true,
+        "timeZone": "America/Toronto",
+        "accountType": "atlassian"
+      },
+      "created": "2020-08-06T11:46:00.546-0400",
+      "project": {
+        "self": "https://codeenthusiast.atlassian.net/rest/api/3/project/10000",
+        "id": "10000",
+        "key": "PJA",
+        "name": "Practice-Jira-Api",
+        "projectTypeKey": "software",
+        "simplified": true,
+        "avatarUrls": {
+          "48x48": "https://codeenthusiast.atlassian.net/secure/projectavatar?pid=10000&avatarId=10415",
+          "24x24": "https://codeenthusiast.atlassian.net/secure/projectavatar?size=small&s=small&pid=10000&avatarId=10415",
+          "16x16": "https://codeenthusiast.atlassian.net/secure/projectavatar?size=xsmall&s=xsmall&pid=10000&avatarId=10415",
+          "32x32": "https://codeenthusiast.atlassian.net/secure/projectavatar?size=medium&s=medium&pid=10000&avatarId=10415"
+        }
+      },
+      "reporter": {
+        "self": "https://codeenthusiast.atlassian.net/rest/api/3/user?accountId=5f25927ebedd1000154304d8",
+        "accountId": "5f25927ebedd1000154304d8",
+        "emailAddress": "shijoonlee@gmail.com",
+        "avatarUrls": {
+          "48x48": "https://secure.gravatar.com/avatar/40dbc4f354954495a23095916dd6cbcb?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FSL-6.png",
+          "24x24": "https://secure.gravatar.com/avatar/40dbc4f354954495a23095916dd6cbcb?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FSL-6.png",
+          "16x16": "https://secure.gravatar.com/avatar/40dbc4f354954495a23095916dd6cbcb?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FSL-6.png",
+          "32x32": "https://secure.gravatar.com/avatar/40dbc4f354954495a23095916dd6cbcb?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FSL-6.png"
+        },
+        "displayName": "Sijoon Lee",
+        "active": true,
+        "timeZone": "America/Toronto",
+        "accountType": "atlassian"
+      },
+      "assignee": null,
+      "priority": {
+        "self": "https://codeenthusiast.atlassian.net/rest/api/3/priority/3",
+        "iconUrl": "https://codeenthusiast.atlassian.net/images/icons/priorities/medium.svg",
+        "name": "Medium",
+        "id": "3"
+      },
+      "updated": "2020-08-06T11:46:17.672-0400",
+      "status": {
+        "self": "https://codeenthusiast.atlassian.net/rest/api/3/status/10000",
+        "description": "",
+        "iconUrl": "https://codeenthusiast.atlassian.net/",
+        "name": "To Do",
+        "id": "10000",
+        "statusCategory": {
+          "self": "https://codeenthusiast.atlassian.net/rest/api/3/statuscategory/2",
+          "id": 2,
+          "key": "new",
+          "colorName": "blue-gray",
+          "name": "To Do"
+        }
+      }
+    }
+  },
+  {
+    "expand": "operations,versionedRepresentations,editmeta,changelog,renderedFields",
+    "id": "10002",
+    "self": "https://codeenthusiast.atlassian.net/rest/api/3/issue/10002",
+    "key": "PJA-3",
+    "fields": {
+      "summary": "Understand Jira",
+      "issuetype": {
+        "self": "https://codeenthusiast.atlassian.net/rest/api/3/issuetype/10004",
+        "id": "10004",
+        "description": "\uc5d0\ud53d\uc740 \uad00\ub828 \ubc84\uadf8, \uc2a4\ud1a0\ub9ac \ubc0f \uc791\uc5c5\uc758 \uceec\ub809\uc158\uc744 \ucd94\uc801\ud569\ub2c8\ub2e4.",
+        "iconUrl": "https://codeenthusiast.atlassian.net/secure/viewavatar?size=medium&avatarId=10307&avatarType=issuetype",
+        "name": "\uc5d0\ud53d",
+        "subtask": false,
+        "avatarId": 10307,
+        "entityId": "6ff76647-316e-42f9-a7a9-12737e2c3b73"
+      },
+      "creator": {
+        "self": "https://codeenthusiast.atlassian.net/rest/api/3/user?accountId=5f25927ebedd1000154304d8",
+        "accountId": "5f25927ebedd1000154304d8",
+        "emailAddress": "shijoonlee@gmail.com",
+        "avatarUrls": {
+          "48x48": "https://secure.gravatar.com/avatar/40dbc4f354954495a23095916dd6cbcb?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FSL-6.png",
+          "24x24": "https://secure.gravatar.com/avatar/40dbc4f354954495a23095916dd6cbcb?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FSL-6.png",
+          "16x16": "https://secure.gravatar.com/avatar/40dbc4f354954495a23095916dd6cbcb?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FSL-6.png",
+          "32x32": "https://secure.gravatar.com/avatar/40dbc4f354954495a23095916dd6cbcb?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FSL-6.png"
+        },
+        "displayName": "Sijoon Lee",
+        "active": true,
+        "timeZone": "America/Toronto",
+        "accountType": "atlassian"
+      },
+      "created": "2020-08-06T11:45:54.230-0400",
+      "project": {
+        "self": "https://codeenthusiast.atlassian.net/rest/api/3/project/10000",
+        "id": "10000",
+        "key": "PJA",
+        "name": "Practice-Jira-Api",
+        "projectTypeKey": "software",
+        "simplified": true,
+        "avatarUrls": {
+          "48x48": "https://codeenthusiast.atlassian.net/secure/projectavatar?pid=10000&avatarId=10415",
+          "24x24": "https://codeenthusiast.atlassian.net/secure/projectavatar?size=small&s=small&pid=10000&avatarId=10415",
+          "16x16": "https://codeenthusiast.atlassian.net/secure/projectavatar?size=xsmall&s=xsmall&pid=10000&avatarId=10415",
+          "32x32": "https://codeenthusiast.atlassian.net/secure/projectavatar?size=medium&s=medium&pid=10000&avatarId=10415"
+        }
+      },
+      "reporter": {
+        "self": "https://codeenthusiast.atlassian.net/rest/api/3/user?accountId=5f25927ebedd1000154304d8",
+        "accountId": "5f25927ebedd1000154304d8",
+        "emailAddress": "shijoonlee@gmail.com",
+        "avatarUrls": {
+          "48x48": "https://secure.gravatar.com/avatar/40dbc4f354954495a23095916dd6cbcb?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FSL-6.png",
+          "24x24": "https://secure.gravatar.com/avatar/40dbc4f354954495a23095916dd6cbcb?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FSL-6.png",
+          "16x16": "https://secure.gravatar.com/avatar/40dbc4f354954495a23095916dd6cbcb?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FSL-6.png",
+          "32x32": "https://secure.gravatar.com/avatar/40dbc4f354954495a23095916dd6cbcb?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FSL-6.png"
+        },
+        "displayName": "Sijoon Lee",
+        "active": true,
+        "timeZone": "America/Toronto",
+        "accountType": "atlassian"
+      },
+      "assignee": {
+        "self": "https://codeenthusiast.atlassian.net/rest/api/3/user?accountId=5f25927ebedd1000154304d8",
+        "accountId": "5f25927ebedd1000154304d8",
+        "emailAddress": "shijoonlee@gmail.com",
+        "avatarUrls": {
+          "48x48": "https://secure.gravatar.com/avatar/40dbc4f354954495a23095916dd6cbcb?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FSL-6.png",
+          "24x24": "https://secure.gravatar.com/avatar/40dbc4f354954495a23095916dd6cbcb?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FSL-6.png",
+          "16x16": "https://secure.gravatar.com/avatar/40dbc4f354954495a23095916dd6cbcb?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FSL-6.png",
+          "32x32": "https://secure.gravatar.com/avatar/40dbc4f354954495a23095916dd6cbcb?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FSL-6.png"
+        },
+        "displayName": "Sijoon Lee",
+        "active": true,
+        "timeZone": "America/Toronto",
+        "accountType": "atlassian"
+      },
+      "priority": {
+        "self": "https://codeenthusiast.atlassian.net/rest/api/3/priority/3",
+        "iconUrl": "https://codeenthusiast.atlassian.net/images/icons/priorities/medium.svg",
+        "name": "Medium",
+        "id": "3"
+      },
+      "updated": "2020-08-06T21:56:13.674-0400",
+      "status": {
+        "self": "https://codeenthusiast.atlassian.net/rest/api/3/status/10002",
+        "description": "",
+        "iconUrl": "https://codeenthusiast.atlassian.net/",
+        "name": "Done",
+        "id": "10002",
+        "statusCategory": {
+          "self": "https://codeenthusiast.atlassian.net/rest/api/3/statuscategory/3",
+          "id": 3,
+          "key": "done",
+          "colorName": "green",
+          "name": "Done"
+        }
+      }
+    }
+  },
+  {
+    "expand": "operations,versionedRepresentations,editmeta,changelog,renderedFields",
+    "id": "10001",
+    "self": "https://codeenthusiast.atlassian.net/rest/api/3/issue/10001",
+    "key": "PJA-2",
+    "fields": {
+      "summary": "I will write Python Code",
+      "issuetype": {
+        "self": "https://codeenthusiast.atlassian.net/rest/api/3/issuetype/10001",
+        "id": "10001",
+        "description": "Stories track functionality or features expressed as user goals.",
+        "iconUrl": "https://codeenthusiast.atlassian.net/secure/viewavatar?size=medium&avatarId=10315&avatarType=issuetype",
+        "name": "Story",
+        "subtask": false,
+        "avatarId": 10315,
+        "entityId": "04883fb2-f1ad-4540-9a22-72028cce9906"
+      },
+      "creator": {
+        "self": "https://codeenthusiast.atlassian.net/rest/api/3/user?accountId=5f25927ebedd1000154304d8",
+        "accountId": "5f25927ebedd1000154304d8",
+        "emailAddress": "shijoonlee@gmail.com",
+        "avatarUrls": {
+          "48x48": "https://secure.gravatar.com/avatar/40dbc4f354954495a23095916dd6cbcb?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FSL-6.png",
+          "24x24": "https://secure.gravatar.com/avatar/40dbc4f354954495a23095916dd6cbcb?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FSL-6.png",
+          "16x16": "https://secure.gravatar.com/avatar/40dbc4f354954495a23095916dd6cbcb?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FSL-6.png",
+          "32x32": "https://secure.gravatar.com/avatar/40dbc4f354954495a23095916dd6cbcb?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FSL-6.png"
+        },
+        "displayName": "Sijoon Lee",
+        "active": true,
+        "timeZone": "America/Toronto",
+        "accountType": "atlassian"
+      },
+      "created": "2020-08-06T11:44:57.334-0400",
+      "project": {
+        "self": "https://codeenthusiast.atlassian.net/rest/api/3/project/10000",
+        "id": "10000",
+        "key": "PJA",
+        "name": "Practice-Jira-Api",
+        "projectTypeKey": "software",
+        "simplified": true,
+        "avatarUrls": {
+          "48x48": "https://codeenthusiast.atlassian.net/secure/projectavatar?pid=10000&avatarId=10415",
+          "24x24": "https://codeenthusiast.atlassian.net/secure/projectavatar?size=small&s=small&pid=10000&avatarId=10415",
+          "16x16": "https://codeenthusiast.atlassian.net/secure/projectavatar?size=xsmall&s=xsmall&pid=10000&avatarId=10415",
+          "32x32": "https://codeenthusiast.atlassian.net/secure/projectavatar?size=medium&s=medium&pid=10000&avatarId=10415"
+        }
+      },
+      "reporter": {
+        "self": "https://codeenthusiast.atlassian.net/rest/api/3/user?accountId=5f25927ebedd1000154304d8",
+        "accountId": "5f25927ebedd1000154304d8",
+        "emailAddress": "shijoonlee@gmail.com",
+        "avatarUrls": {
+          "48x48": "https://secure.gravatar.com/avatar/40dbc4f354954495a23095916dd6cbcb?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FSL-6.png",
+          "24x24": "https://secure.gravatar.com/avatar/40dbc4f354954495a23095916dd6cbcb?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FSL-6.png",
+          "16x16": "https://secure.gravatar.com/avatar/40dbc4f354954495a23095916dd6cbcb?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FSL-6.png",
+          "32x32": "https://secure.gravatar.com/avatar/40dbc4f354954495a23095916dd6cbcb?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FSL-6.png"
+        },
+        "displayName": "Sijoon Lee",
+        "active": true,
+        "timeZone": "America/Toronto",
+        "accountType": "atlassian"
+      },
+      "assignee": null,
+      "priority": {
+        "self": "https://codeenthusiast.atlassian.net/rest/api/3/priority/3",
+        "iconUrl": "https://codeenthusiast.atlassian.net/images/icons/priorities/medium.svg",
+        "name": "Medium",
+        "id": "3"
+      },
+      "updated": "2020-08-06T11:47:56.392-0400",
+      "status": {
+        "self": "https://codeenthusiast.atlassian.net/rest/api/3/status/10000",
+        "description": "",
+        "iconUrl": "https://codeenthusiast.atlassian.net/",
+        "name": "To Do",
+        "id": "10000",
+        "statusCategory": {
+          "self": "https://codeenthusiast.atlassian.net/rest/api/3/statuscategory/2",
+          "id": 2,
+          "key": "new",
+          "colorName": "blue-gray",
+          "name": "To Do"
+        }
+      }
+    }
+  },
+  {
+    "expand": "operations,versionedRepresentations,editmeta,changelog,renderedFields",
+    "id": "10000",
+    "self": "https://codeenthusiast.atlassian.net/rest/api/3/issue/10000",
+    "key": "PJA-1",
+    "fields": {
+      "summary": "I want to Test Jira API",
+      "issuetype": {
+        "self": "https://codeenthusiast.atlassian.net/rest/api/3/issuetype/10001",
+        "id": "10001",
+        "description": "Stories track functionality or features expressed as user goals.",
+        "iconUrl": "https://codeenthusiast.atlassian.net/secure/viewavatar?size=medium&avatarId=10315&avatarType=issuetype",
+        "name": "Story",
+        "subtask": false,
+        "avatarId": 10315,
+        "entityId": "04883fb2-f1ad-4540-9a22-72028cce9906"
+      },
+      "creator": {
+        "self": "https://codeenthusiast.atlassian.net/rest/api/3/user?accountId=5f25927ebedd1000154304d8",
+        "accountId": "5f25927ebedd1000154304d8",
+        "emailAddress": "shijoonlee@gmail.com",
+        "avatarUrls": {
+          "48x48": "https://secure.gravatar.com/avatar/40dbc4f354954495a23095916dd6cbcb?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FSL-6.png",
+          "24x24": "https://secure.gravatar.com/avatar/40dbc4f354954495a23095916dd6cbcb?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FSL-6.png",
+          "16x16": "https://secure.gravatar.com/avatar/40dbc4f354954495a23095916dd6cbcb?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FSL-6.png",
+          "32x32": "https://secure.gravatar.com/avatar/40dbc4f354954495a23095916dd6cbcb?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FSL-6.png"
+        },
+        "displayName": "Sijoon Lee",
+        "active": true,
+        "timeZone": "America/Toronto",
+        "accountType": "atlassian"
+      },
+      "created": "2020-08-06T11:44:46.714-0400",
+      "project": {
+        "self": "https://codeenthusiast.atlassian.net/rest/api/3/project/10000",
+        "id": "10000",
+        "key": "PJA",
+        "name": "Practice-Jira-Api",
+        "projectTypeKey": "software",
+        "simplified": true,
+        "avatarUrls": {
+          "48x48": "https://codeenthusiast.atlassian.net/secure/projectavatar?pid=10000&avatarId=10415",
+          "24x24": "https://codeenthusiast.atlassian.net/secure/projectavatar?size=small&s=small&pid=10000&avatarId=10415",
+          "16x16": "https://codeenthusiast.atlassian.net/secure/projectavatar?size=xsmall&s=xsmall&pid=10000&avatarId=10415",
+          "32x32": "https://codeenthusiast.atlassian.net/secure/projectavatar?size=medium&s=medium&pid=10000&avatarId=10415"
+        }
+      },
+      "reporter": {
+        "self": "https://codeenthusiast.atlassian.net/rest/api/3/user?accountId=5f25927ebedd1000154304d8",
+        "accountId": "5f25927ebedd1000154304d8",
+        "emailAddress": "shijoonlee@gmail.com",
+        "avatarUrls": {
+          "48x48": "https://secure.gravatar.com/avatar/40dbc4f354954495a23095916dd6cbcb?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FSL-6.png",
+          "24x24": "https://secure.gravatar.com/avatar/40dbc4f354954495a23095916dd6cbcb?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FSL-6.png",
+          "16x16": "https://secure.gravatar.com/avatar/40dbc4f354954495a23095916dd6cbcb?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FSL-6.png",
+          "32x32": "https://secure.gravatar.com/avatar/40dbc4f354954495a23095916dd6cbcb?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FSL-6.png"
+        },
+        "displayName": "Sijoon Lee",
+        "active": true,
+        "timeZone": "America/Toronto",
+        "accountType": "atlassian"
+      },
+      "assignee": null,
+      "priority": {
+        "self": "https://codeenthusiast.atlassian.net/rest/api/3/priority/3",
+        "iconUrl": "https://codeenthusiast.atlassian.net/images/icons/priorities/medium.svg",
+        "name": "Medium",
+        "id": "3"
+      },
+      "updated": "2020-08-07T14:31:32.235-0400",
+      "status": {
+        "self": "https://codeenthusiast.atlassian.net/rest/api/3/status/10001",
+        "description": "",
+        "iconUrl": "https://codeenthusiast.atlassian.net/",
+        "name": "In Progress",
+        "id": "10001",
+        "statusCategory": {
+          "self": "https://codeenthusiast.atlassian.net/rest/api/3/statuscategory/4",
+          "id": 4,
+          "key": "indeterminate",
+          "colorName": "yellow",
+          "name": "In Progress"
+        }
+      }
+    }
+  }
+]
