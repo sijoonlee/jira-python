@@ -114,7 +114,8 @@ class SqliteConnector(object):
         for joinClause in joinClauses:    
             statement += ' {joinType} JOIN {tableName} ON {onClause}'\
                 .format(joinType=joinClause["type"], tableName=joinClause["tableName"], onClause=joinClause["onClause"])
-        statement += ' WHERE {}'.format(whereClause)
+        if whereClause is not None:
+            statement += ' WHERE {}'.format(whereClause)
         return statement
 
     def createTable(self, model):

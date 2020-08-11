@@ -52,7 +52,6 @@ def processSprint(responseObject):
         if issueId is not None and len(sprintRecordList) > 0:
             sprintIssueLinkRecord = {}
             sprintIssueLinkRecord["issueId"] = issueId
-            print("issue", sprintIssueLinkRecord["issueId"])
             for sprintRecord in sprintRecordList:
                 sprintIssueLinkRecord["sprintId"] = sprintRecord["id"]
                 sprintIssueLinkRecordList.append(sprintIssueLinkRecord)
