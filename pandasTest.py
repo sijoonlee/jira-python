@@ -18,6 +18,22 @@ if __name__=="__main__":
     dbActions.reset(dbConnector)
     dbActions.update(dbConnector)
 
+    print("--------------------------------------")
+
+    # Finding Issues not beloning to any Sprint
+    selectedFields = ["Issue.key as issueKey", "IssueType.name as issueType","Sprint.id as sprintId", "Sprint.name as sprintName"]
+    joinClauses = [
+        {"type":"LEFT", "tableName":"IssueType", "onClause":"Issue.issueTypeId = IssueType.id"},
+        {"type":"LEFT", "tableName":"SprintIssueLink", "onClause":"Issue.id = SprintIssueLink.issueId"},
+        {"type":"LEFT", "tableName":"Sprint", "onClause":"Sprint.id = SprintIssueLink.sprintId"},
+    ]
+    whereClause = "Sprint.id IS NULL"
+    statement = dbConnector.queryFromJoinStatement(selectedFields, "Issue", joinClauses, whereClause)
+    df = pd.read_sql_query(statement, dbConnector.connection)
+    print(df)
+
+    print("--------------------------------------")
+    # Project PJA's general info
     selectedFields = ["Project.key as projectKey", "Issue.key as issueKey", "Issue.reporterName", "Status.name as status", "Priority.name as priority"]
     joinClauses = [
         {"type":"LEFT", "tableName":"IssueType", "onClause":"Issue.issueTypeId = IssueType.id"},
@@ -32,4 +48,5 @@ if __name__=="__main__":
 
     print("--------------------------------------")
 
+    # IssueTypes information
     getIssueTypeMetrics()

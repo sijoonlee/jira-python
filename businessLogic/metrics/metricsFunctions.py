@@ -11,5 +11,5 @@ def countByGroup(connection, queryStatement, groupField):
 
 def percentageByGroup(connection, queryStatement, groupField):
     grouped = countByGroup(connection, queryStatement, groupField)
-    grouped['Percentage'] = grouped['Count']/grouped['Count'].sum()
+    grouped['Percentage'] = grouped['Count']/grouped['Count'].sum()*100
     return grouped

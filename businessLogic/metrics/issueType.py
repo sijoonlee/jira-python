@@ -5,12 +5,10 @@ dbFile = './db/sqlite3/storage/db.sqlite'
 dbConnector = SqliteConnector(dbFile)
 
 def getMetricsPerProject(projectKey):
-    selectedFields = ["Project.key as projectKey", "IssueType.name as issueType", "Status.name as status", "Priority.name as priority"]
+    selectedFields = ["IssueType.name as issueType"]
     joinClauses = [
         {"type":"LEFT", "tableName":"IssueType", "onClause":"Issue.issueTypeId = IssueType.id"},
-        {"type":"LEFT", "tableName":"Project", "onClause":"Issue.projectId = Project.id"},
-        {"type":"LEFT", "tableName":"Status", "onClause":"Issue.statusId = Status.id"},
-        {"type":"LEFT", "tableName":"Priority", "onClause":"Issue.priorityId = Priority.id"}
+        {"type":"LEFT", "tableName":"Project", "onClause":"Issue.projectId = Project.id"}
     ]
     whereClause = "Project.key = '{}'".format(projectKey)
     statement = dbConnector.queryFromJoinStatement(selectedFields, "Issue", joinClauses, whereClause)
@@ -23,6 +21,8 @@ def getIssueTypeMetrics():
     # print(projectKeys) # [('PJA',), ('SP',)], the result comes as array of tuple
     if projectKeys is not None:
         for projectKey in projectKeys:
+            print("--------------------------------------")
             print("Project: " + projectKey[0])
             print(getMetricsPerProject(projectKey[0]))
+            print("--------------------------------------")
     

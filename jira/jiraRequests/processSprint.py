@@ -1,6 +1,8 @@
 import re
 from model import sprint
 
+# Converting String-coded information to DB-ready object
+
 def getMatchGroups(sprintString):    
     p = re.compile(sprint.pattern)
     obj = p.match(str(sprintString))

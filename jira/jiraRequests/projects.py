@@ -11,7 +11,7 @@ def getProjectPagination(maxResults, startAt):
     return json.loads(response.text)
 
 def getAllProjects():
-    maxResults = 1
+    maxResults = 50
     
     startAt = 0
     values = []

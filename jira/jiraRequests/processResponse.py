@@ -1,5 +1,7 @@
 from model import issue
 
+# Converting HTTP Response to DB-ready object
+
 def findValue(responseObject, path):
     path = path.split("->")
     value = responseObject
