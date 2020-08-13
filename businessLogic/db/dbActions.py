@@ -34,10 +34,12 @@ def reset(dbConnector):
 
 def update(dbConnector):
 
+    print("update boards data")
     response = getAllBoards()
     dbReadyData = processResponse(board.lookup, response)
     dbConnector.insertRecords(board.model, dbReadyData)
 
+    print("update sprint data")
     for boardData in dbReadyData:
         response = getAllSprintsInBoard(boardData["id"])
         dbReadyDataForSprint = processResponse(sprint.lookup, response)
@@ -50,26 +52,32 @@ def update(dbConnector):
                 entity["sprintId"] = sprintData["id"]
             dbConnector.insertRecords(sprintIssueLink.model, dbReadyDataForSprintIssueLink)
 
+    print("update user data")
     response = getAllUsers()
     dbReadyData = processResponse(user.lookup, response)
     dbConnector.insertRecords(user.model, dbReadyData)
 
+    print("update project data")
     response = getAllProjects()
     dbReadyData = processResponse(project.lookup, response)
     dbConnector.insertRecords(project.model, dbReadyData)
 
+    print("update priority data")
     response = getPriorities()
     dbReadyData = processResponse(priority.lookup, response)
     dbConnector.insertRecords(priority.model, dbReadyData)
 
+    print("update status data")
     response = getStatuses()
     dbReadyData = processResponse(status.lookup, response)
     dbConnector.insertRecords(status.model, dbReadyData)
     
+    print("update issueType data")
     response = getIssueTypes()
     dbReadyData = processResponse(issueType.lookup, response)
     dbConnector.insertRecords(issueType.model, dbReadyData)
-
+    
+    print("update issue data")
     response = getAllIssues()
     dbReadyData = processResponse(issue.lookup, response)
     dbConnector.insertRecords(issue.model, dbReadyData)

@@ -49,7 +49,7 @@ class SqliteConnector(object):
                 if i < len(foreignKeys) - 1 :
                     statement += ','
         statement += ")"
-        print(statement)
+        
         return statement
 
     def findTypeFromFieldName(self, model, fieldName):

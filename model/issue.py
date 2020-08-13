@@ -64,6 +64,6 @@ lookup = {
     "creatorName" : "fields->creator->displayName",
     "reporterName" : "fields->reporter->displayName",
     "assigneeName" : "fields->assignee->displayName",
-    "leadDevId" : "fields->customfield_10820->displayName",
-    "leadQAId" : "fields->customfield_10821->displayName"
+    "leadDevName" : "fields->customfield_10820->displayName",
+    "leadQAName" : "fields->customfield_10821->displayName"
 }

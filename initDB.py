@@ -4,5 +4,5 @@ from businessLogic.db import dbActions
 if __name__=="__main__":
     dbFile = './db/sqlite3/storage/db.sqlite'
     dbConnector = SqliteConnector(dbFile)
-    dbActions.reset(dbConnector)
+    #dbActions.reset(dbConnector)
     dbActions.update(dbConnector)

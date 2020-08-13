@@ -1,5 +1,6 @@
 .vscode
 config.py
 /ratehubResponse
-/__pycache__
+/__pycache__/
 db.sqlite
+*.pyc
