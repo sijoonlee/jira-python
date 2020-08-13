@@ -1,3 +1,3 @@
-from config import apiAddress
+from config import cloudApiAddress
 method = "GET"
-url = apiAddress + "/project/search?maxResults={maxResults}&startAt={startAt}"
+url = cloudApiAddress + "/project/search?maxResults={maxResults}&startAt={startAt}"

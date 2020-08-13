@@ -5,9 +5,11 @@ from jira.jiraRequests.priorities import getPriorities
 from jira.jiraRequests.projects import getAllProjects
 from jira.jiraRequests.statuses import getStatuses
 from jira.jiraRequests.users import getAllUsers
+from jira.jiraRequests.boards import getAllBoards
+from jira.jiraRequests.sprints import getAllSprintsInBoard
+from jira.jiraRequests.issuesInSprint import getAllIssuesInSprint
 from jira.jiraRequests.processResponse import processResponse
-from jira.jiraRequests.processSprint import processSprint
-from model import issue, priority, project, status, issueType, user, sprint, sprintIssueLink
+from model import issue, priority, project, status, issueType, user, sprint, sprintIssueLink, board
 
 def reset(dbConnector):
     dbConnector.dropTable(issueType.model)
@@ -18,6 +20,7 @@ def reset(dbConnector):
     dbConnector.dropTable(issue.model)
     dbConnector.dropTable(sprint.model)
     dbConnector.dropTable(sprintIssueLink.model)
+    dbConnector.dropTable(board.model)
     
     dbConnector.createTable(user.model)
     dbConnector.createTable(priority.model)
@@ -27,8 +30,26 @@ def reset(dbConnector):
     dbConnector.createTable(issue.model)
     dbConnector.createTable(sprint.model)
     dbConnector.createTable(sprintIssueLink.model)
+    dbConnector.createTable(board.model)
 
 def update(dbConnector):
+
+    response = getAllBoards()
+    dbReadyData = processResponse(board.lookup, response)
+    dbConnector.insertRecords(board.model, dbReadyData)
+
+    for boardData in dbReadyData:
+        response = getAllSprintsInBoard(boardData["id"])
+        dbReadyDataForSprint = processResponse(sprint.lookup, response)
+        dbConnector.insertRecords(sprint.model, dbReadyDataForSprint)
+
+        for sprintData in dbReadyDataForSprint:
+            response = getAllIssuesInSprint(boardData["id"],sprintData["id"])
+            dbReadyDataForSprintIssueLink = processResponse(sprintIssueLink.lookup, response)
+            for entity in dbReadyDataForSprintIssueLink:
+                entity["sprintId"] = sprintData["id"]
+            dbConnector.insertRecords(sprintIssueLink.model, dbReadyDataForSprintIssueLink)
+
     response = getAllUsers()
     dbReadyData = processResponse(user.lookup, response)
     dbConnector.insertRecords(user.model, dbReadyData)
@@ -53,6 +74,7 @@ def update(dbConnector):
     dbReadyData = processResponse(issue.lookup, response)
     dbConnector.insertRecords(issue.model, dbReadyData)
 
-    sprintRecordList, sprintIssueLinkRecordList = processSprint(response)
-    dbConnector.insertRecords(sprint.model, sprintRecordList)
-    dbConnector.insertRecords(sprintIssueLink.model, sprintIssueLinkRecordList)
+    # not being used
+    # sprintRecordList, sprintIssueLinkRecordList = processSprint(response)
+    # dbConnector.insertRecords(sprint.model, sprintRecordList)
+    # dbConnector.insertRecords(sprintIssueLink.model, sprintIssueLinkRecordList)

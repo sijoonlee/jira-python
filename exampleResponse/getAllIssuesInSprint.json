@@ -1,0 +1,241 @@
+[
+  {
+    "expand": "operations,versionedRepresentations,editmeta,changelog,renderedFields",
+    "id": "10000",
+    "self": "https://codeenthusiast.atlassian.net/rest/agile/1.0/issue/10000",
+    "key": "PJA-1",
+    "fields": {
+      "statuscategorychangedate": "2020-08-06T11:48:16.158-0400",
+      "issuetype": {
+        "self": "https://codeenthusiast.atlassian.net/rest/api/2/issuetype/10001",
+        "id": "10001",
+        "description": "Stories track functionality or features expressed as user goals.",
+        "iconUrl": "https://codeenthusiast.atlassian.net/secure/viewavatar?size=medium&avatarId=10315&avatarType=issuetype",
+        "name": "Story",
+        "subtask": false,
+        "avatarId": 10315,
+        "entityId": "04883fb2-f1ad-4540-9a22-72028cce9906"
+      },
+      "parent": {
+        "id": "10002",
+        "key": "PJA-3",
+        "self": "https://codeenthusiast.atlassian.net/rest/api/2/issue/10002",
+        "fields": {
+          "summary": "Understand Jira",
+          "status": {
+            "self": "https://codeenthusiast.atlassian.net/rest/api/2/status/10002",
+            "description": "",
+            "iconUrl": "https://codeenthusiast.atlassian.net/",
+            "name": "Done",
+            "id": "10002",
+            "statusCategory": {
+              "self": "https://codeenthusiast.atlassian.net/rest/api/2/statuscategory/3",
+              "id": 3,
+              "key": "done",
+              "colorName": "green",
+              "name": "Done"
+            }
+          },
+          "priority": {
+            "self": "https://codeenthusiast.atlassian.net/rest/api/2/priority/3",
+            "iconUrl": "https://codeenthusiast.atlassian.net/images/icons/priorities/medium.svg",
+            "name": "Medium",
+            "id": "3"
+          },
+          "issuetype": {
+            "self": "https://codeenthusiast.atlassian.net/rest/api/2/issuetype/10004",
+            "id": "10004",
+            "description": "\uc5d0\ud53d\uc740 \uad00\ub828 \ubc84\uadf8, \uc2a4\ud1a0\ub9ac \ubc0f \uc791\uc5c5\uc758 \uceec\ub809\uc158\uc744 \ucd94\uc801\ud569\ub2c8\ub2e4.",
+            "iconUrl": "https://codeenthusiast.atlassian.net/secure/viewavatar?size=medium&avatarId=10307&avatarType=issuetype",
+            "name": "\uc5d0\ud53d",
+            "subtask": false,
+            "avatarId": 10307,
+            "entityId": "6ff76647-316e-42f9-a7a9-12737e2c3b73"
+          }
+        }
+      },
+      "timespent": null,
+      "sprint": {
+        "id": 2,
+        "self": "https://codeenthusiast.atlassian.net/rest/agile/1.0/sprint/2",
+        "state": "active",
+        "name": "PJA Sprint 2",
+        "startDate": "2020-08-06T15:48:35.561Z",
+        "endDate": "2020-08-20T15:48:26.000Z",
+        "originBoardId": 1,
+        "goal": "do something"
+      },
+      "project": {
+        "self": "https://codeenthusiast.atlassian.net/rest/api/2/project/10000",
+        "id": "10000",
+        "key": "PJA",
+        "name": "Practice-Jira-Api",
+        "projectTypeKey": "software",
+        "simplified": true,
+        "avatarUrls": {
+          "48x48": "https://codeenthusiast.atlassian.net/secure/projectavatar?pid=10000&avatarId=10415",
+          "24x24": "https://codeenthusiast.atlassian.net/secure/projectavatar?size=small&s=small&pid=10000&avatarId=10415",
+          "16x16": "https://codeenthusiast.atlassian.net/secure/projectavatar?size=xsmall&s=xsmall&pid=10000&avatarId=10415",
+          "32x32": "https://codeenthusiast.atlassian.net/secure/projectavatar?size=medium&s=medium&pid=10000&avatarId=10415"
+        }
+      },
+      "fixVersions": [],
+      "aggregatetimespent": null,
+      "resolution": null,
+      "resolutiondate": null,
+      "workratio": -1,
+      "issuerestriction": {
+        "issuerestrictions": {},
+        "shouldDisplay": false
+      },
+      "lastViewed": "2020-08-07T14:31:22.734-0400",
+      "watches": {
+        "self": "https://codeenthusiast.atlassian.net/rest/api/2/issue/PJA-1/watchers",
+        "watchCount": 1,
+        "isWatching": true
+      },
+      "created": "2020-08-06T11:44:46.714-0400",
+      "customfield_10020": [
+        "com.atlassian.greenhopper.service.sprint.Sprint@735ac0fb[completeDate=2020-08-06T15:48:20.813Z,endDate=2020-08-20T15:45:09.000Z,goal=Understand Jira API,id=1,name=PJA Sprint 1,rapidViewId=1,sequence=1,startDate=2020-08-06T15:45:24.205Z,state=CLOSED]",
+        "com.atlassian.greenhopper.service.sprint.Sprint@1227e910[completeDate=<null>,endDate=2020-08-20T15:48:26.000Z,goal=do something,id=2,name=PJA Sprint 2,rapidViewId=1,sequence=2,startDate=2020-08-06T15:48:35.561Z,state=ACTIVE]"
+      ],
+      "customfield_10021": null,
+      "epic": null,
+      "customfield_10022": null,
+      "priority": {
+        "self": "https://codeenthusiast.atlassian.net/rest/api/2/priority/3",
+        "iconUrl": "https://codeenthusiast.atlassian.net/images/icons/priorities/medium.svg",
+        "name": "Medium",
+        "id": "3"
+      },
+      "customfield_10023": null,
+      "customfield_10024": null,
+      "customfield_10025": null,
+      "labels": [],
+      "customfield_10016": null,
+      "customfield_10017": null,
+      "customfield_10018": {
+        "hasEpicLinkFieldDependency": false,
+        "showField": false,
+        "nonEditableReason": {
+          "reason": "PLUGIN_LICENSE_ERROR",
+          "message": "The Parent Link is only available to Jira Premium users."
+        }
+      },
+      "customfield_10019": "0|hzzzzz:",
+      "timeestimate": null,
+      "aggregatetimeoriginalestimate": null,
+      "versions": [],
+      "issuelinks": [],
+      "assignee": null,
+      "updated": "2020-08-07T14:31:32.235-0400",
+      "status": {
+        "self": "https://codeenthusiast.atlassian.net/rest/api/2/status/10001",
+        "description": "",
+        "iconUrl": "https://codeenthusiast.atlassian.net/",
+        "name": "In Progress",
+        "id": "10001",
+        "statusCategory": {
+          "self": "https://codeenthusiast.atlassian.net/rest/api/2/statuscategory/4",
+          "id": 4,
+          "key": "indeterminate",
+          "colorName": "yellow",
+          "name": "In Progress"
+        }
+      },
+      "components": [],
+      "timeoriginalestimate": null,
+      "description": null,
+      "customfield_10010": null,
+      "customfield_10014": null,
+      "timetracking": {},
+      "customfield_10015": null,
+      "customfield_10005": null,
+      "customfield_10006": null,
+      "customfield_10007": null,
+      "security": null,
+      "customfield_10008": null,
+      "aggregatetimeestimate": null,
+      "attachment": [],
+      "customfield_10009": null,
+      "flagged": false,
+      "summary": "I want to Test Jira API",
+      "creator": {
+        "self": "https://codeenthusiast.atlassian.net/rest/api/2/user?accountId=5f25927ebedd1000154304d8",
+        "accountId": "5f25927ebedd1000154304d8",
+        "emailAddress": "shijoonlee@gmail.com",
+        "avatarUrls": {
+          "48x48": "https://secure.gravatar.com/avatar/40dbc4f354954495a23095916dd6cbcb?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FSL-6.png",
+          "24x24": "https://secure.gravatar.com/avatar/40dbc4f354954495a23095916dd6cbcb?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FSL-6.png",
+          "16x16": "https://secure.gravatar.com/avatar/40dbc4f354954495a23095916dd6cbcb?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FSL-6.png",
+          "32x32": "https://secure.gravatar.com/avatar/40dbc4f354954495a23095916dd6cbcb?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FSL-6.png"
+        },
+        "displayName": "Sijoon Lee",
+        "active": true,
+        "timeZone": "America/Toronto",
+        "accountType": "atlassian"
+      },
+      "subtasks": [],
+      "reporter": {
+        "self": "https://codeenthusiast.atlassian.net/rest/api/2/user?accountId=5f25927ebedd1000154304d8",
+        "accountId": "5f25927ebedd1000154304d8",
+        "emailAddress": "shijoonlee@gmail.com",
+        "avatarUrls": {
+          "48x48": "https://secure.gravatar.com/avatar/40dbc4f354954495a23095916dd6cbcb?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FSL-6.png",
+          "24x24": "https://secure.gravatar.com/avatar/40dbc4f354954495a23095916dd6cbcb?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FSL-6.png",
+          "16x16": "https://secure.gravatar.com/avatar/40dbc4f354954495a23095916dd6cbcb?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FSL-6.png",
+          "32x32": "https://secure.gravatar.com/avatar/40dbc4f354954495a23095916dd6cbcb?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FSL-6.png"
+        },
+        "displayName": "Sijoon Lee",
+        "active": true,
+        "timeZone": "America/Toronto",
+        "accountType": "atlassian"
+      },
+      "aggregateprogress": {
+        "progress": 0,
+        "total": 0
+      },
+      "customfield_10000": "{}",
+      "customfield_10001": null,
+      "customfield_10002": null,
+      "customfield_10003": null,
+      "customfield_10004": null,
+      "environment": null,
+      "duedate": null,
+      "closedSprints": [
+        {
+          "id": 1,
+          "self": "https://codeenthusiast.atlassian.net/rest/agile/1.0/sprint/1",
+          "state": "closed",
+          "name": "PJA Sprint 1",
+          "startDate": "2020-08-06T15:45:24.205Z",
+          "endDate": "2020-08-20T15:45:09.000Z",
+          "completeDate": "2020-08-06T15:48:20.813Z",
+          "originBoardId": 1,
+          "goal": "Understand Jira API"
+        }
+      ],
+      "progress": {
+        "progress": 0,
+        "total": 0
+      },
+      "votes": {
+        "self": "https://codeenthusiast.atlassian.net/rest/api/2/issue/PJA-1/votes",
+        "votes": 0,
+        "hasVoted": false
+      },
+      "comment": {
+        "comments": [],
+        "maxResults": 0,
+        "total": 0,
+        "startAt": 0
+      },
+      "worklog": {
+        "startAt": 0,
+        "maxResults": 20,
+        "total": 0,
+        "worklogs": []
+      }
+    }
+  }
+]

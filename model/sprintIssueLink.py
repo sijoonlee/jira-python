@@ -10,3 +10,9 @@ model = {
         {"name": "issueId", "references": "Issue(id)"},
     ]
 }
+
+lookup = {
+    "issueId":"id"
+}
+# sprintId will be inserted in other way since our response(getAllIssuesInSprint) doesn't have sprint information
+# check update method in dbActions under businessLogic

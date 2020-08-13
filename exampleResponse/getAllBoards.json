@@ -1,0 +1,47 @@
+[
+  {
+    "id": 1,
+    "self": "https://codeenthusiast.atlassian.net/rest/agile/1.0/board/1",
+    "name": "PJA \ubcf4\ub4dc",
+    "type": "simple",
+    "location": {
+      "projectId": 10000,
+      "displayName": "Practice-Jira-Api (PJA)",
+      "projectName": "Practice-Jira-Api",
+      "projectKey": "PJA",
+      "projectTypeKey": "software",
+      "avatarURI": "/secure/projectavatar?size=small&s=small&pid=10000&avatarId=10415",
+      "name": "Practice-Jira-Api (PJA)"
+    }
+  },
+  {
+    "id": 2,
+    "self": "https://codeenthusiast.atlassian.net/rest/agile/1.0/board/2",
+    "name": "SP board",
+    "type": "simple",
+    "location": {
+      "projectId": 10001,
+      "displayName": "Second-Project (SP)",
+      "projectName": "Second-Project",
+      "projectKey": "SP",
+      "projectTypeKey": "software",
+      "avatarURI": "/secure/projectavatar?size=small&s=small&pid=10001&avatarId=10404",
+      "name": "Second-Project (SP)"
+    }
+  },
+  {
+    "id": 3,
+    "self": "https://codeenthusiast.atlassian.net/rest/agile/1.0/board/3",
+    "name": "TRDPROJ board",
+    "type": "kanban",
+    "location": {
+      "projectId": 10002,
+      "displayName": "3rd-Project (TRDPROJ)",
+      "projectName": "3rd-Project",
+      "projectKey": "TRDPROJ",
+      "projectTypeKey": "software",
+      "avatarURI": "/secure/projectavatar?size=small&s=small&pid=10002&avatarId=10421",
+      "name": "3rd-Project (TRDPROJ)"
+    }
+  }
+]

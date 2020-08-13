@@ -2,7 +2,7 @@ from db.sqlite3.connector import SqliteConnector
 from jira.jiraRequests.processResponse import processResponse
 from jira.jiraRequests.processSprint import processSprint
 from utils.jsonUtil import readFileReport, writeFileReport
-from model import issue, issueType, priority, project, status, user, sprint, sprintIssueLink
+from model import issue, issueType, priority, project, status, user, sprint, sprintIssueLink, board
 
 
 
@@ -19,6 +19,7 @@ if __name__=="__main__":
     dbConnector.dropTable(issue.model)
     dbConnector.dropTable(sprint.model)
     dbConnector.dropTable(sprintIssueLink.model)
+    dbConnector.dropTable(board.model)
     
     dbConnector.createTable(user.model)
     dbConnector.createTable(priority.model)
@@ -28,6 +29,7 @@ if __name__=="__main__":
     dbConnector.createTable(issue.model)
     dbConnector.createTable(sprint.model)
     dbConnector.createTable(sprintIssueLink.model)
+    dbConnector.createTable(board.model)
 
     response = readFileReport("./exampleResponse/getAllProjects.json")
     dbReadyData = processResponse(project.lookup, response)

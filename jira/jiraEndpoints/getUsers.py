@@ -1,3 +1,3 @@
-from config import apiAddress
-url = apiAddress + "/users"
+from config import cloudApiAddress
+url = cloudApiAddress + "/users"
 method = "GET"

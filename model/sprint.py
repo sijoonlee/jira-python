@@ -11,9 +11,12 @@ model = {
     ]
 }
 
-
-# Lookup info
-lookup = {"issueId":"id", "sprint":"fields->customfield_10020"}
-totalFields = ["identifier", "completeDate", "endDate", "goal", "id", "name", "rapidViewId", "sequence", "startDate", "state"]
-selectedFields = ["id", "name", "goal",  "state", "startDate", "endDate", "completeDate"]
-pattern = 'com.atlassian.greenhopper.service.sprint.Sprint@(.*)\[completeDate=(.*),endDate=(.*),goal=(.*),id=(.*),name=(.*),rapidViewId=(.*),sequence=(.*),startDate=(.*),state=(.*)\]'
+lookup = {
+    "id":"id",
+    "name":"name",
+    "goal":"goal",
+    "state":"state",
+    "startDate":"startDate",
+    "endDate":"endDate",
+    "completeDate":"completeDate"
+}

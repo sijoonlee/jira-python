@@ -1,0 +1,16 @@
+from requests.auth import HTTPBasicAuth
+
+domain = ""
+emailAccount = ""
+apiToken = ""
+
+cloudVersion = "3"
+agileVersion = "1.0"
+cloudApiAddress = "https://{domain}.atlassian.net/rest/api/{version}/".format(domain = domain, version = cloudVersion)
+agileApiAddress = "https://{domain}.atlassian.net/rest/agile/{version}/".format(domain = domain, version = agileVersion)
+
+config = {
+    "cloudApiAddress" : cloudApiAddress,
+    "agileApiAddress" : agileApiAddress,
+    "auth": HTTPBasicAuth(emailAccount, apiToken)
+}

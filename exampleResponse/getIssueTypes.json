@@ -1,44 +1,33 @@
 [
   {
-    "self": "https://codeenthusiast.atlassian.net/rest/api/3/issuetype/10000",
-    "id": "10000",
-    "description": "A big user story that needs to be broken down. Created by Jira Software - do not edit or delete.",
-    "iconUrl": "https://codeenthusiast.atlassian.net/images/icons/issuetypes/epic.svg",
-    "name": "Epic",
-    "untranslatedName": "Epic",
-    "subtask": false
-  },
-  {
-    "self": "https://codeenthusiast.atlassian.net/rest/api/3/issuetype/10001",
-    "id": "10001",
-    "description": "Stories track functionality or features expressed as user goals.",
-    "iconUrl": "https://codeenthusiast.atlassian.net/secure/viewavatar?size=medium&avatarId=10315&avatarType=issuetype",
-    "name": "Story",
-    "untranslatedName": "Story",
-    "subtask": false,
-    "avatarId": 10315,
-    "scope": {
-      "type": "PROJECT",
-      "project": {
-        "id": "10000"
-      }
-    }
-  },
-  {
-    "self": "https://codeenthusiast.atlassian.net/rest/api/3/issuetype/10002",
-    "id": "10002",
-    "description": "Tasks track small, distinct pieces of work.",
+    "self": "https://codeenthusiast.atlassian.net/rest/api/3/issuetype/10012",
+    "id": "10012",
+    "description": "A small, distinct piece of work.",
     "iconUrl": "https://codeenthusiast.atlassian.net/secure/viewavatar?size=medium&avatarId=10318&avatarType=issuetype",
     "name": "Task",
     "untranslatedName": "Task",
     "subtask": false,
-    "avatarId": 10318,
-    "scope": {
-      "type": "PROJECT",
-      "project": {
-        "id": "10000"
-      }
-    }
+    "avatarId": 10318
+  },
+  {
+    "self": "https://codeenthusiast.atlassian.net/rest/api/3/issuetype/10014",
+    "id": "10014",
+    "description": "A problem or error.",
+    "iconUrl": "https://codeenthusiast.atlassian.net/secure/viewavatar?size=medium&avatarId=10303&avatarType=issuetype",
+    "name": "Bug",
+    "untranslatedName": "Bug",
+    "subtask": false,
+    "avatarId": 10303
+  },
+  {
+    "self": "https://codeenthusiast.atlassian.net/rest/api/3/issuetype/10013",
+    "id": "10013",
+    "description": "A small piece of work that's part of a larger task.",
+    "iconUrl": "https://codeenthusiast.atlassian.net/secure/viewavatar?size=medium&avatarId=10316&avatarType=issuetype",
+    "name": "Sub-task",
+    "untranslatedName": "Sub-task",
+    "subtask": true,
+    "avatarId": 10316
   },
   {
     "self": "https://codeenthusiast.atlassian.net/rest/api/3/issuetype/10003",
@@ -105,20 +94,13 @@
     }
   },
   {
-    "self": "https://codeenthusiast.atlassian.net/rest/api/3/issuetype/10007",
-    "id": "10007",
-    "description": "Tasks track small, distinct pieces of work.",
-    "iconUrl": "https://codeenthusiast.atlassian.net/secure/viewavatar?size=medium&avatarId=10318&avatarType=issuetype",
-    "name": "Task",
-    "untranslatedName": "Task",
-    "subtask": false,
-    "avatarId": 10318,
-    "scope": {
-      "type": "PROJECT",
-      "project": {
-        "id": "10001"
-      }
-    }
+    "self": "https://codeenthusiast.atlassian.net/rest/api/3/issuetype/10000",
+    "id": "10000",
+    "description": "A big user story that needs to be broken down. Created by Jira Software - do not edit or delete.",
+    "iconUrl": "https://codeenthusiast.atlassian.net/images/icons/issuetypes/epic.svg",
+    "name": "Epic",
+    "untranslatedName": "Epic",
+    "subtask": false
   },
   {
     "self": "https://codeenthusiast.atlassian.net/rest/api/3/issuetype/10008",
@@ -174,6 +156,54 @@
       "type": "PROJECT",
       "project": {
         "id": "10001"
+      }
+    }
+  },
+  {
+    "self": "https://codeenthusiast.atlassian.net/rest/api/3/issuetype/10007",
+    "id": "10007",
+    "description": "Tasks track small, distinct pieces of work.",
+    "iconUrl": "https://codeenthusiast.atlassian.net/secure/viewavatar?size=medium&avatarId=10318&avatarType=issuetype",
+    "name": "Task",
+    "untranslatedName": "Task",
+    "subtask": false,
+    "avatarId": 10318,
+    "scope": {
+      "type": "PROJECT",
+      "project": {
+        "id": "10001"
+      }
+    }
+  },
+  {
+    "self": "https://codeenthusiast.atlassian.net/rest/api/3/issuetype/10001",
+    "id": "10001",
+    "description": "Stories track functionality or features expressed as user goals.",
+    "iconUrl": "https://codeenthusiast.atlassian.net/secure/viewavatar?size=medium&avatarId=10315&avatarType=issuetype",
+    "name": "Story",
+    "untranslatedName": "Story",
+    "subtask": false,
+    "avatarId": 10315,
+    "scope": {
+      "type": "PROJECT",
+      "project": {
+        "id": "10000"
+      }
+    }
+  },
+  {
+    "self": "https://codeenthusiast.atlassian.net/rest/api/3/issuetype/10002",
+    "id": "10002",
+    "description": "Tasks track small, distinct pieces of work.",
+    "iconUrl": "https://codeenthusiast.atlassian.net/secure/viewavatar?size=medium&avatarId=10318&avatarType=issuetype",
+    "name": "Task",
+    "untranslatedName": "Task",
+    "subtask": false,
+    "avatarId": 10318,
+    "scope": {
+      "type": "PROJECT",
+      "project": {
+        "id": "10000"
       }
     }
   }

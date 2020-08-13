@@ -74,7 +74,10 @@ class SqliteConnector(object):
             if fieldType is "INTEGER" or fieldType is "REAL" or fieldType is "NULL":
                 fieldValues[i] = str(fieldValues[i])
             elif fieldType is "TEXT" or fieldType is "BLOB":
-                fieldValues[i] = '"{}"'.format(fieldValues[i])
+                 # single, double quotes, new line, carriage return are escaped
+                 # in sqlite you can escape by using ""(two double quotes) , ''(two sing quotes)
+                escaped = str(fieldValues[i]).replace('"', '""').replace("'", "\'\'") #.replace('\n', ' ').replace('\r', '')
+                fieldValues[i] = '"{}"'.format(escaped)
             else:
                 print("Error - Unknown type: ", fieldType)
 
@@ -133,13 +136,16 @@ class SqliteConnector(object):
         self.connection.commit()
 
     def insertOneRecord(self, model, record):
-        self.cur.execute(self.insertValuesStatement(model, record))
-        self.connection.commit()
+        if len(record) != 0: # no field
+            self.cur.execute(self.insertValuesStatement(model, record))
+            self.connection.commit()
 
     def insertRecords(self, model, records):
-        for record in records:
-            self.cur.execute(self.insertValuesStatement(model, record))
-        self.connection.commit()
+        if len(records) != 0:
+            for record in records:
+                if len(record) != 0: # no field
+                    self.cur.execute(self.insertValuesStatement(model, record))
+            self.connection.commit()
 
     def queryTable(self, tableName, fields, whereClause):
         self.cur.execute(self.queryTableStatement(tableName, fields, whereClause))

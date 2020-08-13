@@ -1,3 +1,3 @@
-from config import apiAddress
+from config import cloudApiAddress
 method = "GET"
-url = apiAddress + "/status"
+url = cloudApiAddress + "/status"

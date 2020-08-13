@@ -1,3 +1,10 @@
+"""
+This is not being used
+lookup = {"issueId":"id", "sprint":"fields->customfield_10020"}
+totalFields = ["identifier", "completeDate", "endDate", "goal", "id", "name", "rapidViewId", "sequence", "startDate", "state"]
+selectedFields = ["id", "name", "goal",  "state", "startDate", "endDate", "completeDate"]
+pattern = 'com.atlassian.greenhopper.service.sprint.Sprint@(.*)\[completeDate=(.*),endDate=(.*),goal=(.*),id=(.*),name=(.*),rapidViewId=(.*),sequence=(.*),startDate=(.*),state=(.*)\]'
+
 import re
 from model import sprint
 
@@ -59,3 +66,4 @@ def processSprint(responseObject):
                 sprintIssueLinkRecordList.append(sprintIssueLinkRecord)
 
     return sprintRecordList, sprintIssueLinkRecordList
+"""

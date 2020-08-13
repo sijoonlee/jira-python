@@ -1,5 +1,4 @@
 import json
-from requests.auth import HTTPBasicAuth
 from config import config
 from jira.jiraEndpoints.getIssuesPagination import method, url, payloadGenerator
 from jira.jiraRequests.requestToJira import requestToJira
@@ -25,7 +24,7 @@ def getFilteredIssues(projectKey, issueType):
 
 def getIssuesPagination(jqlQuery, maxResults, startAt):
     formattedUrl = url.format(maxResults=maxResults, startAt=startAt)
-    auth = HTTPBasicAuth(config['emailAccount'], config['apiToken'])
+    auth = config["auth"]
     payloads = payloadGenerator(jqlQuery, maxResults, startAt)
     response = requestToJira(method, formattedUrl, auth, payloads)
     return json.loads(response.text)

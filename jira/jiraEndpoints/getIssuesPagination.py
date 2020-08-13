@@ -1,11 +1,17 @@
 import json
-from config import apiAddress
-DEFAULT_FIELDS = [ "issuetype", "summary", "priority", "status", "project", "parent","customfield_10020",
-                   "created", "updated", # "timespent",
-                   "assignee", "creator", "reporter"] # ["*all"] # to get all fields
+from config import cloudApiAddress
+DEFAULT_FIELDS = [ "issuetype", "summary", "priority", "status", "project", "parent", "fixVersions", 
+                "customfield_10004","customfield_10006","customfield_10820","customfield_10821",
+                "created", "updated", # "timespent",
+                "assignee", "creator", "reporter"] # ["*all"] # to get all fields
 DEFAULT_EXPAND = [] # ["changelog"] # unnecessary for now
 
-url = apiAddress + "/search"
+#customfield_10004: story point
+#customfield_10006: sprint
+#customfield_10820: user, lead dev
+#customfield_10821: user, lead qa
+
+url = cloudApiAddress + "/search"
 method = "POST"
 
 class PayloadsBuilder(object):

@@ -11,6 +11,8 @@ def findValue(responseObject, path):
             break
     return value
 
+# response is an array of multiple items
+# [ {"id":"1000", "name":"example1"}, ... ]
 def processResponse(lookup, response):
 
     fieldNames = list(lookup.keys())

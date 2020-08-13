@@ -38,5 +38,23 @@
     "properties": {},
     "entityId": "a70730ef-1094-4dc6-a33d-67445a98b4a1",
     "uuid": "a70730ef-1094-4dc6-a33d-67445a98b4a1"
+  },
+  {
+    "expand": "description,lead,issueTypes,url,projectKeys,permissions,insight",
+    "self": "https://codeenthusiast.atlassian.net/rest/api/3/project/10002",
+    "id": "10002",
+    "key": "TRDPROJ",
+    "name": "3rd-Project",
+    "avatarUrls": {
+      "48x48": "https://codeenthusiast.atlassian.net/secure/projectavatar?pid=10002&avatarId=10421",
+      "24x24": "https://codeenthusiast.atlassian.net/secure/projectavatar?size=small&s=small&pid=10002&avatarId=10421",
+      "16x16": "https://codeenthusiast.atlassian.net/secure/projectavatar?size=xsmall&s=xsmall&pid=10002&avatarId=10421",
+      "32x32": "https://codeenthusiast.atlassian.net/secure/projectavatar?size=medium&s=medium&pid=10002&avatarId=10421"
+    },
+    "projectTypeKey": "software",
+    "simplified": false,
+    "style": "classic",
+    "isPrivate": false,
+    "properties": {}
   }
 ]

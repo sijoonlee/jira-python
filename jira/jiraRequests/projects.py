@@ -6,7 +6,7 @@ from jira.jiraRequests.requestToJira import requestToJira
 
 def getProjectPagination(maxResults, startAt):
     formattedUrl = url.format(maxResults=maxResults, startAt=startAt)
-    auth = HTTPBasicAuth(config['emailAccount'], config['apiToken'])
+    auth = config["auth"]
     response = requestToJira(method, formattedUrl, auth, None)
     return json.loads(response.text)
 
