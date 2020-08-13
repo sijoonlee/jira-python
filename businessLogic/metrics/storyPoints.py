@@ -16,18 +16,25 @@ def getMetricsPerProject(projectKey):
     whereClause = "Project.key = '{}'".format(projectKey)
     statement = dbConnector.queryFromJoinStatement(selectedFields,"Issue",joinClauses,whereClause)
 
-    # df = percentageByGroup(dbConnector.connection, statement, "issueType")
+    # load data
     df = pd.read_sql_query(statement, dbConnector.connection)
+
+    # drop data where story points are none
+    df = df.drop(df[df.storyPoints == "None"].index)
+    df["storyPoints"] = pd.to_numeric(df["storyPoints"])
+
+    # show
+    df_status = df.groupby("status").sum()
+    print(df_status)
 
     # parse string to datetime
     df["created"] = pd.to_datetime(df["created"])
 
     # filter > 2020.1.1
-    df = df[df["created"] > datetime.datetime(year=2020,month=1,day=1).replace(tzinfo=timezone.utc)]
+    start = datetime.datetime(year=2020,month=5,day=11).replace(tzinfo=timezone.utc)
+    df = df[df["created"] >= start]
     
-    # drop data where story points are none
-    df = df.drop(df[df.storyPoints == "None"].index)
-    df["storyPoints"] = pd.to_numeric(df["storyPoints"])
+    
 
 
     df1 = df.groupby("assigneeName").sum()
@@ -39,6 +46,46 @@ def getMetricsPerProject(projectKey):
     #df = df.groupby("storyPoints").count()
     return df
 
+def findIssuesCreatedBetween(projectKey, startStr, endStr):
+    start = datetime.datetime.strptime(startStr,'%Y-%m-%d').replace(tzinfo=timezone.utc)
+    end = datetime.datetime.strptime(endStr,'%Y-%m-%d').replace(tzinfo=timezone.utc)
+
+    selectedFields = ["Issue.key as issue", "Issue.storyPoints", "IssueType.name as issueType","Status.name as status","Issue.statusid", "Issue.assigneeName", "Issue.created", "Issue.updated"]
+    joinClauses = [
+        {"type":"LEFT", "tableName":"IssueType", "onClause":"Issue.issueTypeId = IssueType.id"},
+        {"type":"LEFT", "tableName":"Project", "onClause":"Issue.projectId = Project.id"},
+        {"type":"LEFT", "tableName":"Status", "onClause":"Issue.statusId = Status.id"}
+    ]
+    whereClause = "Project.key = '{}'".format(projectKey)
+    statement = dbConnector.queryFromJoinStatement(selectedFields,"Issue",joinClauses,whereClause)
+
+    # load data
+    df = pd.read_sql_query(statement, dbConnector.connection)
+    
+    
+    df["created"] = pd.to_datetime(df["created"])
+    df["updated"] = pd.to_datetime(df["updated"])
+    
+    df_created = df[ (df["created"] >= start) & (df["created"]<=end) ]
+    print("issue created between those days")
+    print("count")
+    print(df_created.groupby("status").count())
+    print("story points")
+    df_created = df_created.drop(df_created[df_created.storyPoints == "None"].index)
+    df_created["storyPoints"] = pd.to_numeric(df_created["storyPoints"])
+    print(df_created.groupby("status").sum())
+
+    df_updated = df[ (df["updated"] >= start) & (df["updated"]<=end) ]
+    print("issue updated between those days")
+    print("count")
+    print(df_updated.groupby("status").count())
+    print("story points")
+    df_updated = df_updated.drop(df_updated[df_updated.storyPoints == "None"].index)
+    df_updated["storyPoints"] = pd.to_numeric(df_updated["storyPoints"])
+    print(df_updated.groupby("status").sum())
+    
+
+    
 
 def getIssueTypeMetrics():
     projectKeys = dbConnector.queryTable("Project", ["key"], None)
@@ -49,3 +96,24 @@ def getIssueTypeMetrics():
             print("Project: " + projectKey[0])
             print(getMetricsPerProject(projectKey[0]))
             print("--------------------------------------")
+
+
+def issuesInSprint(sprintId):
+    selectedFields = ["Issue.key as issue", "Issue.storyPoints", "IssueType.name as issueType","Status.name as status","Issue.statusid", "Issue.assigneeName", "Issue.created", "Issue.updated"]
+    joinClauses = [
+        {"type":"LEFT", "tableName":"IssueType", "onClause":"Issue.issueTypeId = IssueType.id"},
+        {"type":"LEFT", "tableName":"Project", "onClause":"Issue.projectId = Project.id"},
+        {"type":"LEFT", "tableName":"Status", "onClause":"Issue.statusId = Status.id"},
+        {"type":"LEFT", "tableName":"SprintIssueLink", "onClause":"Issue.id = SprintIssueLink.issueId"},
+    ]
+    whereClause = "SprintIssueLink.sprintId = '{}'".format(sprintId)
+    statement = dbConnector.queryFromJoinStatement(selectedFields,"Issue",joinClauses,whereClause)
+
+    # load data
+    df = pd.read_sql_query(statement, dbConnector.connection)
+    print(df)
+    print(df.groupby("status").count())    
+    df = df.drop(df[df.storyPoints == "None"].index)
+    df["storyPoints"] = pd.to_numeric(df["storyPoints"])
+    print(df.groupby("status").sum())
+    

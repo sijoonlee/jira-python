@@ -43,6 +43,8 @@ def update(dbConnector):
     for boardData in dbReadyData:
         response = getAllSprintsInBoard(boardData["id"])
         dbReadyDataForSprint = processResponse(sprint.lookup, response)
+        for entity in dbReadyDataForSprint:
+            entity["boardId"] = boardData["id"]
         dbConnector.insertRecords(sprint.model, dbReadyDataForSprint)
 
         for sprintData in dbReadyDataForSprint:
