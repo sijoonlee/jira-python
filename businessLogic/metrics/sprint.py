@@ -22,7 +22,7 @@ def numberOfIssuesInSprint(sprintId):
     print(df.groupby("sprint").count())
 
 
-def numberOfIssuesInSprintsStartedBetween(boardId, startStr, endStr): # format '2020-01-01'
+def issuesInSprintsStartedBetween(boardId, startStr, endStr): # format '2020-01-01'
     start = datetime.datetime.strptime(startStr,'%Y-%m-%d').replace(tzinfo=timezone.utc)
     end = datetime.datetime.strptime(endStr,'%Y-%m-%d').replace(tzinfo=timezone.utc)
 
@@ -39,29 +39,52 @@ def numberOfIssuesInSprintsStartedBetween(boardId, startStr, endStr): # format '
 
     # load data
     df = pd.read_sql_query(statement, dbConnector.connection)
-    print(df.head(10))
     df = df.drop(df[df.startDate == "None"].index)
     df["storyPoints"] = df["storyPoints"].replace({"None":"0"})
     df["storyPoints"] = pd.to_numeric(df["storyPoints"])
-    
     df["startDate"] = pd.to_datetime(df["startDate"])
     df = df[ (df["startDate"] >= start) & (df["startDate"]<=end) ]
     
+    return df
+
+
+def numberOfIssuesGroupBySprint(boardId, startStr, endStr):
+    
+    df = issuesInSprintsStartedBetween(boardId, startStr, endStr)
+    
     # counting issues
-    df_count = df.filter(["sprint"], axis=1)
-    df_count["count"] = ""
-    print(df_count.groupby("sprint").count())
+    df = df.filter(["sprint"], axis=1)
+    df["count"] = ""
+    df = df.groupby("sprint").count()
+    print(df)
+    return df
 
-
+def pivotSumStoryPoints(boardId, startStr, endStr):
+    df = issuesInSprintsStartedBetween(boardId, startStr, endStr)
     # show issue type metrics
-    df_issueType_storyPoints = df.filter(["sprint", "issueType", "storyPoints", "status"], axis=1)
-    x = pd.pivot_table(df_issueType_storyPoints, index=['sprint','issueType','status'], values='storyPoints', aggfunc = 'sum')
-    print(x)
+    df = df.filter(["sprint", "issueType", "storyPoints", "status"], axis=1)
+    pivotted = pd.pivot_table(df, index=['sprint','issueType','status'], values='storyPoints', aggfunc = 'sum')
+    print(pivotted)
+    return pivotted
 
-    df_issueType_count = df.filter(["sprint", "issueType", "key", "status"], axis=1)
-    y = pd.pivot_table(df_issueType_count, index=['sprint','issueType','status'], values='key', aggfunc = 'count')
-    print(y)
+def pivotCountIssues(boardId, startStr, endStr):
+    df = issuesInSprintsStartedBetween(boardId, startStr, endStr)
+    df = df.filter(["sprint", "issueType", "key", "status"], axis=1)
+    pivotted = pd.pivot_table(df, index=['sprint','issueType','status'], values='key', aggfunc = 'count')
+    print(pivotted)
 
     # this is how to convert pivot_table to Dataframe
     # flattened = pd.DataFrame(y.to_records())
     # print(flattened)
+    return pivotted
+    
+def calculateWorkDonePercentage(boardId, startStr, endStr):
+    pivotted = pivotSumStoryPoints(boardId, startStr, endStr)
+    flattened = pd.DataFrame(pivotted.to_records())
+    flattened.groupby("status").sum()
+    #workToDo = flattened[flattened["status"] == "Work To Do"]
+    flattened = flattened.groupby("status").sum()
+
+    flattened['Percentage'] = flattened['storyPoints']/flattened['storyPoints'].sum()*100
+
+    print(flattened)
