@@ -1,6 +1,7 @@
 import json
 from config import cloudApiAddress
-DEFAULT_FIELDS = [ "issuetype", "summary", "priority", "status", "project", "parent", "fixVersions", 
+DEFAULT_FIELDS = [ "issuetype", "summary", "priority", "status", "project", "parent", "fixVersions",
+                "resolution", "resolutiondate",
                 "customfield_10004","customfield_10006","customfield_10820","customfield_10821",
                 "created", "updated", # "timespent",
                 "assignee", "creator", "reporter"] # ["*all"] # to get all fields

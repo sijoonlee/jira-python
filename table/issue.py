@@ -8,6 +8,8 @@ model = {
         {"name" : "storyPoints", "type" : "TEXT" }, # Tried READ first, but make trouble, rather parse it later
         {"name" : "created", "type" : "TEXT" }, # store it as TEXT and parse it as Date/Time later
         {"name" : "updated", "type" : "TEXT" },
+        {"name" : "resolutionId", "type" : "TEXT" },
+        {"name" : "resolutionDate", "type" : "TEXT" },
         {"name" : "parentId", "type" : "TEXT" },
         {"name" : "parentKey", "type" : "TEXT" },
         {"name" : "parentSummary", "type" : "TEXT" },
@@ -31,6 +33,7 @@ model = {
         {"name": "projectId", "references": "Project(id)"},
         {"name": "priorityId", "references": "Priority(id)"},
         {"name": "statusId", "references": "Status(id)"},
+        {"name": "resolutionId", "references": "Resolution(id)"},
         {"name": "creatorId", "references": "User(accountId)"},
         {"name": "reporterId", "references": "User(accountId)"},
         {"name": "assigneeId", "references": "User(accountId)"},
@@ -49,6 +52,8 @@ lookup = {
     "storyPoints":"fields->customfield_10004",
     "created" : "fields->created",
     "updated" : "fields->updated",
+    "resolutionId" : "fields->resolution->id",
+    "resolutionDate" : "fields->resolutiondate",
     "parentId" : "fields->parent->id",
     "parentKey" : "fields->parent->key",
     "parentSummary" : "fields->parent->fields->summary",

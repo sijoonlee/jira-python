@@ -1,5 +1,5 @@
 from db.sqlite3.connector import SqliteConnector
-from model import issue, priority, project, status, issueType, user, sprint, sprintIssueLink
+from table import issue, priority, project, status, issueType, user, sprint, sprintIssueLink
 from jira.jiraRequests.issues import getAllIssues
 from jira.jiraRequests.issueTypes import getIssueTypes
 from jira.jiraRequests.priorities import getPriorities

@@ -1,4 +1,4 @@
-from model import issue
+from table import issue
 
 # Converting HTTP Response to DB-ready object
 

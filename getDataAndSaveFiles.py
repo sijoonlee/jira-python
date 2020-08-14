@@ -7,8 +7,9 @@ from jira.jiraRequests.priorities import getPriorities
 from jira.jiraRequests.boards import getAllBoards
 from jira.jiraRequests.sprints import getAllSprintsInBoard, getSprintsInBoardPagination
 from jira.jiraRequests.issuesInSprint import getAllIssuesInSprint
+from jira.jiraRequests.resolutions import getResolutions
+from jira.jiraRequests.processResponse import processResponse
 from utils.jsonUtil import writeFileReport
-
 
 if __name__=="__main__":
        
@@ -38,9 +39,14 @@ if __name__=="__main__":
 
     data = getSprintsInBoardPagination(1,10,0) # board id 1
     writeFileReport(data, "./{}/getSprintsInBoardPagination.json".format(dir))
-    """
+    
     data = getAllSprintsInBoard("40") # board id
     writeFileReport(data, "./{}/getAllSprintsInBoard.json".format(dir))
 
     data = getAllIssuesInSprint("40", "11") # board id, sprint id
     writeFileReport(data, "./{}/getAllIssuesInSprint.json".format(dir))
+    
+    data = getResolutions()
+    writeFileReport(data, "./{}/getResolutions.json".format(dir))
+    """
+    

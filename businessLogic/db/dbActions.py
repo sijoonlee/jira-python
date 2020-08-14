@@ -8,8 +8,10 @@ from jira.jiraRequests.users import getAllUsers
 from jira.jiraRequests.boards import getAllBoards
 from jira.jiraRequests.sprints import getAllSprintsInBoard
 from jira.jiraRequests.issuesInSprint import getAllIssuesInSprint
+from jira.jiraRequests.resolutions import getResolutions
 from jira.jiraRequests.processResponse import processResponse
-from model import issue, priority, project, status, issueType, user, sprint, sprintIssueLink, board
+
+from table import issue, priority, project, status, issueType, user, sprint, sprintIssueLink, board, resolution
 
 def reset(dbConnector):
     dbConnector.dropTable(issueType.model)
@@ -21,6 +23,7 @@ def reset(dbConnector):
     dbConnector.dropTable(sprint.model)
     dbConnector.dropTable(sprintIssueLink.model)
     dbConnector.dropTable(board.model)
+    dbConnector.dropTable(resolution.model)
     
     dbConnector.createTable(user.model)
     dbConnector.createTable(priority.model)
@@ -31,6 +34,7 @@ def reset(dbConnector):
     dbConnector.createTable(sprint.model)
     dbConnector.createTable(sprintIssueLink.model)
     dbConnector.createTable(board.model)
+    dbConnector.createTable(resolution.model)
 
 def update(dbConnector):
 
@@ -58,6 +62,11 @@ def update(dbConnector):
     response = getAllUsers()
     dbReadyData = processResponse(user.lookup, response)
     dbConnector.insertRecords(user.model, dbReadyData)
+
+    print("update resolution data")
+    response = getResolutions()
+    dbReadyData = processResponse(resolution.lookup, response)
+    dbConnector.insertRecords(resolution.model, dbReadyData)
 
     print("update project data")
     response = getAllProjects()

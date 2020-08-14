@@ -1,6 +1,6 @@
 # import os
 from db.sqlite3.connector import SqliteConnector
-from model import issue, priority, project, status, issueType, user, sprint, sprintIssueLink
+from table import issue, priority, project, status, issueType, user, sprint, sprintIssueLink
     
 
 if __name__=="__main__":

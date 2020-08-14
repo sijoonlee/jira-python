@@ -2,7 +2,7 @@ from db.sqlite3.connector import SqliteConnector
 from jira.jiraRequests.processResponse import processResponse
 from jira.jiraRequests.processSprint import processSprint
 from utils.jsonUtil import readFileReport, writeFileReport
-from model import issue, issueType, priority, project, status, user, sprint, sprintIssueLink, board
+from table import issue, issueType, priority, project, status, user, sprint, sprintIssueLink, board
 
 
 

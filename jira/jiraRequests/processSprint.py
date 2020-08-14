@@ -6,7 +6,7 @@ selectedFields = ["id", "name", "goal",  "state", "startDate", "endDate", "compl
 pattern = 'com.atlassian.greenhopper.service.sprint.Sprint@(.*)\[completeDate=(.*),endDate=(.*),goal=(.*),id=(.*),name=(.*),rapidViewId=(.*),sequence=(.*),startDate=(.*),state=(.*)\]'
 
 import re
-from model import sprint
+from table import sprint
 
 # Converting String-coded information to DB-ready object
 
