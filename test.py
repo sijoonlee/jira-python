@@ -9,13 +9,7 @@ from jira.jiraRequests.sprints import getAllSprintsInBoard, getSprintsInBoardPag
 from utils.jsonUtil import writeFileReport
 
 if __name__=="__main__":
-    
-    data = getSprintsInBoardPagination("93", 300, 0)
-    #data = getAllSprintsInBoard("93")
-    writeFileReport(data, "test.json")
-    #data = getAllIssuesInSprint("93", "431")
-    #writeFileReport(data, "test.json")
-    
+   
     # str1 = '\'Improve test\''
     # print(str1)
     # str2  = str1.replace("'", "''")    
