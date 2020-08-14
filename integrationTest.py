@@ -6,7 +6,7 @@ from jira.jiraRequests.priorities import getPriorities
 from jira.jiraRequests.projects import getAllProjects
 from jira.jiraRequests.statuses import getStatuses
 from jira.jiraRequests.users import getAllUsers
-from jira.jiraRequests.processResponse import processResponse
+from jira.jiraRequests.responseProcessor import responseProcessor
 from jira.jiraRequests.processSprint import processSprint
 from businessLogic.db import dbActions
 

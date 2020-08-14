@@ -10,7 +10,7 @@ def getBoardPagination(maxResults, startAt):
     return json.loads(response.text)
 
 def getAllBoards():
-    maxResults = 1
+    maxResults = 50
     
     startAt = 0
     values = []

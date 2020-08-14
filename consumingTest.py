@@ -1,5 +1,5 @@
 from db.sqlite3.connector import SqliteConnector
-from jira.jiraRequests.processResponse import processResponse
+from jira.jiraRequests.responseProcessor import responseProcessor
 from jira.jiraRequests.processSprint import processSprint
 from utils.jsonUtil import readFileReport, writeFileReport
 from table import issue, issueType, priority, project, status, user, sprint, sprintIssueLink, board
@@ -32,11 +32,11 @@ if __name__=="__main__":
     dbConnector.createTable(board.model)
 
     response = readFileReport("./exampleResponse/getAllProjects.json")
-    dbReadyData = processResponse(project.lookup, response)
+    dbReadyData = responseProcessor(project.lookup, response)
     dbConnector.insertRecords(project.model, dbReadyData)
 
     response = readFileReport("./exampleResponse/getAllIssues.json")
-    dbReadyData = processResponse(issue.lookup, response)
+    dbReadyData = responseProcessor(issue.lookup, response)
     dbConnector.insertRecords(issue.model, dbReadyData)
     
     sprintRecordList, sprintIssueLinkRecordList = processSprint(response)
@@ -45,17 +45,17 @@ if __name__=="__main__":
     dbConnector.insertRecords(sprintIssueLink.model, sprintIssueLinkRecordList)
 
     response = readFileReport("./exampleResponse/getAllUsers.json")
-    dbReadyData = processResponse(user.lookup, response)
+    dbReadyData = responseProcessor(user.lookup, response)
     dbConnector.insertRecords(user.model, dbReadyData)
 
     response = readFileReport("./exampleResponse/getIssueTypes.json")
-    dbReadyData = processResponse(issueType.lookup, response)
+    dbReadyData = responseProcessor(issueType.lookup, response)
     dbConnector.insertRecords(issueType.model, dbReadyData)
 
     response = readFileReport("./exampleResponse/getPriorities.json")
-    dbReadyData = processResponse(priority.lookup, response)
+    dbReadyData = responseProcessor(priority.lookup, response)
     dbConnector.insertRecords(priority.model, dbReadyData)
 
     response = readFileReport("./exampleResponse/getStatuses.json")
-    dbReadyData = processResponse(status.lookup, response)
+    dbReadyData = responseProcessor(status.lookup, response)
     dbConnector.insertRecords(status.model, dbReadyData)

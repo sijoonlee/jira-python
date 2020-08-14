@@ -8,13 +8,17 @@ from jira.jiraRequests.boards import getAllBoards
 from jira.jiraRequests.sprints import getAllSprintsInBoard, getSprintsInBoardPagination
 from jira.jiraRequests.issuesInSprint import getAllIssuesInSprint
 from jira.jiraRequests.resolutions import getResolutions
-from jira.jiraRequests.processResponse import processResponse
+from jira.jiraRequests.responseProcessor import responseProcessor
 from utils.jsonUtil import writeFileReport
+from table import board
+from db.sqlite3.connector import SqliteConnector
+from businessLogic.db import dbActions
 
 if __name__=="__main__":
        
     #dir = 'exampleResponse'
     dir = 'ratehubResponse'
+    
     """
     data = getAllProjects()
     writeFileReport(data, "./{}/getAllProjects.json".format(dir))

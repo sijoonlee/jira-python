@@ -9,89 +9,76 @@ from jira.jiraRequests.boards import getAllBoards
 from jira.jiraRequests.sprints import getAllSprintsInBoard
 from jira.jiraRequests.issuesInSprint import getAllIssuesInSprint
 from jira.jiraRequests.resolutions import getResolutions
-from jira.jiraRequests.processResponse import processResponse
-
 from table import issue, priority, project, status, issueType, user, sprint, sprintIssueLink, board, resolution
 
 def reset(dbConnector):
-    dbConnector.dropTable(issueType.model)
-    dbConnector.dropTable(user.model)
-    dbConnector.dropTable(priority.model)
-    dbConnector.dropTable(status.model)
-    dbConnector.dropTable(project.model)
-    dbConnector.dropTable(issue.model)
-    dbConnector.dropTable(sprint.model)
-    dbConnector.dropTable(sprintIssueLink.model)
-    dbConnector.dropTable(board.model)
-    dbConnector.dropTable(resolution.model)
-    
-    dbConnector.createTable(user.model)
-    dbConnector.createTable(priority.model)
-    dbConnector.createTable(project.model)
-    dbConnector.createTable(status.model)
-    dbConnector.createTable(issueType.model)
-    dbConnector.createTable(issue.model)
-    dbConnector.createTable(sprint.model)
-    dbConnector.createTable(sprintIssueLink.model)
-    dbConnector.createTable(board.model)
-    dbConnector.createTable(resolution.model)
 
-def update(dbConnector):
+    issue.drop(dbConnector)
+    priority.drop(dbConnector)
+    project.drop(dbConnector)
+    status.drop(dbConnector)
+    issueType.drop(dbConnector)
+    user.drop(dbConnector)
+    sprint.drop(dbConnector)
+    sprintIssueLink.drop(dbConnector)
+    board.drop(dbConnector)
+    resolution.drop(dbConnector)
+    
+    issue.create(dbConnector)
+    priority.create(dbConnector)
+    project.create(dbConnector)
+    status.create(dbConnector)
+    issueType.create(dbConnector)
+    user.create(dbConnector)
+    sprint.create(dbConnector)
+    sprintIssueLink.create(dbConnector)
+    board.create(dbConnector)
+    resolution.create(dbConnector)
+    
+
+def update(dbConnector, responseProcessor):
 
     print("update boards data")
     response = getAllBoards()
-    dbReadyData = processResponse(board.lookup, response)
-    dbConnector.insertRecords(board.model, dbReadyData)
-
+    #dbReadyData = responseProcessor(board.lookup,response)
+    dbReadyData = board.update(dbConnector, responseProcessor, response)
+    
     print("update sprint data")
     for boardData in dbReadyData:
         response = getAllSprintsInBoard(boardData["id"])
-        dbReadyDataForSprint = processResponse(sprint.lookup, response)
-        for entity in dbReadyDataForSprint:
-            entity["boardId"] = boardData["id"]
-        dbConnector.insertRecords(sprint.model, dbReadyDataForSprint)
+        dbReadyDataForSprint = sprint.update(dbConnector, responseProcessor, response, {"boardId":boardData["id"]})
 
         for sprintData in dbReadyDataForSprint:
             response = getAllIssuesInSprint(boardData["id"],sprintData["id"])
-            dbReadyDataForSprintIssueLink = processResponse(sprintIssueLink.lookup, response)
-            for entity in dbReadyDataForSprintIssueLink:
-                entity["sprintId"] = sprintData["id"]
-            dbConnector.insertRecords(sprintIssueLink.model, dbReadyDataForSprintIssueLink)
+            sprintIssueLink.update(dbConnector, responseProcessor, response, {"sprintId":sprintData["id"]})
 
     print("update user data")
     response = getAllUsers()
-    dbReadyData = processResponse(user.lookup, response)
-    dbConnector.insertRecords(user.model, dbReadyData)
+    user.update(dbConnector, responseProcessor, response)
 
     print("update resolution data")
     response = getResolutions()
-    dbReadyData = processResponse(resolution.lookup, response)
-    dbConnector.insertRecords(resolution.model, dbReadyData)
+    resolution.update(dbConnector, responseProcessor, response)
 
     print("update project data")
     response = getAllProjects()
-    dbReadyData = processResponse(project.lookup, response)
-    dbConnector.insertRecords(project.model, dbReadyData)
+    project.update(dbConnector, responseProcessor, response)
 
     print("update priority data")
     response = getPriorities()
-    dbReadyData = processResponse(priority.lookup, response)
-    dbConnector.insertRecords(priority.model, dbReadyData)
-
+    priority.update(dbConnector,responseProcessor, response)
+    
     print("update status data")
     response = getStatuses()
-    dbReadyData = processResponse(status.lookup, response)
-    dbConnector.insertRecords(status.model, dbReadyData)
-    
+    status.update(dbConnector,responseProcessor, response)
+        
     print("update issueType data")
     response = getIssueTypes()
-    dbReadyData = processResponse(issueType.lookup, response)
-    dbConnector.insertRecords(issueType.model, dbReadyData)
+    issueType.update(dbConnector,responseProcessor, response)
     
     print("update issue data")
     response = getAllIssues()
-    dbReadyData = processResponse(issue.lookup, response)
-    dbConnector.insertRecords(issue.model, dbReadyData)
+    issue.update(dbConnector,responseProcessor, response)
 
     # not being used
     # sprintRecordList, sprintIssueLinkRecordList = processSprint(response)

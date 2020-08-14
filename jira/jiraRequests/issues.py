@@ -4,10 +4,10 @@ from jira.jiraEndpoints.getIssuesPagination import method, url, payloadGenerator
 from jira.jiraRequests.requestToJira import requestToJira
 
 def getFilteredIssues(projectKey, issueType):
-    maxResults = 300
+    maxResults = 50
     startAt = 0
     issues = []
-    jqlQuery = {"project":projectKey, "issueType":issueType} # no filtering to get all issues
+    jqlQuery = {"project":projectKey, "op1":"AND", "issueType":issueType} # filtering
     data = getIssuesPagination(jqlQuery, maxResults, startAt)
 
     for issue in data["issues"]:

@@ -72,3 +72,14 @@ lookup = {
     "leadDevName" : "fields->customfield_10820->displayName",
     "leadQAName" : "fields->customfield_10821->displayName"
 }
+
+def drop(dbConnector):
+    dbConnector.dropTable(model)
+
+def create(dbConnector):
+    dbConnector.createTable(model)
+
+def update(dbConnector, responseProcessor, response, injection={}):
+    dbReadyData = responseProcessor(lookup, response, injection)
+    dbConnector.insertRecords(model, dbReadyData)
+    return dbReadyData

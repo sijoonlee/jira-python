@@ -16,3 +16,14 @@ lookup = {
 }
 # sprintId will be inserted in other way since our response(getAllIssuesInSprint) doesn't have sprint information
 # check update method in dbActions under businessLogic
+
+def drop(dbConnector):
+    dbConnector.dropTable(model)
+
+def create(dbConnector):
+    dbConnector.createTable(model)
+
+def update(dbConnector, responseProcessor, response, injection={}):
+    dbReadyData = responseProcessor(lookup, response, injection)
+    dbConnector.insertRecords(model, dbReadyData)
+    return dbReadyData

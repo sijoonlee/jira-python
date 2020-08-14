@@ -4,8 +4,17 @@ from businessLogic.metrics import sprint
 
 import datetime
 from datetime import timezone
+from jira.jiraRequests.issuesInSprint import getAllIssuesInSprint
+from jira.jiraRequests.sprints import getAllSprintsInBoard, getSprintsInBoardPagination
+from utils.jsonUtil import writeFileReport
 
 if __name__=="__main__":
+    
+    data = getSprintsInBoardPagination("93", 300, 0)
+    #data = getAllSprintsInBoard("93")
+    writeFileReport(data, "test.json")
+    #data = getAllIssuesInSprint("93", "431")
+    #writeFileReport(data, "test.json")
     
     # str1 = '\'Improve test\''
     # print(str1)
@@ -35,4 +44,5 @@ if __name__=="__main__":
     #sprint.pivotSumStoryPoints("93", "2020-01-01", "2020-06-01")
 
 
-    sprint.calculateWorkDonePercentage("93", "2020-01-01", "2020-06-01")
+    #sprint.calculateWorkDonePercentage("93", "2020-01-01", "2020-06-01")
+

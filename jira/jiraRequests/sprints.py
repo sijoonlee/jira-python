@@ -12,7 +12,7 @@ def getSprintsInBoardPagination(boardId, maxResults, startAt):
 
 
 def getAllSprintsInBoard(boardId):
-    maxResults = 50
+    maxResults = 50 # don't change this value, jira API only supports 50 for now
     
     startAt = 0
     values = []

@@ -17,3 +17,14 @@ lookup = {
     "type" : "type",
     "projectId" : "location->projectId"
 }
+
+def drop(dbConnector):
+    dbConnector.dropTable(model)
+
+def create(dbConnector):
+    dbConnector.createTable(model)
+
+def update(dbConnector, responseProcessor, response, injection={}):
+    dbReadyData = responseProcessor(lookup, response, injection)
+    dbConnector.insertRecords(model, dbReadyData)
+    return dbReadyData
