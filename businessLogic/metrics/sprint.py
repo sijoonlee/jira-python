@@ -3,10 +3,42 @@ import pandas as pd
 import datetime
 from datetime import timezone
 
-dbFile = './db/sqlite3/storage/db.sqlite'
-dbConnector = SqliteConnector(dbFile)
 
-def numberOfIssuesInSprint(sprintId):    
+
+def sprintsStartedBetween(startStr, endStr):
+    dbFile = './db/sqlite3/storage/db.sqlite'
+    dbConnector = SqliteConnector(dbFile)
+    selectedFields = ["Sprint.name as sprint", "Sprint.startDate", "Issue.key", "Issue.storyPoints","IssueType.name as issueType", "Status.name as status"]
+    joinClauses = [
+        {"type":"LEFT", "tableName":"Sprint", "onClause":"Sprint.id = SprintIssueLink.sprintId"},
+        {"type":"LEFT", "tableName":"Board", "onClause":"Board.id = Sprint.boardId"},
+        {"type":"LEFT", "tableName":"Issue", "onClause":"Issue.id = SprintIssueLink.issueId"},
+        {"type":"LEFT", "tableName":"IssueType", "onClause":"Issue.issueTypeId =IssueType.id"},
+        {"type":"LEFT", "tableName":"Status", "onClause":"Issue.statusId = Status.id"},
+    ]
+    statement = dbConnector.queryFromJoinStatement(selectedFields,"SprintIssueLink",joinClauses,None)
+
+    # load data
+    df = pd.read_sql_query(statement, dbConnector.connection)
+
+    # parse storypoints
+    df["storyPoints"] = df["storyPoints"].replace({"None":"0"})
+    df["storyPoints"] = pd.to_numeric(df["storyPoints"])
+
+    # parse datetime
+    df = df.drop(df[df.startDate == "None"].index)
+    df["startDate"] = pd.to_datetime(df["startDate"])
+    
+    # filter
+    start = datetime.datetime.strptime(startStr,'%Y-%m-%d').replace(tzinfo=timezone.utc)
+    end = datetime.datetime.strptime(endStr,'%Y-%m-%d').replace(tzinfo=timezone.utc)
+    df = df[ (df["startDate"] >= start) & (df["startDate"]<=end) ]
+
+    return df
+
+def numberOfIssuesInSprint(sprintId):
+    dbFile = './db/sqlite3/storage/db.sqlite'
+    dbConnector = SqliteConnector(dbFile)    
     selectedFields = ["Sprint.name as sprint", "Issue.key"]
     joinClauses = [
         {"type":"LEFT", "tableName":"Sprint", "onClause":"Sprint.id = SprintIssueLink.sprintId"},
@@ -23,6 +55,8 @@ def numberOfIssuesInSprint(sprintId):
 
 
 def issuesInSprintsStartedBetween(boardId, startStr, endStr): # format '2020-01-01'
+    dbFile = './db/sqlite3/storage/db.sqlite'
+    dbConnector = SqliteConnector(dbFile)
     start = datetime.datetime.strptime(startStr,'%Y-%m-%d').replace(tzinfo=timezone.utc)
     end = datetime.datetime.strptime(endStr,'%Y-%m-%d').replace(tzinfo=timezone.utc)
 
@@ -49,7 +83,7 @@ def issuesInSprintsStartedBetween(boardId, startStr, endStr): # format '2020-01-
 
 
 def numberOfIssuesGroupBySprint(boardId, startStr, endStr):
-    
+
     df = issuesInSprintsStartedBetween(boardId, startStr, endStr)
     
     # counting issues
@@ -87,4 +121,4 @@ def calculateWorkDonePercentage(boardId, startStr, endStr):
 
     flattened['Percentage'] = flattened['storyPoints']/flattened['storyPoints'].sum()*100
 
-    print(flattened)
+    return flattened

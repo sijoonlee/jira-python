@@ -4,9 +4,6 @@ from businessLogic.metrics import sprint
 
 import datetime
 from datetime import timezone
-from jira.jiraRequests.issuesInSprint import getAllIssuesInSprint
-from jira.jiraRequests.sprints import getAllSprintsInBoard, getSprintsInBoardPagination
-from utils.jsonUtil import writeFileReport
 
 if __name__=="__main__":
    
@@ -35,8 +32,10 @@ if __name__=="__main__":
 
     #sprint.pivotCountIssues("93", "2020-01-01", "2020-06-01")
 
-    #sprint.pivotSumStoryPoints("93", "2020-01-01", "2020-06-01")
+    sprint.pivotSumStoryPoints("93", "2020-01-01", "2020-06-01")
 
 
-    #sprint.calculateWorkDonePercentage("93", "2020-01-01", "2020-06-01")
+    # sprint.calculateWorkDonePercentage("93", "2020-01-01", "2020-06-01")
 
+    # df = sprint.sprintsStartedBetween("2020-01-01", "2020-06-01")
+    # print(df.to_html())
