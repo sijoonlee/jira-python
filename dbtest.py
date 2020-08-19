@@ -147,7 +147,7 @@ if __name__=="__main__":
 
     selectedFields = ["Issue.id", "Issue.key", "Issue.projectId"]
     whereClause = 'projectId = "1" AND issueTypeId = "2"'
-    result = dbConnector.queryTable("Issue", selectedFields, whereClause)
+    result = dbConnector.queryTable(selectedFields, "Issue", whereClause)
     print(result)
 
     selectedFields = ["Project.key", "Issue.key", "Issue.reporterName", "Status.name"]

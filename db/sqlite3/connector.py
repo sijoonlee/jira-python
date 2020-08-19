@@ -89,7 +89,7 @@ class SqliteConnector(object):
 
     # @param: selectedFields - list of fields that are to be returned ex) ["id", "name", "creator"]
     # @param: whereClause - dictionary of fields that will be used in where clause 
-    def queryTableStatement(self, tableName, selectedFieldNames, whereClause):
+    def queryTableStatement(self, selectedFieldNames, tableName, whereClause):
         
         if len(selectedFieldNames) > 1:
             selectedFieldNames = ",".join(selectedFieldNames)
@@ -147,8 +147,8 @@ class SqliteConnector(object):
                     self.cur.execute(self.insertValuesStatement(model, record))
             self.connection.commit()
 
-    def queryTable(self, tableName, fields, whereClause):
-        self.cur.execute(self.queryTableStatement(tableName, fields, whereClause))
+    def queryTable(self, fields, tableName, whereClause):
+        self.cur.execute(self.queryTableStatement(fields, tableName, whereClause))
         rows = self.cur.fetchall()
         return rows
 

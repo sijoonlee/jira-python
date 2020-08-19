@@ -30,10 +30,11 @@ if __name__=="__main__":
     # CORE-327 / CORE-410 were not included by my code
     # CORE-773 / CORE-863 / CORE-880 / CORE-908 is not shown in Burnup Chart
 
-    #sprint.pivotCountIssues("93", "2020-01-01", "2020-06-01")
+    print(sprint.pivotCountIssues("93", "2020-01-01", "2020-06-01"))
 
-    sprint.pivotSumStoryPoints("93", "2020-01-01", "2020-06-01")
+    print(sprint.pivotSumStoryPoints("93", "2020-01-01", "2020-06-01"))
 
+    print(sprint.numberOfIssuesGroupBySprint("93", "2020-01-01", "2020-06-01"))
 
     # sprint.calculateWorkDonePercentage("93", "2020-01-01", "2020-06-01")
 

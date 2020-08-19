@@ -17,7 +17,7 @@ def getMetricsPerProject(projectKey):
 
 
 def getIssueTypeMetrics():
-    projectKeys = dbConnector.queryTable("Project", ["key"], None)
+    projectKeys = dbConnector.queryTable(["key"], "Project", None)
     # print(projectKeys) # [('PJA',), ('SP',)], the result comes as array of tuple
     if projectKeys is not None:
         for projectKey in projectKeys:

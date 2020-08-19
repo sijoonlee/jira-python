@@ -3,10 +3,11 @@ from db.sqlite3.connector import SqliteConnector
 import pandas as pd
 import datetime
 from datetime import timezone
-dbFile = './db/sqlite3/storage/db.sqlite'
-dbConnector = SqliteConnector(dbFile)
+
 
 def getMetricsPerProject(projectKey):
+    dbFile = './db/sqlite3/storage/db.sqlite'
+    dbConnector = SqliteConnector(dbFile)
     selectedFields = ["Issue.key as issue", "Issue.storyPoints", "IssueType.name as issueType","Status.name as status", "Issue.assigneeName", "Issue.created"]
     joinClauses = [
         {"type":"LEFT", "tableName":"IssueType", "onClause":"Issue.issueTypeId = IssueType.id"},
@@ -47,6 +48,8 @@ def getMetricsPerProject(projectKey):
     return df
 
 def findIssuesCreatedBetween(projectKey, startStr, endStr):
+    dbFile = './db/sqlite3/storage/db.sqlite'
+    dbConnector = SqliteConnector(dbFile)
     start = datetime.datetime.strptime(startStr,'%Y-%m-%d').replace(tzinfo=timezone.utc)
     end = datetime.datetime.strptime(endStr,'%Y-%m-%d').replace(tzinfo=timezone.utc)
 
@@ -88,7 +91,9 @@ def findIssuesCreatedBetween(projectKey, startStr, endStr):
     
 
 def getIssueTypeMetrics():
-    projectKeys = dbConnector.queryTable("Project", ["key"], None)
+    dbFile = './db/sqlite3/storage/db.sqlite'
+    dbConnector = SqliteConnector(dbFile)
+    projectKeys = dbConnector.queryTable(["key"], "Project", None)
     # print(projectKeys) # [('PJA',), ('SP',)], the result comes as array of tuple
     if projectKeys is not None:
         for projectKey in projectKeys:
@@ -99,6 +104,8 @@ def getIssueTypeMetrics():
 
 
 def issuesInSprint(sprintId):
+    dbFile = './db/sqlite3/storage/db.sqlite'
+    dbConnector = SqliteConnector(dbFile)
     selectedFields = ["Issue.key as issue", "Issue.storyPoints", "IssueType.name as issueType","Status.name as status","Issue.statusid", "Issue.assigneeName", "Issue.created", "Issue.updated"]
     joinClauses = [
         {"type":"LEFT", "tableName":"IssueType", "onClause":"Issue.issueTypeId = IssueType.id"},
