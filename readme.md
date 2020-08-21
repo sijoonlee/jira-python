@@ -17,6 +17,7 @@ apiToken = "-----"
 ## Setup the initial database
 1. Run **initDB.py** to initialize database
 2. It may take 20~30 minutes
+3. It will generate **update-info.md** that contains the time when update happens
 ```
 python /path/to/initDB.py
 ```
@@ -24,8 +25,9 @@ python /path/to/initDB.py
 ## Update after first setup of database
 1. If you just run **initDB.py**, you don't need this step
 2. use this only when you need to update the existing database
-2. run **updateDB.py**
-3. It may take 15-20 minutes
+3. run **updateDB.py**
+4. It may take 15-20 minutes
+5. It reads **update-info.md** and use information from it to update data in specific time period 
 ```
 python /path/to/updateDB.py
 ```
