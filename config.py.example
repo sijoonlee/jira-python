@@ -1,8 +1,8 @@
 from requests.auth import HTTPBasicAuth
 
-domain = ""
-emailAccount = ""
-apiToken = ""
+domain = "ratehub"
+emailAccount = "-----@ratehub.ca"
+apiToken = "-----"
 
 cloudVersion = "3"
 agileVersion = "1.0"
@@ -12,5 +12,6 @@ agileApiAddress = "https://{domain}.atlassian.net/rest/agile/{version}/".format(
 config = {
     "cloudApiAddress" : cloudApiAddress,
     "agileApiAddress" : agileApiAddress,
-    "auth": HTTPBasicAuth(emailAccount, apiToken)
+    "auth": HTTPBasicAuth(emailAccount, apiToken),
+    "dbFile": './db/sqlite3/storage/db.sqlite'
 }

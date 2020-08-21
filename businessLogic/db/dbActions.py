@@ -1,5 +1,5 @@
 
-from jira.jiraRequests.issues import getAllIssues
+from jira.jiraRequests.issues import getAllIssues, getIssuesInSprintWithUpdatedAfter, getIssuesNotInAnySprintWithUpdatedAfter
 from jira.jiraRequests.issueTypes import getIssueTypes
 from jira.jiraRequests.priorities import getPriorities
 from jira.jiraRequests.projects import getAllProjects
@@ -35,23 +35,31 @@ def reset(dbConnector):
     board.create(dbConnector)
     resolution.create(dbConnector)
     
-
-def update(dbConnector, responseProcessor):
+# @param: updatedAt
+#   will update those issues created or updated after a certain date(inclusive)
+#   format yyyy-mm-dd (ex)2020-01-01
+#   this param only affects issue update
+#   cf) the first issue was created at 2014-06-17
+def update(dbConnector, responseProcessor, updatedAt = "2014-06-17"): 
 
     print("update boards data")
     response = getAllBoards()
-    #dbReadyData = responseProcessor(board.lookup,response)
     dbReadyData = board.update(dbConnector, responseProcessor, response)
     
-    print("update sprint data")
+    print("update sprint data and related issue data since")
     for boardData in dbReadyData:
         response = getAllSprintsInBoard(boardData["id"])
         dbReadyDataForSprint = sprint.update(dbConnector, responseProcessor, response, {"boardId":boardData["id"]})
 
         for sprintData in dbReadyDataForSprint:
-            response = getAllIssuesInSprint(boardData["id"],sprintData["id"])
+            response = getIssuesInSprintWithUpdatedAfter(sprintData["id"], updatedAt)
             sprintIssueLink.update(dbConnector, responseProcessor, response, {"sprintId":sprintData["id"]})
+            issue.update(dbConnector,responseProcessor, response)
 
+    print("update issue data not included in sprint since", updatedAt)
+    response = getIssuesNotInAnySprintWithUpdatedAfter(updatedAt)
+    issue.update(dbConnector,responseProcessor, response)
+    
     print("update user data")
     response = getAllUsers()
     user.update(dbConnector, responseProcessor, response)
@@ -76,9 +84,9 @@ def update(dbConnector, responseProcessor):
     response = getIssueTypes()
     issueType.update(dbConnector,responseProcessor, response)
     
-    print("update issue data")
-    response = getAllIssues()
-    issue.update(dbConnector,responseProcessor, response)
+    
+
+
 
     # not being used
     # sprintRecordList, sprintIssueLinkRecordList = processSprint(response)

@@ -36,20 +36,9 @@ class PayloadsBuilder(object):
     #   "status" = "In Progress", 
     #   "op2" = "OR" ,     
     #   "project = "SP"
-    def withJQL(self, **args):
-        count = 0
-        if len(args) > 0:
-            self.payload["jql"] = ""
-
-            for key, value in args.items():
-                if count%2 == 0:
-                    self.payload["jql"] += "{} = {}".format(key, value)
-                elif count%2 == 1 and key.startswith("op") and ( value == "AND" or value == "OR"):
-                    self.payload["jql"] += " {} ".format(value)
-                else:
-                    print("jql statement error")
-                count += 1
-        
+    def withJQL(self, query):
+        if query is not None:
+            self.payload["jql"] = query
         return self
 
 
@@ -73,19 +62,8 @@ def payloadGenerator(jqlQuery, maxResults, startAt):
     payloads = builder\
         .withExpand(*DEFAULT_EXPAND)\
         .withFields(*DEFAULT_FIELDS)\
-        .withJQL(**jqlQuery)\
+        .withJQL(jqlQuery)\
         .withPagination(maxResults, startAt)\
         .getPayloads()
     
     return payloads
-
-
-
-if __name__=="__main__":
-    
-    jqlQuery = {"proejct":"PJA", "op1":"AND", "status":"Done"}
-    
-    builder = PayloadsBuilder()
-
-    print(payloadGenerator(jqlQuery, 1, 0))
-    

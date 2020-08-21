@@ -3,4 +3,5 @@ config.py
 /ratehubResponse
 /__pycache__/
 db.sqlite
+db.sqlite.backup
 *.pyc

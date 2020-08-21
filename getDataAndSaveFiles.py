@@ -1,25 +1,37 @@
 from jira.jiraRequests.projects import getProjectPagination, getAllProjects
 from jira.jiraRequests.issueTypes import getIssueTypes
 from jira.jiraRequests.statuses import getStatuses
-from jira.jiraRequests.issues import getIssuesPagination, getAllIssues
+from jira.jiraRequests.issues import getIssuesPagination, getAllIssues, getIssuesInSprintWithUpdatedAfter, getIssuesNotInAnySprintWithUpdatedAfter, getAllIssuesUpdatedAfter, getIssuesNotInProject
 from jira.jiraRequests.users import getAllUsers
 from jira.jiraRequests.priorities import getPriorities
 from jira.jiraRequests.boards import getAllBoards
 from jira.jiraRequests.sprints import getAllSprintsInBoard, getSprintsInBoardPagination
 from jira.jiraRequests.issuesInSprint import getAllIssuesInSprint
 from jira.jiraRequests.resolutions import getResolutions
+from jira.jiraRequests.myPermissions import getMyPermission
+from jira.jiraRequests.permittedProjects import getPermittedProjects
 from jira.jiraRequests.responseProcessor import responseProcessor
 from utils.jsonUtil import writeFileReport
 from table import board
 from db.sqlite3.connector import SqliteConnector
 from businessLogic.db import dbActions
 
+
 if __name__=="__main__":
        
     #dir = 'exampleResponse'
     dir = 'ratehubResponse'
     
+    data = getIssuesNotInAnySprintWithUpdatedAfter("2020-08-01")
+    writeFileReport(data, "./{}/getIssuesNotInSprint.json".format(dir))
     """
+    data = getPermittedProjects()
+    writeFileReport(data, "./{}/getPermittedProjects.json".format(dir))
+
+    data = getIssuesNotInAnySprintWithUpdatedAfter("2020-08-01")
+    writeFileReport(data, "./{}/getIssuesNotInSprint.json".format(dir))
+
+
     data = getAllProjects()
     writeFileReport(data, "./{}/getAllProjects.json".format(dir))
     

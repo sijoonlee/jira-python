@@ -13,7 +13,7 @@ def requestToJira(method, url, auth, payload):
             headers=headersDict[method],
             auth=auth
         )
-    else :
+    elif method == "POST":
         response = requests.request(
             method,
             url,
@@ -21,4 +21,14 @@ def requestToJira(method, url, auth, payload):
             data=payload,
             auth=auth
         )
+    elif method == "GET":
+        response = requests.request(
+            method,
+            url,
+            headers=headersDict[method],
+            params=payload,
+            auth=auth
+        )
+    else:
+        print("Method should be GET or POST")
     return response
