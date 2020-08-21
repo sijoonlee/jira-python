@@ -1,3 +1,4 @@
+import pandas as pd
 from db.sqlite3.connector import SqliteConnector
 from table import issue, priority, project, status, issueType, user, sprint, sprintIssueLink
 from jira.jiraRequests.issues import getAllIssues
@@ -7,14 +8,11 @@ from jira.jiraRequests.projects import getAllProjects
 from jira.jiraRequests.statuses import getStatuses
 from jira.jiraRequests.users import getAllUsers
 from jira.jiraRequests.responseProcessor import responseProcessor
-from jira.jiraRequests.processSprint import processSprint
 from businessLogic.db import dbActions
 
 if __name__=="__main__":
     dbFile = './db/sqlite3/storage/db.sqlite'
     dbConnector = SqliteConnector(dbFile)
-    dbActions.reset(dbConnector)
-    dbActions.update(dbConnector)
 
     selectedFields = ["Project.key", "Issue.key", "Issue.reporterName", "Status.name"]
     joinClauses = [
@@ -39,7 +37,7 @@ if __name__=="__main__":
     print(result)
 
 
-        print("--------------------------------------")
+    print("--------------------------------------")
 
     # Finding Issues not beloning to any Sprint
     selectedFields = ["Issue.key as issueKey", "IssueType.name as issueType","Sprint.id as sprintId", "Sprint.name as sprintName"]

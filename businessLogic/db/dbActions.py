@@ -46,7 +46,7 @@ def update(dbConnector, responseProcessor, updatedAt = "2014-06-17"):
     response = getAllBoards()
     dbReadyData = board.update(dbConnector, responseProcessor, response)
     
-    print("update sprint data and related issue data since")
+    print("update sprint data and related issue data since", updatedAt)
     for boardData in dbReadyData:
         response = getAllSprintsInBoard(boardData["id"])
         dbReadyDataForSprint = sprint.update(dbConnector, responseProcessor, response, {"boardId":boardData["id"]})
