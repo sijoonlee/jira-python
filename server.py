@@ -9,6 +9,13 @@ cors = CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
 api = Api(app)
 
+# Below is the example return value from endpoints
+# {
+#   columns: ['id','key']
+#   index: ['0','1']
+#   data: [['1','key-A'],['2','key-B']]
+# }
+
 # sprint information
 # ex) http://0.0.0.0:12345/sprintBetween?start=2020-01-01&end=2020-03-01&boardId=93
 @app.route('/sprintBetween', methods=['GET'])
@@ -25,26 +32,27 @@ def getSprintBetween():
 def getSprintInBoard():
     boardId = request.args.get("boardId", "*")
     df = queries.getSprintByBoardId(boardId)
-    return df.to_json(orient="index")
+    return df.to_json(orient="split")
 
 @app.route('/sprint', methods=['GET'])
 @cross_origin()
 def getSprint():
     sprintId = request.args.get("sprintId", "*")
     df = queries.getSprintById(sprintId)
-    return df.to_json(orient="index")
+    return df.to_json(orient="split")
 
-# Below is the example return value from /board endpoint
-# {
-#     "id": { "0": "40" },
-#     "name": { "0": "Dev"},
-#     "type": { "0": "scrum"}
-# }
 @app.route('/board', methods=['GET'])
 @cross_origin()
 def getBoard():
     boardId = request.args.get("boardId", "*")
     df = queries.getBoardById(boardId)
+    return df.to_json(orient="split")
+
+@app.route('/project', methods=['GET'])
+@cross_origin()
+def getProject():
+    projectId = request.args.get("projectId", "*")
+    df = queries.getProjectById(projectId)
     return df.to_json(orient="split")
 
 @app.route('/issue', methods=['GET'])

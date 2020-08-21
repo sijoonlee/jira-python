@@ -3,6 +3,8 @@
 - sqlite3 (included in python3)
 - pandas 0.25.1
 - flask 1.1.1
+- flask_restful 0.3.7
+- flask_cors 3.0.8
 
 ## Config
 1. use **config.py.example** file

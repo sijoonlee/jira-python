@@ -82,3 +82,13 @@ def getBoardById(boardId): # * for all board
     statement = dbConnector.queryTableStatement(selectedFields,"Board",whereClause)
     df = pd.read_sql_query(statement, dbConnector.connection)
     return df
+
+def getProjectById(projectId):
+    dbConnector = SqliteConnector(config['dbFile'])
+    selectedFields = ["Project.id", "Project.key", "Project.name", "Project.style"]
+    whereClause = None
+    if projectId != "*":
+        whereClause = "Project.id = '{}'".format(projectId)
+    statement = dbConnector.queryTableStatement(selectedFields,"Project",whereClause)
+    df = pd.read_sql_query(statement, dbConnector.connection)
+    return df
