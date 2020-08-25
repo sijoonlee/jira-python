@@ -3,6 +3,8 @@ from config import config
 from jira.jiraEndpoints.getIssuesPagination import method, url, payloadGenerator
 from jira.jiraRequests.requestToJira import requestToJira
 
+# https://www.learnpython.org/en/Partial_functions
+
 def getIssuesPagination(jqlQuery, maxResults, startAt):
     formattedUrl = url.format(maxResults=maxResults, startAt=startAt)
     auth = config["auth"]
