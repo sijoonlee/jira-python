@@ -1,10 +1,9 @@
 from businessLogic.metrics.metricsFunctions import countByGroup, percentageByGroup
 from db.sqlite3.connector import SqliteConnector
-
-dbFile = './db/sqlite3/storage/db.sqlite'
-dbConnector = SqliteConnector(dbFile)
+from config import config
 
 def getMetricsPerProject(projectKey):
+    dbConnector = SqliteConnector(config["dbFile"])
     selectedFields = ["IssueType.name as issueType"]
     joinClauses = [
         {"type":"LEFT", "tableName":"IssueType", "onClause":"Issue.issueTypeId = IssueType.id"},
@@ -17,6 +16,7 @@ def getMetricsPerProject(projectKey):
 
 
 def getIssueTypeMetrics():
+    dbConnector = SqliteConnector(config["dbFile"])
     projectKeys = dbConnector.queryTable(["key"], "Project", None)
     # print(projectKeys) # [('PJA',), ('SP',)], the result comes as array of tuple
     if projectKeys is not None:

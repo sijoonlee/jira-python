@@ -1,9 +1,9 @@
 from businessLogic.metrics.metricsFunctions import countByGroup, percentageByGroup
 from db.sqlite3.connector import SqliteConnector
+from config import config
 
 def issueCountPerProject():
-    dbFile = './db/sqlite3/storage/db.sqlite'
-    dbConnector = SqliteConnector(dbFile)
+    dbConnector = SqliteConnector(config["dbFile"])
     selectedFields = ["Project.name as project"]
     joinClauses = [
         {"type":"LEFT", "tableName":"Project", "onClause":"Issue.projectId = Project.id"}

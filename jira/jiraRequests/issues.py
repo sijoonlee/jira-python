@@ -2,6 +2,9 @@ import json
 from config import config
 from jira.jiraEndpoints.getIssuesPagination import method, url, payloadGenerator
 from jira.jiraRequests.requestToJira import requestToJira
+import time
+import concurrent.futures
+from functools import partial
 
 # https://www.learnpython.org/en/Partial_functions
 
@@ -30,6 +33,8 @@ def getAllIssuesUpdatedAfter(updated):
             issues.append(issue)
     return issues    
 
+
+
 # https://support.atlassian.com/jira-software-cloud/docs/advanced-search-reference-jql-fields/
 def getIssuesNotInAnySprintWithUpdatedAfter(updated):
     maxResults = 50
@@ -43,11 +48,17 @@ def getIssuesNotInAnySprintWithUpdatedAfter(updated):
         issues.append(issue)
     total = data["total"]
     
+    offsets = []
+    partialGetIssuesPagination = partial(getIssuesPagination, jqlQuery, maxResults)
     while startAt < total:
         startAt += maxResults
-        data = getIssuesPagination(jqlQuery, maxResults,startAt)
-        for issue in data["issues"]:
-            issues.append(issue)
+        offsets.append(startAt)
+
+    with concurrent.futures.ThreadPoolExecutor(max_workers=4) as executor: #ProcessPoolExecutor(max_workers=2)
+        # Start the load operations and mark each future with its URL
+        for data in executor.map(partialGetIssuesPagination, offsets):
+            for issue in data["issues"]:
+                issues.append(issue)
     return issues
 
 # https://support.atlassian.com/jira-software-cloud/docs/advanced-search-reference-jql-fields/

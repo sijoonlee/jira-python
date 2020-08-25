@@ -2,12 +2,11 @@ from db.sqlite3.connector import SqliteConnector
 import pandas as pd
 import datetime
 from datetime import timezone
-
+from config import config
 
 
 def sprintsStartedBetween(startStr, endStr):
-    dbFile = './db/sqlite3/storage/db.sqlite'
-    dbConnector = SqliteConnector(dbFile)
+    dbConnector = SqliteConnector(config["dbFile"])
     selectedFields = ["Sprint.name as sprint", "Sprint.startDate", "Issue.key", "Issue.storyPoints","IssueType.name as issueType", "Status.name as status"]
     joinClauses = [
         {"type":"LEFT", "tableName":"Sprint", "onClause":"Sprint.id = SprintIssueLink.sprintId"},
@@ -37,8 +36,7 @@ def sprintsStartedBetween(startStr, endStr):
     return df
 
 def numberOfIssuesInSprint(sprintId):
-    dbFile = './db/sqlite3/storage/db.sqlite'
-    dbConnector = SqliteConnector(dbFile)    
+    dbConnector = SqliteConnector(config["dbFile"])
     selectedFields = ["Sprint.id", "Sprint.name as sprint", "Issue.key"]
     joinClauses = [
         {"type":"LEFT", "tableName":"Sprint", "onClause":"Sprint.id = SprintIssueLink.sprintId"},
@@ -55,8 +53,7 @@ def numberOfIssuesInSprint(sprintId):
 
 
 def issuesInSprintsStartedBetween(boardId, startStr, endStr): # format '2020-01-01'
-    dbFile = './db/sqlite3/storage/db.sqlite'
-    dbConnector = SqliteConnector(dbFile)
+    dbConnector = SqliteConnector(config["dbFile"])
     start = datetime.datetime.strptime(startStr,'%Y-%m-%d').replace(tzinfo=timezone.utc)
     end = datetime.datetime.strptime(endStr,'%Y-%m-%d').replace(tzinfo=timezone.utc)
 

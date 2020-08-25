@@ -21,7 +21,7 @@ if __name__=="__main__":
         {"type":"LEFT", "tableName":"Status", "onClause":"Issue.statusId = Status.id"},
         {"type":"LEFT", "tableName":"Priority", "onClause":"Issue.priorityId = Priority.id"}
     ]
-    whereClause = 'Issue.projectId = "10000"'
+    whereClause = 'Issue.projectId = "11129"'
     result = dbConnector.queryFromJoin(selectedFields, "Issue", joinClauses, whereClause)
     print(result)
 
@@ -32,7 +32,7 @@ if __name__=="__main__":
         {"type":"LEFT", "tableName":"Sprint", "onClause":"Sprint.id = SprintIssueLink.sprintId"},
         {"type":"LEFT", "tableName":"IssueType", "onClause":"Issue.issueTypeId = IssueType.id"}
     ]
-    whereClause = 'Issue.projectId = "10000"'
+    whereClause = 'Issue.projectId = "11129"'
     result = dbConnector.queryFromJoin(selectedFields, "SprintIssueLink", joinClauses, whereClause)
     print(result)
 
@@ -60,12 +60,9 @@ if __name__=="__main__":
         {"type":"LEFT", "tableName":"Status", "onClause":"Issue.statusId = Status.id"},
         {"type":"LEFT", "tableName":"Priority", "onClause":"Issue.priorityId = Priority.id"}
     ]
-    whereClause = "Project.key = 'PJA'"
+    whereClause = "Project.key = 'OMP'"
     statement = dbConnector.queryFromJoinStatement(selectedFields, "Issue", joinClauses, whereClause)
     df = pd.read_sql_query(statement, dbConnector.connection)
     print(df)
 
     print("--------------------------------------")
-
-    # IssueTypes information
-    getIssueTypeMetrics()

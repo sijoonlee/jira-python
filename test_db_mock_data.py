@@ -6,7 +6,7 @@ from table import issue, priority, project, status, issueType, user, sprint, spr
 if __name__=="__main__":
     
     # path = os.path.dirname(os.path.abspath(__file__))
-    dbFile = './db/sqlite3/storage/db.sqlite'
+    dbFile = './db/sqlite3/storage/db.test.sqlite'
     dbConnector = SqliteConnector(dbFile)
 
     
