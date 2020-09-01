@@ -2,11 +2,8 @@ from db.sqlite3.connector import SqliteConnector
 import pandas as pd
 import datetime
 from datetime import timezone
-from config import config
 
-
-def sprintsStartedBetween(startStr, endStr):
-    dbConnector = SqliteConnector(config["dbFile"])
+def sprintsStartedBetween(dbConnector, startStr, endStr):
     selectedFields = ["Sprint.name as sprint", "Sprint.startDate", "Issue.key", "Issue.storyPoints","IssueType.name as issueType", "Status.name as status"]
     joinClauses = [
         {"type":"LEFT", "tableName":"Sprint", "onClause":"Sprint.id = SprintIssueLink.sprintId"},
@@ -35,8 +32,7 @@ def sprintsStartedBetween(startStr, endStr):
 
     return df
 
-def numberOfIssuesInSprint(sprintId):
-    dbConnector = SqliteConnector(config["dbFile"])
+def numberOfIssuesInSprint(dbConnector,sprintId):
     selectedFields = ["Sprint.id", "Sprint.name as sprint", "Issue.key"]
     joinClauses = [
         {"type":"LEFT", "tableName":"Sprint", "onClause":"Sprint.id = SprintIssueLink.sprintId"},
@@ -52,8 +48,7 @@ def numberOfIssuesInSprint(sprintId):
     print(df.groupby("sprint").count())
 
 
-def issuesInSprintsStartedBetween(boardId, startStr, endStr): # format '2020-01-01'
-    dbConnector = SqliteConnector(config["dbFile"])
+def issuesInSprintsStartedBetween(dbConnector,boardId, startStr, endStr): # format '2020-01-01'
     start = datetime.datetime.strptime(startStr,'%Y-%m-%d').replace(tzinfo=timezone.utc)
     end = datetime.datetime.strptime(endStr,'%Y-%m-%d').replace(tzinfo=timezone.utc)
 
@@ -70,6 +65,8 @@ def issuesInSprintsStartedBetween(boardId, startStr, endStr): # format '2020-01-
 
     # load data
     df = pd.read_sql_query(statement, dbConnector.connection)
+    print("---------")
+    print(df)
     df = df.drop(df[df.startDate == "None"].index)
     df["storyPoints"] = df["storyPoints"].replace({"None":"0"})
     df["storyPoints"] = pd.to_numeric(df["storyPoints"])
@@ -79,9 +76,9 @@ def issuesInSprintsStartedBetween(boardId, startStr, endStr): # format '2020-01-
     return df
 
 
-def numberOfIssuesGroupBySprint(boardId, startStr, endStr):
+def numberOfIssuesGroupBySprint(dbConnector, boardId, startStr, endStr):
 
-    df = issuesInSprintsStartedBetween(boardId, startStr, endStr)
+    df = issuesInSprintsStartedBetween(dbConnector, boardId, startStr, endStr)
     # choose only sprint column
     df = df.filter(["id", "sprint"], axis=1)
     # add count column
@@ -90,21 +87,21 @@ def numberOfIssuesGroupBySprint(boardId, startStr, endStr):
     df = df.groupby(["id","sprint"]).count()
     return df
 
-def pivotSumStoryPoints(boardId, startStr, endStr):
-    df = issuesInSprintsStartedBetween(boardId, startStr, endStr)
+def pivotSumStoryPoints(dbConnector, boardId, startStr, endStr):
+    df = issuesInSprintsStartedBetween(dbConnector, boardId, startStr, endStr)
     # show issue type metrics
     df = df.filter(["sprint", "issueType", "storyPoints", "status"], axis=1)
     pivotted = pd.pivot_table(df, index=['sprint','issueType','status'], values='storyPoints', aggfunc = 'sum')
     return pivotted
 
-def pivotCountIssues(boardId, startStr, endStr):
-    df = issuesInSprintsStartedBetween(boardId, startStr, endStr)
+def pivotCountIssues(dbConnector, boardId, startStr, endStr):
+    df = issuesInSprintsStartedBetween(dbConnector, boardId, startStr, endStr)
     df = df.filter(["sprint", "issueType", "key", "status"], axis=1)
     pivotted = pd.pivot_table(df, index=['sprint','issueType','status'], values='key', aggfunc = 'count')
     return pivotted
     
-def calculateWorkDonePercentage(boardId, startStr, endStr):
-    pivotted = pivotSumStoryPoints(boardId, startStr, endStr)
+def calculateWorkDonePercentage(dbConnector, boardId, startStr, endStr):
+    pivotted = pivotSumStoryPoints(dbConnector, boardId, startStr, endStr)
     flattened = pd.DataFrame(pivotted.to_records())
     flattened.groupby("status").sum()
     #workToDo = flattened[flattened["status"] == "Work To Do"]

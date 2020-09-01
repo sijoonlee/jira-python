@@ -30,17 +30,10 @@ class PayloadsBuilder(object):
                 self.payload["expand"].append(arg)
         return self
 
-    # args looks like
-    #   "project" = "PJA" , 
-    #   "op1" = "AND" ,
-    #   "status" = "In Progress", 
-    #   "op2" = "OR" ,     
-    #   "project = "SP"
     def withJQL(self, query):
         if query is not None:
             self.payload["jql"] = query
         return self
-
 
     def withFields(self, *args):
         self.payload["fields"] = []

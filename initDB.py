@@ -3,7 +3,6 @@ from jira.jiraRequests.responseProcessor import responseProcessor
 from businessLogic.db import dbActions
 from datetime import date
 from utils.jsonUtil import writeFileReport
-from config import config
 import time
 
 # this is to reset and get all data from start
@@ -12,7 +11,7 @@ if __name__=="__main__":
     print("The whole process would take around 10 min")
     start_time = time.time()
 
-    dbConnector = SqliteConnector(config["dbFile"])
+    dbConnector = SqliteConnector()
     dbActions.reset(dbConnector)
 
     since = "2014-06-17" # the first date of Ratehub's Jira data

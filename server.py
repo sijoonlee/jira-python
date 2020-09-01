@@ -3,6 +3,7 @@ from flask_restful import Api, Resource
 from flask_cors import CORS, cross_origin
 from businessLogic.metrics import sprint
 from businessLogic.db import queries
+from db.sqlite3.connector import SqliteConnector
 
 app = Flask(__name__)
 cors = CORS(app)
@@ -31,42 +32,42 @@ def getSprintBetween():
 @cross_origin()
 def getSprintInBoard():
     boardId = request.args.get("boardId", "*")
-    df = queries.getSprintByBoardId(boardId)
+    df = queries.getSprintByBoardId(SqliteConnector(), boardId)
     return df.to_json(orient="split")
 
 @app.route('/sprint', methods=['GET'])
 @cross_origin()
 def getSprint():
     sprintId = request.args.get("sprintId", "*")
-    df = queries.getSprintById(sprintId)
+    df = queries.getSprintById(SqliteConnector(),sprintId)
     return df.to_json(orient="split")
 
 @app.route('/board', methods=['GET'])
 @cross_origin()
 def getBoard():
     boardId = request.args.get("boardId", "*")
-    df = queries.getBoardById(boardId)
+    df = queries.getBoardById(SqliteConnector(),boardId)
     return df.to_json(orient="split")
 
 @app.route('/project', methods=['GET'])
 @cross_origin()
 def getProject():
     projectId = request.args.get("projectId", "*")
-    df = queries.getProjectById(projectId)
+    df = queries.getProjectById(SqliteConnector(),projectId)
     return df.to_json(orient="split")
 
 @app.route('/issue', methods=['GET'])
 @cross_origin()
 def getIssue():
     issueId = request.args.get("issueId", "*")
-    df = queries.getIssueById(issueId)
+    df = queries.getIssueById(SqliteConnector(),issueId)
     return df.to_json(orient="split")
 
 @app.route('/issueBySprint', methods=['GET'])
 @cross_origin()
 def getIssueBySprint():
     sprintId = request.args.get("sprintId", "*")
-    df = queries.getIssueBySprintId(sprintId)
+    df = queries.getIssueBySprintId(SqliteConnector(),sprintId)
     return df.to_json(orient="split")
 
 

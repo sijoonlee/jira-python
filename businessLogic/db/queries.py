@@ -1,10 +1,8 @@
 from db.sqlite3.connector import SqliteConnector
 import pandas as pd
-from config import config
 
-
-def getIssueBySprintId(sprintId):
-    dbConnector = SqliteConnector(config['dbFile'])
+def getIssueBySprintId(ClassDbConnector, sprintId):
+    dbConnector = ClassDbConnector()
     selectedFields = ["Sprint.id as sprintId", "Sprint.name as sprint", 
                     "Issue.id as issueId", "Issue.key as issueKey", "Issue.storyPoints", 
                     "IssueType.name as issueType", "Status.name as status", "Priority.name as priority",
@@ -25,8 +23,8 @@ def getIssueBySprintId(sprintId):
     df = pd.read_sql_query(statement, dbConnector.connection)
     return df
 
-def getIssueById(issueId): # * for all sprint
-    dbConnector = SqliteConnector(config['dbFile'])
+def getIssueById(ClassDbConnector, issueId): # * for all sprint
+    dbConnector = ClassDbConnector()
     selectedFields = ["Issue.id", "Issue.key", "Issue.storyPoints", 
                     "IssueType.name as issueType", "Status.name as status", "Priority.name as priority",
                     "Issue.created", "Issue.updated", "Issue.resolutionDate","Resolution.name as resolution",
@@ -45,8 +43,8 @@ def getIssueById(issueId): # * for all sprint
     return df
 
 
-def getSprintByBoardId(boardId):
-    dbConnector = SqliteConnector(config['dbFile'])
+def getSprintByBoardId(ClassDbConnector, boardId):
+    dbConnector = ClassDbConnector()
     selectedFields = ["Board.id as boardId", "Board.name as boardName", 
                         "Sprint.id as sprintId", "Sprint.name as sprintName", 
                         "Sprint.state as sprintState", "Sprint.startDate", 
@@ -61,8 +59,8 @@ def getSprintByBoardId(boardId):
     df = pd.read_sql_query(statement, dbConnector.connection)
     return df   
 
-def getSprintById(sprintId): # * for all sprint
-    dbConnector = SqliteConnector(config['dbFile'])
+def getSprintById(ClassDbConnector, sprintId): # * for all sprint
+    dbConnector = ClassDbConnector()
     selectedFields = ["Sprint.id as sprintId", "Sprint.name as sprintName", 
                         "Sprint.state as sprintState", "Sprint.startDate", 
                         "Sprint.endDate", "Sprint.completeDate"]
@@ -73,8 +71,8 @@ def getSprintById(sprintId): # * for all sprint
     df = pd.read_sql_query(statement, dbConnector.connection)
     return df    
 
-def getBoardById(boardId): # * for all board
-    dbConnector = SqliteConnector(config['dbFile'])
+def getBoardById(ClassDbConnector, boardId): # * for all board
+    dbConnector = ClassDbConnector()
     selectedFields = ["Board.id", "Board.name", "Board.type"]
     whereClause = None
     if boardId != "*":
@@ -83,8 +81,8 @@ def getBoardById(boardId): # * for all board
     df = pd.read_sql_query(statement, dbConnector.connection)
     return df
 
-def getProjectById(projectId):
-    dbConnector = SqliteConnector(config['dbFile'])
+def getProjectById(ClassDbConnector, projectId):
+    dbConnector = ClassDbConnector()
     selectedFields = ["Project.id", "Project.key", "Project.name", "Project.style"]
     whereClause = None
     if projectId != "*":

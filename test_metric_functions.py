@@ -1,7 +1,7 @@
 from businessLogic.metrics import issueType
 from businessLogic.metrics import storyPoints
 from businessLogic.metrics import sprint
-
+from db.sqlite3.connector import SqliteConnector
 import datetime
 from datetime import timezone
 
@@ -30,13 +30,11 @@ if __name__=="__main__":
     # CORE-327 / CORE-410 were not included by my code
     # CORE-773 / CORE-863 / CORE-880 / CORE-908 is not shown in Burnup Chart
 
-    print(sprint.pivotCountIssues("93", "2020-01-01", "2020-06-01"))
+    print(sprint.pivotCountIssues(SqliteConnector(), "92", "2020-01-01", "2020-06-01"))
 
-    print(sprint.pivotSumStoryPoints("93", "2020-01-01", "2020-06-01"))
+    print(sprint.pivotSumStoryPoints(SqliteConnector(), "92", "2020-01-01", "2020-06-01"))
 
-    print(sprint.numberOfIssuesGroupBySprint("93", "2020-01-01", "2020-06-01"))
+    print(sprint.numberOfIssuesGroupBySprint(SqliteConnector(), "92", "2020-01-01", "2020-06-01"))
 
-    # sprint.calculateWorkDonePercentage("93", "2020-01-01", "2020-06-01")
+    print(sprint.sprintsStartedBetween(SqliteConnector(),"2020-01-01", "2020-06-01"))
 
-    # df = sprint.sprintsStartedBetween("2020-01-01", "2020-06-01")
-    # print(df.to_html())

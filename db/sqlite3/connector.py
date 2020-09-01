@@ -1,8 +1,9 @@
 import os
 import sqlite3
+from config import config
 
 class SqliteConnector(object):
-    def __init__(self, dbFilePath):
+    def __init__(self, dbFilePath=config["dbFile"]):
         if not os.path.exists(dbFilePath):
             print("File does not exist: ", dbFilePath)
             os.mknod(dbFilePath)

@@ -7,7 +7,7 @@ from config import config
 
 
 def getMetricsPerProject(projectKey):
-    dbConnector = SqliteConnector(config["dbFile"])
+    dbConnector = SqliteConnector()
     selectedFields = ["Issue.key as issue", "Issue.storyPoints", "IssueType.name as issueType","Status.name as status", "Issue.assigneeName", "Issue.created"]
     joinClauses = [
         {"type":"LEFT", "tableName":"IssueType", "onClause":"Issue.issueTypeId = IssueType.id"},
@@ -46,7 +46,7 @@ def getMetricsPerProject(projectKey):
     return df
 
 def findIssuesCreatedBetween(projectKey, startStr, endStr):
-    dbConnector = SqliteConnector(config["dbFile"])
+    dbConnector = SqliteConnector()
     start = datetime.datetime.strptime(startStr,'%Y-%m-%d').replace(tzinfo=timezone.utc)
     end = datetime.datetime.strptime(endStr,'%Y-%m-%d').replace(tzinfo=timezone.utc)
 
@@ -88,7 +88,7 @@ def findIssuesCreatedBetween(projectKey, startStr, endStr):
     
 
 def getIssueTypeMetrics():
-    dbConnector = SqliteConnector(config["dbFile"])
+    dbConnector = SqliteConnector()
     projectKeys = dbConnector.queryTable(["key"], "Project", None)
     # print(projectKeys) # [('PJA',), ('SP',)], the result comes as array of tuple
     if projectKeys is not None:
@@ -100,7 +100,7 @@ def getIssueTypeMetrics():
 
 
 def issuesInSprint(sprintId):
-    dbConnector = SqliteConnector(config["dbFile"])
+    dbConnector = SqliteConnector()
     selectedFields = ["Issue.key as issue", "Issue.storyPoints", "IssueType.name as issueType","Status.name as status","Issue.statusid", "Issue.assigneeName", "Issue.created", "Issue.updated"]
     joinClauses = [
         {"type":"LEFT", "tableName":"IssueType", "onClause":"Issue.issueTypeId = IssueType.id"},
