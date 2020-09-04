@@ -27,19 +27,19 @@ model = {
         {"name" : "leadDevName", "type" : "TEXT" },
         {"name" : "leadQAId", "type" : "TEXT" },
         {"name" : "leadQAName", "type" : "TEXT" }
-    ],
-    "foreignKeys" : [
-        {"name": "issueTypeId", "references": "IssueType(id)"},
-        {"name": "projectId", "references": "Project(id)"},
-        {"name": "priorityId", "references": "Priority(id)"},
-        {"name": "statusId", "references": "Status(id)"},
-        {"name": "resolutionId", "references": "Resolution(id)"},
-        {"name": "creatorId", "references": "User(accountId)"},
-        {"name": "reporterId", "references": "User(accountId)"},
-        {"name": "assigneeId", "references": "User(accountId)"},
-        {"name": "leadDevId", "references": "User(accountId)"},
-        {"name": "leadQAId", "references": "User(accountId)"}
-    ]
+    ]#,
+    # "foreignKeys" : [
+    #     {"name": "issueTypeId", "references": "IssueType(id)"},
+    #     {"name": "projectId", "references": "Project(id)"},
+    #     {"name": "priorityId", "references": "Priority(id)"},
+    #     {"name": "statusId", "references": "Status(id)"},
+    #     {"name": "resolutionId", "references": "Resolution(id)"},
+    #     {"name": "creatorId", "references": "Users(accountId)"},
+    #     {"name": "reporterId", "references": "Users(accountId)"},
+    #     {"name": "assigneeId", "references": "Users(accountId)"},
+    #     {"name": "leadDevId", "references": "Users(accountId)"},
+    #     {"name": "leadQAId", "references": "Users(accountId)"}
+    # ]
 }
 
 # Lookup table
@@ -83,3 +83,10 @@ def update(dbConnector, responseProcessor, response, injection={}):
     dbReadyData = responseProcessor(lookup, response, injection)
     dbConnector.insertRecords(model, dbReadyData)
     return dbReadyData
+
+def updateUsingDbReadyData(dbConnector, dbReadyData):
+    dbConnector.insertRecords(model, dbReadyData)
+    return dbReadyData
+
+def getDbReadyData(responseProcessor, response, injection={}):
+    return responseProcessor(lookup, response, injection)

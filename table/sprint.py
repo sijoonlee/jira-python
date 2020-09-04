@@ -9,10 +9,10 @@ model = {
         {"name" : "endDate", "type" : "TEXT" },
         {"name" : "completeDate", "type" : "TEXT" },
         {"name" : "boardId", "type" : "TEXT" }
-    ],
-    "foreignKeys" : [
-        {"name": "boardId", "references": "Board(id)"}
-    ]
+    ]#,
+    # "foreignKeys" : [
+    #     {"name": "boardId", "references": "Board(id)"}
+    # ]
 }
 
 lookup = {
@@ -36,3 +36,10 @@ def update(dbConnector, responseProcessor, response, injection={}):
     dbReadyData = responseProcessor(lookup, response, injection)
     dbConnector.insertRecords(model, dbReadyData)
     return dbReadyData
+
+def updateUsingDbReadyData(dbConnector, dbReadyData):
+    dbConnector.insertRecords(model, dbReadyData)
+    return dbReadyData
+
+def getDbReadyData(responseProcessor, response, injection={}):
+    return responseProcessor(lookup, response, injection)

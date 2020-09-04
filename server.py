@@ -25,7 +25,7 @@ def getSprintBetween():
     startStr = request.args.get("start") # "2020-01-01"
     endStr = request.args.get("end") # "2020-03-01"
     boardId = request.args.get("boardId") # 93 for omp
-    df = sprint.calculateWorkDonePercentage(boardId, startStr, endStr)
+    df = sprint.calculateWorkDonePercentage(SqliteConnector(), boardId, startStr, endStr)
     return df.to_json(orient="split")
 
 @app.route('/sprintInBoard', methods=['GET'])

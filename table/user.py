@@ -1,11 +1,11 @@
 model = {
-    "name" : "User", # table name
+    "name" : "Users", # table name, 'user' is reserved name in Postgres
     "fields" : [
         {"name" : "accountId", "type" : "TEXT", "option" : "PRIMARY KEY" },
         {"name" : "accountType", "type" : "TEXT" },
         {"name" : "emailAddress", "type" : "TEXT" },
         {"name" : "displayName" , "type" : "TEXT" },
-        {"name" : "active", "type" : "INTEGER"} # SQLite doesn't have boolean 0(false), 1(true)
+        {"name" : "active", "type" : "BOOLEAN"} # SQLite doesn't have boolean 0(false), 1(true)
     ]
 }
 

@@ -65,8 +65,6 @@ def issuesInSprintsStartedBetween(dbConnector,boardId, startStr, endStr): # form
 
     # load data
     df = pd.read_sql_query(statement, dbConnector.connection)
-    print("---------")
-    print(df)
     df = df.drop(df[df.startDate == "None"].index)
     df["storyPoints"] = df["storyPoints"].replace({"None":"0"})
     df["storyPoints"] = pd.to_numeric(df["storyPoints"])

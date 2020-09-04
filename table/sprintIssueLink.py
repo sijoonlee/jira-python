@@ -4,11 +4,11 @@ model = {
         {"name" : "sprintId", "type" : "TEXT" },
         {"name" : "issueId", "type" : "TEXT" }
     ],
-    "primaryKeys" : [ "sprintId", "issueId" ],
-    "foreignKeys" : [
-        {"name": "sprintId", "references": "Sprint(id)"},
-        {"name": "issueId", "references": "Issue(id)"},
-    ]
+    "primaryKeys" : [ "sprintId", "issueId" ]#,
+    # "foreignKeys" : [
+    #     {"name": "sprintId", "references": "Sprint(id)"},
+    #     {"name": "issueId", "references": "Issue(id)"},
+    # ]
 }
 
 lookup = {
@@ -27,3 +27,10 @@ def update(dbConnector, responseProcessor, response, injection={}):
     dbReadyData = responseProcessor(lookup, response, injection)
     dbConnector.insertRecords(model, dbReadyData)
     return dbReadyData
+
+def updateUsingDbReadyData(dbConnector, dbReadyData):
+    dbConnector.insertRecords(model, dbReadyData)
+    return dbReadyData
+
+def getDbReadyData(responseProcessor, response, injection={}):
+    return responseProcessor(lookup, response, injection)

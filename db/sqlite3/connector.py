@@ -62,24 +62,31 @@ class SqliteConnector(object):
 
     # @param : fields 
     # key is field name, value is the value for the field
-    # { "accountId" : "USER_ID", "accountType" : "USER_TYPE" }
+    # { "accountId" : "account0001", "accountType" : "saving" }
     def insertValuesStatement(self, model, fields):
         
         fieldNames = list(fields.keys())
         fieldValues = list(fields.values())
+        indexesToBeDeleted = []
 
         for i in range(len(fieldNames)):
             fieldType = self.findTypeFromFieldName(model, fieldNames[i])
-            if fieldType is "INTEGER" or fieldType is "REAL" or fieldType is "NULL":
-                fieldValues[i] = str(fieldValues[i])
-            elif fieldType is "TEXT" or fieldType is "BLOB":
-                 # single, double quotes, new line, carriage return are escaped
-                 # in sqlite you can escape by using ""(two double quotes) , ''(two sing quotes)
-                escaped = str(fieldValues[i]).replace('"', '""').replace("'", "\'\'") #.replace('\n', ' ').replace('\r', '')
-                fieldValues[i] = '"{}"'.format(escaped)
+            if fieldValues[i] != None:
+                if fieldType is "INTEGER" or fieldType is "REAL" or fieldType is "BOOLEAN":
+                    fieldValues[i] = str(fieldValues[i])
+                elif fieldType is "TEXT":
+                    # single, double quotes are escaped
+                    # in sqlite you can escape by using ""(two double quotes) , ''(two sing quotes)
+                    escaped = str(fieldValues[i]).replace('"', '""').replace("'", "\'\'") #.replace('\n', ' ').replace('\r', '')
+                    fieldValues[i] = '"{}"'.format(escaped)
+                else:
+                    print("Error - Unknown type: ", fieldType)
             else:
-                print("Error - Unknown type: ", fieldType)
-
+                indexesToBeDeleted.append(i) 
+        indexesToBeDeleted.sort(reverse=True)
+        for i in indexesToBeDeleted:
+            fieldNames.pop(i)
+            fieldValues.pop(i)
         fieldNames = ','.join(fieldNames)
         fieldValues = ','.join(fieldValues)
         statement = 'insert or replace into {table} ({fieldNames}) values ({fieldValues})'.format(table=model["name"], fieldNames=fieldNames, fieldValues=fieldValues)

@@ -1,0 +1,18 @@
+version: '3.1'
+
+services:
+
+  postgres:
+    image: postgres:13
+    restart: always
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=mypasswd
+    volumes:
+      - DB_DIR:/home/sijoonlee/RateHub/jira/db/postgres/storage
+    ports:
+      - "5432:5432"
+
+volumes:
+  DB_DIR:
