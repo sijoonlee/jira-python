@@ -49,4 +49,7 @@ Revenue Operations              2
 Scrum-test                      3
 UX Design (Mortgage)           75
 
-* the result varies because of 1) project persmission("Browse Projects") and 2) issue-level security permission
+* Guess: the result might varie because of 
+    * 1) project persmission("Browse Projects")
+    * 2) issue-level security permission
+* Reason is unclear

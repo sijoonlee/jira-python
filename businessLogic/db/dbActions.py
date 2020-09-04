@@ -14,8 +14,6 @@ import concurrent.futures
 from functools import partial
 from db.postgres.connector import PostgresConnector
 from db.sqlite3.connector import SqliteConnector
-from utils.jsonUtil import writeFileReport
-
 
 class DbActions(object):
     def __init__(self, ClassDbConnector, responseProcessor, maxWorkers=4):
@@ -107,7 +105,7 @@ class DbActions(object):
         CollectDbReadyDataSprint = []
         CollectDbReadyDataBoardSprintLink = []
         
-        with concurrent.futures.ThreadPoolExecutor(max_workers=self.maxWorkers) as executor: #ProcessPoolExecutor(max_workers=2)
+        with concurrent.futures.ThreadPoolExecutor(max_workers=self.maxWorkers) as executor:
             for (dbReadyDataSprint, dbReadyDataBoardSprintLink) in executor.map(self.processSprintPerBoard, boardIds):
                 CollectDbReadyDataSprint = [*CollectDbReadyDataSprint, *dbReadyDataSprint]
                 CollectDbReadyDataBoardSprintLink = [*CollectDbReadyDataBoardSprintLink, *dbReadyDataBoardSprintLink]
@@ -130,14 +128,9 @@ class DbActions(object):
 
                 CollectDbReadyDataIssue = [*CollectDbReadyDataIssue, *dbReadyDataIssue]
                 CollectDbReadySprintIssueLink = [*CollectDbReadySprintIssueLink, *dbReadySprintIssueLink]
-         
-        # Put data into DB out of multi-thread
-        # this is to avoid conflicts of db updates in multi-thread
-        # writeFileReport(CollectDbReadyDataSprint, "./sprint.json")
-        # writeFileReport(CollectDbReadyDataBoardSprintLink, "./boardSprintLink.json")
-        # writeFileReport(CollectDbReadyDataIssue, "./issue.json")
-        # writeFileReport(CollectDbReadySprintIssueLink, "./sprintissuelink.json")
         
+        # Put data into DB outside of multi-thread
+        # this is to avoid conflicts from using database connectors in multi-thread
         print("# of sprint-issue links", len(CollectDbReadySprintIssueLink))
         print("# of board-sprint links", len(CollectDbReadyDataBoardSprintLink))
         sprint.updateUsingDbReadyData(dbConnector, CollectDbReadyDataSprint)
@@ -145,13 +138,17 @@ class DbActions(object):
         sprintIssueLink.updateUsingDbReadyData(dbConnector, CollectDbReadySprintIssueLink)
         boardSprintLink.updateUsingDbReadyData(dbConnector, CollectDbReadyDataBoardSprintLink)
 
+        
+        ## This is using JQL query to retrieve issues that don't belong to any sprints
+        ## However, there's strange behaviour of Jira Cloud API
+        ## When JQL is used, queries don't include issues from below projects
+        ## - Analytics Team / Design Feedback / Marketing Design / Security / UX - Chrissy 
         # print("update issue data not included in sprint since", updatedAt)
         # response = getIssuesNotInAnySprintWithUpdatedAfter(self.maxWorkers, updatedAt)
         # issue.update(dbConnector,self.responseProcessor, response)
 
-        # there's strange behaviour of Jira Cloud API
-        # When JQL is used, queries don't include issues from below projects
-        # - Analytics Team / Design Feedback / Marketing Design / Security / UX - Chrissy 
+        # Therefore, below function that doesn't have JQL query is being used
+        # This approach takes more time, but it will bring complete data
         print("update all issue data including those not in sprints")
         response = getIssuesMultiThread(self.maxWorkers)
         print("# of total issues", len(response))

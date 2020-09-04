@@ -14,6 +14,7 @@ if __name__=="__main__":
     dbActions.reset()
 
     print("The whole process would take around 2~10 min depending on # of workers")
+    print("Default: 4 workers, about 2 min")
     start_time = time.time()
     dbActions.update()
     duration = time.time() - start_time 

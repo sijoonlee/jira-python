@@ -2,12 +2,15 @@ import psycopg2
 import os
 import sys
 import pandas as pd
-
-# from config import config
+from config import config
 
 class PostgresConnector(object):
     def __init__(self):
-        self.connection = psycopg2.connect(dbname='postgres', host='0.0.0.0', port='5432', user='postgres', password='mypasswd')
+        self.connection = psycopg2.connect(dbname=config["postgresDbName"],
+                                            host=config["postgresHost"], 
+                                            port=config["postgresPort"], 
+                                            user=config["postgresUser"], 
+                                            password=config["postgresPassword"])
         self.cur = self.connection.cursor()
     
     def __del__(self):
