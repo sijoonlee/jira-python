@@ -1,21 +1,33 @@
+from utils.jsonUtil import readFileReport
+from db.postgres.connector import PostgresConnector
+
 if __name__=="__main__":
-    ttt = ['"40"', '"282"', '"Sprint Sprint 1"', None, '"future"', None, None, None]
-    aaa = [1,3]
-    aaa.sort(reverse=True)
-    print(aaa)
+    connector = PostgresConnector()
     
-    
-    print(aaa)
+    records = readFileReport("./sprintissuelink.json")
 
+    model1 = {
+        "name" : "SprintIssueLink",
+        "fields" : [
+            {"name" : "sprintId", "type" : "TEXT" },
+            {"name" : "issueId", "type" : "TEXT" }
+        ],
+        "primaryKeys" : [ "sprintId", "issueId" ]#,
+        # "foreignKeys" : [
+        #     {"name": "sprintId", "references": "Sprint(id)"},
+        #     {"name": "issueId", "references": "Issue(id)"},
+    }
 
-    bb = {"test":"test", "test1":"test1"}
-    cc = {"test4":"test2", "test1":"test3"}
-
-    dd = {**bb, **cc}
-    print(dd)
-
-
-    bbbbb = [3,5]
-    ddd = []
-    ddd = [ *ddd, *aaa ]
-    print(ddd)
+    model2 = {
+        "name" : "BoardSprintLink",
+        "fields" : [
+            {"name" : "boardId", "type" : "TEXT" },
+            {"name" : "sprintId", "type" : "TEXT" }
+        ],
+        "primaryKeys" : [ "boardId", "sprintId" ]#,
+        # "foreignKeys" : [
+        #     {"name": "sprintId", "references": "Sprint(id)"},
+        #     {"name": "issueId", "references": "Issue(id)"},
+        # ]
+    }
+    connector.insertRecords(model, records)

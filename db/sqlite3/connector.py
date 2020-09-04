@@ -82,7 +82,8 @@ class SqliteConnector(object):
                 else:
                     print("Error - Unknown type: ", fieldType)
             else:
-                indexesToBeDeleted.append(i) 
+                indexesToBeDeleted.append(i)
+
         indexesToBeDeleted.sort(reverse=True)
         for i in indexesToBeDeleted:
             fieldNames.pop(i)
@@ -91,7 +92,6 @@ class SqliteConnector(object):
         fieldValues = ','.join(fieldValues)
         statement = 'insert or replace into {table} ({fieldNames}) values ({fieldValues})'.format(table=model["name"], fieldNames=fieldNames, fieldValues=fieldValues)
         return statement
-
 
     # @param: selectedFields - list of fields that are to be returned ex) ["id", "name", "creator"]
     # @param: whereClause - dictionary of fields that will be used in where clause 

@@ -9,15 +9,12 @@ import time
 
 # this is to fetch those data created/updated after a certain date
 if __name__=="__main__":
-    #dbActions.reset(PostgresConnector)
-    dbActions = DbActions(SqliteConnector, responseProcessor)
-
+    # use database connector you want to use - PostgresConnector, SqliteConnector
+    dbActions = DbActions(PostgresConnector, responseProcessor, maxWorkers=4)
     dbActions.reset()
-    print("The whole process would take around 10 ~ 30 min")
+
+    print("The whole process would take around 2~10 min depending on # of workers")
     start_time = time.time()
-    # dbActions.updateUsingAgileApi(SqliteConnector, responseProcessor)
     dbActions.update()
-    # dbActions.update(PostgresConnector, responseProcessor)
-    # dbActions.updateUsingAgileApi(PostgresConnector, responseProcessor)
     duration = time.time() - start_time 
     print("time spent (min):", int(duration/60))

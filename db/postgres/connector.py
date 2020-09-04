@@ -1,6 +1,8 @@
 import psycopg2
 import os
+import sys
 import pandas as pd
+
 # from config import config
 
 class PostgresConnector(object):
@@ -45,7 +47,7 @@ class PostgresConnector(object):
     def findTypeFromFieldName(self, model, fieldName):
         fieldType = None
         for field in model["fields"]:
-            if field["name"] is fieldName:
+            if field["name"] == fieldName:
                 fieldType = field["type"]
                 break
         return fieldType
@@ -72,7 +74,7 @@ class PostgresConnector(object):
         fieldNames = list(record.keys())
         fieldValues = list(record.values())
         indexesToBeDeleted = []
-
+        
         # this connector supports only 3 types for now: integer, real, text
         for i in range(len(fieldNames)):
             fieldType = self.findTypeFromFieldName(model, fieldNames[i])
@@ -103,14 +105,16 @@ class PostgresConnector(object):
         fieldNames = ','.join(fieldNames)
         fieldValues = ','.join(fieldValues)
     
-        statement = '''insert into {table} ({fieldNames}) 
-                        values ({fieldValues}) 
-                        on conflict ({primaryKeys}) 
-                        do update set 
-                    '''.format(table=model["name"], fieldNames=fieldNames, fieldValues=fieldValues, primaryKeys=primaryKeys)
-        setClauseArray = ['{field} = excluded.{field}'.format(field=field) for field in nonPrimaryKeyFields]
-        setClause = ','.join(setClauseArray)
-        statement += setClause
+        statement = 'insert into {table} ({fieldNames}) values ({fieldValues})'\
+            .format(table=model["name"], fieldNames=fieldNames, fieldValues=fieldValues)
+        
+        # if there are no fields other than primary key(s), nothing to update
+        if len(nonPrimaryKeyFields) > 0 :
+            statement += ' on conflict ({primaryKeys}) do update set '.format(primaryKeys=primaryKeys)
+            setClauseArray = ['{field} = excluded.{field}'.format(field=field) for field in nonPrimaryKeyFields]
+            setClause = ','.join(setClauseArray)
+            statement += setClause
+    
         return statement
 
     # @param: selectedFields - list of fields that are to be returned ex) ["id", "name", "creator"]
@@ -162,7 +166,13 @@ class PostgresConnector(object):
         if len(records) > 0:      
             for record in records:
                 if len(record) != 0: # no field
-                    self.cur.execute(self.insertValuesStatement(model, record))
+                    try:
+                        self.cur.execute(self.insertValuesStatement(model, record))
+                    except:
+                        print(sys.exc_info())
+                        print("while inserting record to table", model["name"])
+                        print("Record:",record)
+                        return False
             self.connection.commit()
 
     def queryTable(self, fields, tableName, whereClause):
@@ -176,73 +186,97 @@ class PostgresConnector(object):
         return rows
     
 if __name__=="__main__":
-    model_board = {
-    "name" : "Board",
-    "fields" : [
-            { "name": "id", "type": "TEXT", "option" : "PRIMARY KEY" },
-            { "name": "name" , "type": "TEXT"}
-        ]
-    }
-    model_issueType = {
-    "name" : "IssueType",
-    "fields" : [
-            { "name": "id", "type": "TEXT", "option" : "PRIMARY KEY" },
-            { "name": "name" , "type": "TEXT"}
-        ]
-    }
-    model_issue = {
-        "name" : "Issue",
+
+    model = {
+        "name" : "SprintIssueLink",
         "fields" : [
-            {"name" : "id", "type" : "TEXT", "option" : "PRIMARY KEY" },
-            {"name" : "name", "type" : "TEXT" },
-            {"name" : "boardId", "type" : "TEXT" },
-            {"name" : "issueTypeId", "type" : "TEXT" }
+            {"name" : "sprintId", "type" : "TEXT" },
+            {"name" : "issueId", "type" : "TEXT" }
         ],
-        "foreignKeys" : [
-            {"name": "boardId", "references": "Board(id)"},
-            {"name": "issueTypeId", "references": "IssueType(id)"}
-        ]
+        "primaryKeys" : [ "sprintId", "issueId" ]#,
+        # "foreignKeys" : [
+        #     {"name": "sprintId", "references": "Sprint(id)"},
+        #     {"name": "issueId", "references": "Issue(id)"},
+        # ]
     }
+
     connector = PostgresConnector()
+    sprintIssueRecord = {'sprintId': 521, 'issueId': '36376'}
+    sprintIssueRecords = [sprintIssueRecord]
+    print(connector.insertValuesStatement(model, sprintIssueRecord))
+    connector.insertRecords(model, sprintIssueRecords)
     
-    connector.dropTable(model_issue)
-    connector.dropTable(model_issueType)
-    connector.dropTable(model_board)
-    connector.createTable(model_board)
-    connector.createTable(model_issueType)
-    connector.createTable(model_issue)
 
-    # board
-    board_data = [{'id':'board#1', 'name':'board#1'},\
-                     {'id':'board#2', 'name':'board#2'},\
-                     {'id':'board#3', 'name':'board#3'}]
-    connector.insertRecords(model_board, board_data)
-
-    # issueType
-    issueType_data = [{'id':'issueType#1', 'name':'issueType#1'},\
-                    {'id':'issueType#2', 'name':'issueType#2'},\
-                    {'id':'issueType#3', 'name':'issueType#3'}]
-    connector.insertRecords(model_issueType, issueType_data)
-
-    # issue
-    issue_data = [{'id':'issue#1', 'name':'issue#1', 'boardId':'board#1', 'issueTypeId':'issueType#1'},\
-                    {'id':'issue#2', 'name':'issue#2', 'boardId':'board#2', 'issueTypeId':'issueType#2'},\
-                    {'id':'issue#3', 'name':'issue#3', 'boardId':'board#3', 'issueTypeId':None}]
-    connector.insertRecords(model_issue, issue_data)
+    # model_board = {
+    # "name" : "Board",
+    # "fields" : [
+    #         { "name": "id", "type": "TEXT", "option" : "PRIMARY KEY" },
+    #         { "name": "name" , "type": "TEXT"}
+    #     ]
+    # }
+    # model_issueType = {
+    # "name" : "IssueType",
+    # "fields" : [
+    #         { "name": "id", "type": "TEXT", "option" : "PRIMARY KEY" },
+    #         { "name": "name" , "type": "TEXT"}
+    #     ]
+    # }
+    # model_issue = {
+    #     "name" : "Issue",
+    #     "fields" : [
+    #         {"name" : "id", "type" : "TEXT", "option" : "PRIMARY KEY" },
+    #         {"name" : "name", "type" : "TEXT" },
+    #         {"name" : "boardId", "type" : "TEXT" },
+    #         {"name" : "issueTypeId", "type" : "TEXT" }
+    #     ],
+    #     "foreignKeys" : [
+    #         {"name": "boardId", "references": "Board(id)"},
+    #         {"name": "issueTypeId", "references": "IssueType(id)"}
+    #     ]
+    # }
+    # connector = PostgresConnector()
     
-    # query
-    whereClause = "Issue.id != 'issue#1'" # use single quote inside of clause since Postgres doesn't allow double quotes
-    print(connector.queryTable(['name'], 'Issue', whereClause))
+    # connector.dropTable(model_issue)
+    # connector.dropTable(model_issueType)
+    # connector.dropTable(model_board)
+    # connector.createTable(model_board)
+    # connector.createTable(model_issueType)
+    # connector.createTable(model_issue)
 
-    statement = connector.queryTableStatement(['name'], 'Issue', whereClause)
+    # # board
+    # board_data = [{'id':'board#1', 'name':'board#1'},\
+    #                  {'id':'board#2', 'name':'board#2'},\
+    #                  {'id':'board#3', 'name':'board#3'}]
+    # connector.insertRecords(model_board, board_data)
 
-    print(pd.read_sql_query(statement, connector.connection))
+    # # issueType
+    # issueType_data = [{'id':'issueType#1', 'name':'issueType#1'},\
+    #                 {'id':'issueType#2', 'name':'issueType#2'},\
+    #                 {'id':'issueType#3', 'name':'issueType#3'}]
+    # connector.insertRecords(model_issueType, issueType_data)
 
-    # join table query
-    joinClauses = [
-        {"type":"LEFT", "tableName":"IssueType", "onClause":"Issue.issueTypeId = IssueType.id"},
-        {"type":"LEFT", "tableName":"Board", "onClause":"Issue.boardId = Board.id"}
-    ]
-    statement = connector.queryFromJoinStatement(['Issue.name as issue', 'Board.name as board', 'IssueType.name as type'], 'Issue', joinClauses, whereClause)
-    print(pd.read_sql_query(statement, connector.connection))
+    # # issue
+    # issue_data = [{'id':'issue#1', 'name':'issue#1', 'boardId':'board#1', 'issueTypeId':'issueType#1'},\
+    #                 {'id':'issue#2', 'name':'issue#2', 'boardId':'board#2', 'issueTypeId':'issueType#2'},\
+    #                 {'id':'issue#3', 'name':'issue#3', 'boardId':'board#3', 'issueTypeId':None}]
+    # connector.insertRecords(model_issue, issue_data)
+    
+    # # query
+    # whereClause = "Issue.id != 'issue#1'" # use single quote inside of clause since Postgres doesn't allow double quotes
+    # print(connector.queryTable(['name'], 'Issue', whereClause))
+
+    # statement = connector.queryTableStatement(['name'], 'Issue', whereClause)
+
+    # print(pd.read_sql_query(statement, connector.connection))
+
+    # # join table query
+    # joinClauses = [
+    #     {"type":"LEFT", "tableName":"IssueType", "onClause":"Issue.issueTypeId = IssueType.id"},
+    #     {"type":"LEFT", "tableName":"Board", "onClause":"Issue.boardId = Board.id"}
+    # ]
+    # statement = connector.queryFromJoinStatement(['Issue.name as issue', 'Board.name as board', 'IssueType.name as type'], 'Issue', joinClauses, whereClause)
+    # print(pd.read_sql_query(statement, connector.connection))
+
+
+
     
