@@ -1,17 +1,27 @@
 from requests.auth import HTTPBasicAuth
 
 domain = "ratehub"
-emailAccount = "-----@ratehub.ca"
-apiToken = "-----"
+emailAccount = "example@email.com"
+apiToken = "---------"
 
-cloudVersion = "3"
-agileVersion = "1.0"
-cloudApiAddress = "https://{domain}.atlassian.net/rest/api/{version}/".format(domain = domain, version = cloudVersion)
-agileApiAddress = "https://{domain}.atlassian.net/rest/agile/{version}/".format(domain = domain, version = agileVersion)
+cloudApiVersion = "3"
+agileApiVersion = "1.0"
+cloudApiAddress = "https://{domain}.atlassian.net/rest/api/{version}/".format(domain = domain, version = cloudApiVersion)
+agileApiAddress = "https://{domain}.atlassian.net/rest/agile/{version}/".format(domain = domain, version = agileApiVersion)
 
 config = {
     "cloudApiAddress" : cloudApiAddress,
     "agileApiAddress" : agileApiAddress,
     "auth": HTTPBasicAuth(emailAccount, apiToken),
-    "dbFile": './db/sqlite3/storage/db.sqlite'
+    "sqliteDbFile": './db/sqlite3/storage/db.sqlite',
+    "postgresDbName": 'postgres',
+    'postgresHost': '0.0.0.0',
+    'postgresPort': '5432',
+    'postgresUser': 'postgres',
+    'postgresPassword': 'mypasswd',
+    'redshiftDbName': 'dev',
+    'redshiftHost': '------------',
+    'redshiftPort': '5439',
+    'redshiftUser': '------------',
+    'redshiftPassword': '--------',
 }
