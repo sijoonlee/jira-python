@@ -153,10 +153,10 @@ class DbActions(object):
         priority.update(dbConnector,self.responseProcessor, responsePriority)
         
         print('update table: status')
-        status.update(dbConnector,self.responseProcessor, responseStatus)
+        status.update(dbConnector, self.responseProcessor, responseStatus)
         
         print('update table: issueType')
-        issueType.update(dbConnector,self.responseProcessor, responseIssueType)
+        issueType.update(dbConnector, self.responseProcessor, responseIssueType)
         
         print('update table: sprint')
         sprint.updateUsingDbReadyData(dbConnector, CollectDbReadyDataSprint)
@@ -174,7 +174,7 @@ class DbActions(object):
         boardSprintLink.updateUsingDbReadyData(dbConnector, CollectDbReadyDataBoardSprintLink)
 
         print('update table: iussue(total)')
-        issue.update(dbConnector,self.responseProcessor, responseIssue)
+        issue.update(dbConnector, self.responseProcessor, responseIssue)
         
         ## This is using JQL query to retrieve issues that don't belong to any sprints
         ## However, there's strange behaviour of Jira Cloud API
