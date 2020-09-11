@@ -86,12 +86,12 @@ class DbActions(object):
                 
         print("fetch boards data")
         responseBoard = getAllBoards()
-        dbReadyData = board.getDbReadyData(self.responseProcessor,responseBoard)
+        dbReadyDataBoard = board.getDbReadyData(self.responseProcessor,responseBoard)
 
         # Multithread version
         # Collect data using multi-thread
         boardIds = []
-        for boardData in dbReadyData:
+        for boardData in dbReadyDataBoard:
             boardIds.append(boardData["id"])
         print("# of boards:", len(boardIds))
 
@@ -160,6 +160,9 @@ class DbActions(object):
         
         print('update table: sprint')
         sprint.updateUsingDbReadyData(dbConnector, CollectDbReadyDataSprint)
+
+        print('update table: board')
+        board.updateUsingDbReadyData(dbConnector, dbReadyDataBoard)
 
         print('update table: issue(only related with Sprint)')
         issue.updateUsingDbReadyData(dbConnector, CollectDbReadyDataIssue)
