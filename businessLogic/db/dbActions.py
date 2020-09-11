@@ -66,34 +66,28 @@ class DbActions(object):
     def update(self): 
         dbConnector = self.ClassDbConnector()
 
-        print("update user data")
-        response = getAllUsers()
-        user.update(dbConnector, self.responseProcessor, response)
-
-        print("update resolution data")
-        response = getResolutions()
-        resolution.update(dbConnector, self.responseProcessor, response)
-
-        print("update project data")
-        response = getAllProjects()
-        project.update(dbConnector, self.responseProcessor, response)
-
-        print("update priority data")
-        response = getPriorities()
-        priority.update(dbConnector,self.responseProcessor, response)
+        print("fetch user data")
+        responseUser = getAllUsers()
+    
+        print("fetch resolution data")
+        responseResolution = getResolutions()
         
-        print("update status data")
-        response = getStatuses()
-        status.update(dbConnector,self.responseProcessor, response)
-            
-        print("update issueType data")
-        response = getIssueTypes()
-        issueType.update(dbConnector,self.responseProcessor, response)
-
-        print("update boards data")
-        response = getAllBoards()
-        dbReadyData = board.update(dbConnector, self.responseProcessor, response)
+        print("fetch project data")
+        responseProject = getAllProjects()
         
+        print("fetch priority data")
+        responsePriority = getPriorities()
+                
+        print("fetch status data")
+        responseStatus = getStatuses()
+
+        print("fetch issueType data")
+        responseIssueType = getIssueTypes()
+                
+        print("fetch boards data")
+        responseBoard = getAllBoards()
+        dbReadyData = board.getDbReadyData(self.responseProcessor,responseBoard)
+
         # Multithread version
         # Collect data using multi-thread
         boardIds = []
@@ -101,7 +95,7 @@ class DbActions(object):
             boardIds.append(boardData["id"])
         print("# of boards:", len(boardIds))
 
-        print("update sprint data and its relation with board data(M:N)")
+        print("fetch sprint data and its relation with board data(M:N)")
         CollectDbReadyDataSprint = []
         CollectDbReadyDataBoardSprintLink = []
         
@@ -117,7 +111,7 @@ class DbActions(object):
         print("# of sprints", len(sprintIds))
         sprintIds = list(sprintIds)
 
-        print("update issue data that belong to sprints and its relation with sprint data(M:N)")
+        print("fetch issue data that belong to sprints and its relation with sprint data(M:N)")
         CollectDbReadyDataIssue = []
         CollectDbReadySprintIssueLink = []
         
@@ -129,15 +123,55 @@ class DbActions(object):
                 CollectDbReadyDataIssue = [*CollectDbReadyDataIssue, *dbReadyDataIssue]
                 CollectDbReadySprintIssueLink = [*CollectDbReadySprintIssueLink, *dbReadySprintIssueLink]
         
-        # Put data into DB outside of multi-thread
-        # this is to avoid conflicts from using database connectors in multi-thread
         print("# of sprint-issue links", len(CollectDbReadySprintIssueLink))
         print("# of board-sprint links", len(CollectDbReadyDataBoardSprintLink))
+
+        ## Below commented code is using JQL query to retrieve issues that don't belong to any sprints
+        ## However, there's strange behaviour of Jira Cloud API
+        ## When JQL is used, queries don't include issues from below projects
+        ## - Analytics Team / Design Feedback / Marketing Design / Security / UX - Chrissy 
+        # print("update issue data not included in sprint since", updatedAt)
+        # response = getIssuesNotInAnySprintWithUpdatedAfter(self.maxWorkers, updatedAt)
+        # issue.update(dbConnector,self.responseProcessor, response)
+
+        print("fetch all issue data including those not in sprints")
+        responseIssue = getIssuesMultiThread(self.maxWorkers)
+        print("# of total issues", len(responseIssue))
+
+        # Put data into DB after using multi-threading
+        # this is to avoid conflicts of any database actions with multi-threading
+        print('update table: user')
+        user.update(dbConnector, self.responseProcessor, responseUser)
+
+        print('update table: resolution')
+        resolution.update(dbConnector, self.responseProcessor, responseResolution)
+
+        print('update table: project')
+        project.update(dbConnector, self.responseProcessor, responseProject)
+        
+        print('update table: priority')
+        priority.update(dbConnector,self.responseProcessor, responsePriority)
+        
+        print('update table: status')
+        status.update(dbConnector,self.responseProcessor, responseStatus)
+        
+        print('update table: issueType')
+        issueType.update(dbConnector,self.responseProcessor, responseIssueType)
+        
+        print('update table: sprint')
         sprint.updateUsingDbReadyData(dbConnector, CollectDbReadyDataSprint)
+
+        print('update table: issue(only related with Sprint)')
         issue.updateUsingDbReadyData(dbConnector, CollectDbReadyDataIssue)
+
+        print('update table: sprintIssueLink')
         sprintIssueLink.updateUsingDbReadyData(dbConnector, CollectDbReadySprintIssueLink)
+
+        print('update table: boardSprintLink')
         boardSprintLink.updateUsingDbReadyData(dbConnector, CollectDbReadyDataBoardSprintLink)
 
+        print('update table: iussue(total)')
+        issue.update(dbConnector,self.responseProcessor, responseIssue)
         
         ## This is using JQL query to retrieve issues that don't belong to any sprints
         ## However, there's strange behaviour of Jira Cloud API
@@ -146,10 +180,3 @@ class DbActions(object):
         # print("update issue data not included in sprint since", updatedAt)
         # response = getIssuesNotInAnySprintWithUpdatedAfter(self.maxWorkers, updatedAt)
         # issue.update(dbConnector,self.responseProcessor, response)
-
-        # Therefore, below function that doesn't have JQL query is being used
-        # This approach takes more time, but it will bring complete data
-        print("update all issue data including those not in sprints")
-        response = getIssuesMultiThread(self.maxWorkers)
-        print("# of total issues", len(response))
-        issue.update(dbConnector,self.responseProcessor, response)

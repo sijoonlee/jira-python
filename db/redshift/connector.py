@@ -107,7 +107,7 @@ class RedshiftConnector(object):
                     # single, double quotes are escaped
                     # in sqlite you can escape by using ""(two double quotes) , ''(two sing quotes)
                     escaped = str(record[fieldName]).replace("'", "''").replace('"', '""') #.replace('\n', ' ').replace('\r', '')
-                    record[fieldName] = "'{}'".format(escaped)
+                    record[fieldName] = "'{}'".format(escaped[:256]) # limit of 256 characters
                 else:
                     print("Error - Unknown type: ", fieldType)
             else:
@@ -192,7 +192,7 @@ class RedshiftConnector(object):
 
     def insertRecords(self, model, records):
         if len(records) > 0:
-            self.cur.execute('begin transaction;')      
+            #self.cur.execute('begin transaction;')      
             for record in records:
                 if len(record) != 0: # no field
                     try:
@@ -202,7 +202,7 @@ class RedshiftConnector(object):
                         print("while inserting record to table", model["name"])
                         print("Record:",record)
                         return False
-            self.cur.execute('end transaction;')
+            #self.cur.execute('end transaction;')
             self.connection.commit()
 
     def queryTable(self, fields, tableName, whereClause):

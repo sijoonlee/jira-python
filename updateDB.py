@@ -14,8 +14,10 @@ if __name__=="__main__":
     dbActions = DbActions(RedshiftConnector, responseProcessor, maxWorkers=4)
     dbActions.reset()
 
-    print("The whole process would take around 2~10 min depending on # of workers")
-    print("Default: 4 workers, about 2 min")
+    print("The fetching process would take around 2~10 min depending on # of workers")
+    print("Fetching default: 4 workers, about 2~3 min")
+    print("The updating Redshift database would take around 75 min")
+    print("The updating local Postgres/Sqllite database would take less than 1 min")
     start_time = time.time()
     dbActions.update()
     duration = time.time() - start_time 

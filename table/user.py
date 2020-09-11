@@ -31,3 +31,10 @@ def update(dbConnector, responseProcessor, response, injection={}):
     dbReadyData = responseProcessor(lookup, response, injection)
     dbConnector.insertRecords(model, dbReadyData)
     return dbReadyData
+
+def updateUsingDbReadyData(dbConnector, dbReadyData):
+    dbConnector.insertRecords(model, dbReadyData)
+    return dbReadyData
+
+def getDbReadyData(responseProcessor, response, injection={}):
+    return responseProcessor(lookup, response, injection)

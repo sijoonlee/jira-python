@@ -1,4 +1,5 @@
 import json
+import sys
 from requests.auth import HTTPBasicAuth
 from config import config
 from jira.jiraEndpoints.getSprintsInBoardPagination import method, url
@@ -7,8 +8,18 @@ from jira.jiraRequests.requestToJira import requestToJira
 def getSprintsInBoardPagination(boardId, maxResults, startAt):
     auth = config["auth"]
     formattedUrl = url.format(boardId=boardId, maxResults=maxResults, startAt=startAt)
-    response = requestToJira(method, formattedUrl, auth, None)
-    return json.loads(response.text)
+    result = None
+    response = None
+    try:
+        response = requestToJira(method, formattedUrl, auth, None)
+        result = json.loads(response.text)
+    except:
+        print(sys.exc_info())
+        print("Error in getSprintsInBoardPagination")
+        print("Board id:", boardId)
+        print("Start At:", startAt)
+        print("Response:", response.text)
+    return result
 
 
 def getAllSprintsInBoard(boardId):
