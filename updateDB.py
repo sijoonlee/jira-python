@@ -16,7 +16,7 @@ if __name__=="__main__":
     print("The fetching process would take around 2~10 min depending on # of workers")
     print("Fetching default: 4 workers, about 2~3 min")
     print("-------------------------------------------------------")
-    print("The updating Amazon Redshift database with the lowest setting of CPU would take around 60 min")
+    print("The updating Amazon Redshift database with the lowest setting of CPU would take around 70 min")
     print("The updating local Postgres database would take less than 1 min")
     start_time = time.time()
     dbActions.update()

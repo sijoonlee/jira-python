@@ -170,6 +170,6 @@ class DbActions(object):
         print('update table: boardSprintLink')
         boardSprintLink.updateUsingDbReadyData(dbConnector, CollectDbReadyDataBoardSprintLink)
 
-        print('update table: iussue(total)')
+        print('update table: issue(total)')
         issue.update(dbConnector, self.responseProcessor, responseIssue)
         
