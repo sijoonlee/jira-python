@@ -11,9 +11,6 @@ from jira.jiraRequests.resolutions import getResolutions
 from table import issue, priority, project, status, issueType, user, sprint, sprintIssueLink, board, resolution, boardSprintLink
 from config import config
 import concurrent.futures
-from functools import partial
-from db.postgres.connector import PostgresConnector
-from db.sqlite3.connector import SqliteConnector
 
 class DbActions(object):
     def __init__(self, ClassDbConnector, responseProcessor, maxWorkers=4):

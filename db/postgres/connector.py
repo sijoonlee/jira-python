@@ -85,6 +85,8 @@ class PostgresConnector(object):
             if fieldValues[i] != None:
                 if fieldType is "INTEGER" or fieldType is "REAL" or fieldType is "BOOLEAN":
                     fieldValues[i] = str(fieldValues[i])
+                elif fieldType is "TIMESTAMPTZ" or fieldType is "TIMESTAMP":
+                    fieldValues[i] = "'{}'".format(fieldValues[i])
                 elif fieldType is "TEXT":
                     # single, double quotes are escaped
                     # in sqlite you can escape by using ""(two double quotes) , ''(two sing quotes)

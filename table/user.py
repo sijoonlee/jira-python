@@ -5,7 +5,7 @@ model = {
         {"name" : "accountType", "type" : "TEXT" },
         {"name" : "emailAddress", "type" : "TEXT" },
         {"name" : "displayName" , "type" : "TEXT" },
-        {"name" : "active", "type" : "BOOLEAN"} # SQLite doesn't have boolean 0(false), 1(true)
+        {"name" : "active", "type" : "BOOLEAN"} # caution: SQLite doesn't have boolean 0(false), 1(true)
     ]
 }
 

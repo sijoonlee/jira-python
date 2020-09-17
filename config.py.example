@@ -13,7 +13,6 @@ config = {
     "cloudApiAddress" : cloudApiAddress,
     "agileApiAddress" : agileApiAddress,
     "auth": HTTPBasicAuth(emailAccount, apiToken),
-    "sqliteDbFile": './db/sqlite3/storage/db.sqlite',
     "postgresDbName": 'postgres',
     'postgresHost': '0.0.0.0',
     'postgresPort': '5432',

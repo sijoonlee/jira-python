@@ -5,9 +5,9 @@ model = {
         {"name" : "name", "type" : "TEXT" },
         {"name" : "goal", "type" : "TEXT" },
         {"name" : "state", "type" : "TEXT" },
-        {"name" : "startDate", "type" : "TEXT" },
-        {"name" : "endDate", "type" : "TEXT" },
-        {"name" : "completeDate", "type" : "TEXT" }
+        {"name" : "startDate", "type" : "TIMESTAMPTZ" },
+        {"name" : "endDate", "type" : "TIMESTAMPTZ" },
+        {"name" : "completeDate", "type" : "TIMESTAMPTZ" }
     ]#,
     # "foreignKeys" : [
     #     {"name": "boardId", "references": "Board(id)"}

@@ -103,6 +103,8 @@ class RedshiftConnector(object):
             if record[fieldName] != None:
                 if fieldType == "INTEGER" or fieldType == "REAL" or fieldType == "BOOLEAN":
                     record[fieldName] = str(record[fieldName])
+                elif fieldType is "TIMESTAMPTZ" or fieldType is "TIMESTAMP":
+                    record[fieldName] = "'{}'".format(record[fieldName])
                 elif fieldType == "TEXT":
                     # single, double quotes are escaped
                     # in sqlite you can escape by using ""(two double quotes) , ''(two sing quotes)

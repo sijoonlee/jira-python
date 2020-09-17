@@ -5,11 +5,11 @@ model = {
         {"name" : "id", "type" : "TEXT", "option" : "PRIMARY KEY" },
         {"name" : "key", "type" : "TEXT" },
         {"name" : "summary", "type" : "TEXT" },
-        {"name" : "storyPoints", "type" : "TEXT" }, # Tried READ first, but make trouble, rather parse it later
-        {"name" : "created", "type" : "TEXT" }, # store it as TEXT and parse it as Date/Time later
-        {"name" : "updated", "type" : "TEXT" },
+        {"name" : "storyPoints", "type" : "REAL" },
+        {"name" : "created", "type" : "TIMESTAMPTZ" },
+        {"name" : "updated", "type" : "TIMESTAMPTZ" },
         {"name" : "resolutionId", "type" : "TEXT" },
-        {"name" : "resolutionDate", "type" : "TEXT" },
+        {"name" : "resolutionDate", "type" : "TIMESTAMPTZ" },
         {"name" : "parentId", "type" : "TEXT" },
         {"name" : "parentKey", "type" : "TEXT" },
         {"name" : "parentSummary", "type" : "TEXT" },
