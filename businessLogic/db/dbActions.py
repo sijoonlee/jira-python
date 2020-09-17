@@ -176,10 +176,3 @@ class DbActions(object):
         print('update table: iussue(total)')
         issue.update(dbConnector, self.responseProcessor, responseIssue)
         
-        ## This is using JQL query to retrieve issues that don't belong to any sprints
-        ## However, there's strange behaviour of Jira Cloud API
-        ## When JQL is used, queries don't include issues from below projects
-        ## - Analytics Team / Design Feedback / Marketing Design / Security / UX - Chrissy 
-        # print("update issue data not included in sprint since", updatedAt)
-        # response = getIssuesNotInAnySprintWithUpdatedAfter(self.maxWorkers, updatedAt)
-        # issue.update(dbConnector,self.responseProcessor, response)
