@@ -67,8 +67,7 @@ class PostgresConnector(object):
             fields = model["fields"]
             for field in fields:
                 if field.get("option", None) == 'PRIMARY KEY':
-                    primaryKeys.add(field["name"])
-                    
+                    primaryKeys.add(field["name"])       
         return list(primaryKeys) # array
 
     # @param : fields 
@@ -121,6 +120,8 @@ class PostgresConnector(object):
             setClauseArray = ['{field} = excluded.{field}'.format(field=field) for field in nonPrimaryKeyFields]
             setClause = ','.join(setClauseArray)
             statement += setClause
+        else : # there's no fields other than PK, which means there's nothing to update in case of PK conflict
+            statement += ' on conflict do nothing'
     
         return statement
 

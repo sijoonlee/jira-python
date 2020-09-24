@@ -21,6 +21,7 @@ from table.resolution import Resolution
 from table.boardSprintLink import BoardSprintLink
 from config import config
 import concurrent.futures
+from utils.jsonUtil import writeFileReport
 
 class DbActions(object):
     def __init__(self, ClassDbConnector, responseProcessor, maxWorkers=4):
@@ -143,9 +144,9 @@ class DbActions(object):
 
         print("fetch all issue data including those not in sprints")
         responseIssue = getIssuesMultiThread(self.maxWorkers)
-        print("# of total issues", len(responseIssue))
+        print("# of total issues", len(responseIssue))      
 
-        # Put data into DB after using multi-threading
+        # Put data into DB after multi-threading done
         # this is to avoid conflicts of any database actions with multi-threading
         print('update table: user')
         User.update(dbConnector, self.responseProcessor, responseUser)
@@ -171,8 +172,13 @@ class DbActions(object):
         print('update table: board')
         Board.updateUsingDbReadyData(dbConnector, dbReadyDataBoard)
 
-        print('update table: issue(only related with Sprint)')
-        Issue.updateUsingDbReadyData(dbConnector, CollectDbReadyDataIssue)
+        # This is unnecessary for now
+        # Originally, Issues are categorized as 'not-in-sprint' and 'in-sprint'
+        # and fetched and updated seperately 
+        # But there's strange bug that Jira API's JQL lose some data (like said above)
+        
+        # print('update table: issue(only related with Sprint)')
+        # Issue.updateUsingDbReadyData(dbConnector, CollectDbReadyDataIssue)
 
         print('update table: sprintIssueLink')
         SprintIssueLink.updateUsingDbReadyData(dbConnector, CollectDbReadySprintIssueLink)

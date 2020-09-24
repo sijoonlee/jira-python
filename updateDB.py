@@ -9,15 +9,25 @@ import time
 
 # this is to fetch those data created/updated after a certain date
 if __name__=="__main__":
-    # use database connector you want to use - PostgresConnector, RedshiftConnector
-    dbActions = DbActions(PostgresConnector, responseProcessor, maxWorkers=4)
-    dbActions.reset()
+    
+    # DbActions
+    # @param: ClassDbConnector
+    #    Use PostgresConnector or RedshiftConnector
+    # @param: responseProcessor
+    #    Use responseProcessor, 
+    #    responseProcessor is responsible for organizing raw data from Jira to get ready for Database
+    # @param: maxWorkers
+    #    # of threads for fetching data from Jira API
+    dbActions = DbActions(RedshiftConnector, responseProcessor, maxWorkers=4)
+    
+    # this will drop all tables and create them again
+    # dbActions.reset()
 
-    print("The fetching process would take around 2~10 min depending on # of workers")
-    print("Fetching default: 4 workers, about 2~3 min")
-    print("-------------------------------------------------------")
-    print("The updating Amazon Redshift database with the lowest setting of CPU would take around 70 min")
-    print("The updating local Postgres database would take less than 1 min")
+    print("Total Time would take")
+    print("-- 3 ~ 20 min when using local PostgreSQL")
+    print("-- around 40 min when using Amazon Redshift")
+    print("(cf) The fetching data from Jira would take around 2~10 min depending on # of workers")
+    print(" By default, # of workers = 4, fetching would take 2 min")
     start_time = time.time()
     dbActions.update()
     duration = time.time() - start_time 

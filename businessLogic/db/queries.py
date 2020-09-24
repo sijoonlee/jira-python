@@ -1,4 +1,3 @@
-from db.sqlite3.connector import SqliteConnector
 import pandas as pd
 
 def getIssueBySprintId(ClassDbConnector, sprintId):
