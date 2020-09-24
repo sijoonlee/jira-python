@@ -89,10 +89,8 @@ class RedshiftConnector(object):
     # Because redshift doesn't check ducplicates for primary key, 
     # it is needed to delete the existing record first
     # (multiple records with the same PK can happen in Redshift)
-    #   begin transaction;
     #   delete from Board where id = 'id#1';
     #   insert into Board (id,name,type,projectId) values ('id#1','board#1','type#1','project#1');
-    #   end transaction;
     def insertValuesStatement(self, model, record):
         
         fieldNames = list(record.keys())
