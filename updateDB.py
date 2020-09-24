@@ -10,7 +10,7 @@ import time
 # this is to fetch those data created/updated after a certain date
 if __name__=="__main__":
     # use database connector you want to use - PostgresConnector, RedshiftConnector
-    dbActions = DbActions(RedshiftConnector, responseProcessor, maxWorkers=4)
+    dbActions = DbActions(PostgresConnector, responseProcessor, maxWorkers=4)
     dbActions.reset()
 
     print("The fetching process would take around 2~10 min depending on # of workers")
