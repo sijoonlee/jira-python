@@ -12,8 +12,10 @@ class PostgresConnector(object):
                                             user=config["postgresUser"], 
                                             password=config["postgresPassword"])
         self.cur = self.connection.cursor()
+        print("DB connection established")
     
     def __del__(self):
+        print("DB connection closed")
         self.connection.close()
         
     def dropTableStatement(self, model):

@@ -8,7 +8,17 @@ from jira.jiraRequests.boards import getAllBoards
 from jira.jiraRequests.sprints import getAllSprintsInBoard
 from jira.jiraRequests.issuesInSprint import getAllIssuesInSprint
 from jira.jiraRequests.resolutions import getResolutions
-from table import issue, priority, project, status, issueType, user, sprint, sprintIssueLink, board, resolution, boardSprintLink
+from table.issue import Issue
+from table.priority import Priority
+from table.project import Project
+from table.status import Status
+from table.issueType import IssueType
+from table.user import User
+from table.sprint import Sprint
+from table.sprintIssueLink import SprintIssueLink
+from table.board import Board
+from table.resolution import Resolution
+from table.boardSprintLink import BoardSprintLink
 from config import config
 import concurrent.futures
 
@@ -21,42 +31,42 @@ class DbActions(object):
     def reset(self):
         dbConnector = self.ClassDbConnector()
 
-        boardSprintLink.drop(dbConnector)
-        sprintIssueLink.drop(dbConnector)
-        issue.drop(dbConnector)
-        sprint.drop(dbConnector)
-        user.drop(dbConnector)
-        resolution.drop(dbConnector)
-        issueType.drop(dbConnector)
-        status.drop(dbConnector)
-        project.drop(dbConnector)
-        priority.drop(dbConnector)
-        board.drop(dbConnector)
+        BoardSprintLink.drop(dbConnector)
+        SprintIssueLink.drop(dbConnector)
+        Issue.drop(dbConnector)
+        Sprint.drop(dbConnector)
+        User.drop(dbConnector)
+        Resolution.drop(dbConnector)
+        IssueType.drop(dbConnector)
+        Status.drop(dbConnector)
+        Project.drop(dbConnector)
+        Priority.drop(dbConnector)
+        Board.drop(dbConnector)
         
-        board.create(dbConnector)
-        priority.create(dbConnector)
-        project.create(dbConnector)
-        status.create(dbConnector)
-        issueType.create(dbConnector)
-        resolution.create(dbConnector)
-        user.create(dbConnector)
-        sprint.create(dbConnector)
-        issue.create(dbConnector)
-        sprintIssueLink.create(dbConnector)
-        boardSprintLink.create(dbConnector) 
+        Board.create(dbConnector)
+        Priority.create(dbConnector)
+        Project.create(dbConnector)
+        Status.create(dbConnector)
+        IssueType.create(dbConnector)
+        Resolution.create(dbConnector)
+        User.create(dbConnector)
+        Sprint.create(dbConnector)
+        Issue.create(dbConnector)
+        SprintIssueLink.create(dbConnector)
+        BoardSprintLink.create(dbConnector) 
 
     def processSprintPerBoard(self, boardId):
         response = getAllSprintsInBoard(boardId)
-        dbReadyDataSprint = sprint.getDbReadyData(self.responseProcessor, response)
-        dbReadyDataBoardSprintLink = boardSprintLink.getDbReadyData(self.responseProcessor, response, {"boardId":boardId})
+        dbReadyDataSprint = Sprint.getDbReadyData(self.responseProcessor, response)
+        dbReadyDataBoardSprintLink = BoardSprintLink.getDbReadyData(self.responseProcessor, response, {"boardId":boardId})
         return dbReadyDataSprint, dbReadyDataBoardSprintLink
 
     def processIssuePerSprint(self, sprintId):
         dbReadyDataIssue = []
         dbReadySprintIssueLink = []
         response = getIssuesInSprintWithUpdatedAfter(sprintId, None)
-        dbReadyDataIssue = issue.getDbReadyData(self.responseProcessor, response)
-        dbReadySprintIssueLink = sprintIssueLink.getDbReadyData(self.responseProcessor, response, {"sprintId":sprintId})
+        dbReadyDataIssue = Issue.getDbReadyData(self.responseProcessor, response)
+        dbReadySprintIssueLink = SprintIssueLink.getDbReadyData(self.responseProcessor, response, {"sprintId":sprintId})
         
         return dbReadyDataIssue, dbReadySprintIssueLink
 
@@ -83,7 +93,7 @@ class DbActions(object):
                 
         print("fetch boards data")
         responseBoard = getAllBoards()
-        dbReadyDataBoard = board.getDbReadyData(self.responseProcessor,responseBoard)
+        dbReadyDataBoard = Board.getDbReadyData(self.responseProcessor,responseBoard)
 
         # Multithread version
         # Collect data using multi-thread
@@ -138,38 +148,38 @@ class DbActions(object):
         # Put data into DB after using multi-threading
         # this is to avoid conflicts of any database actions with multi-threading
         print('update table: user')
-        user.update(dbConnector, self.responseProcessor, responseUser)
+        User.update(dbConnector, self.responseProcessor, responseUser)
 
         print('update table: resolution')
-        resolution.update(dbConnector, self.responseProcessor, responseResolution)
+        Resolution.update(dbConnector, self.responseProcessor, responseResolution)
 
         print('update table: project')
-        project.update(dbConnector, self.responseProcessor, responseProject)
+        Project.update(dbConnector, self.responseProcessor, responseProject)
         
         print('update table: priority')
-        priority.update(dbConnector,self.responseProcessor, responsePriority)
+        Priority.update(dbConnector,self.responseProcessor, responsePriority)
         
         print('update table: status')
-        status.update(dbConnector, self.responseProcessor, responseStatus)
+        Status.update(dbConnector, self.responseProcessor, responseStatus)
         
         print('update table: issueType')
-        issueType.update(dbConnector, self.responseProcessor, responseIssueType)
+        IssueType.update(dbConnector, self.responseProcessor, responseIssueType)
         
         print('update table: sprint')
-        sprint.updateUsingDbReadyData(dbConnector, CollectDbReadyDataSprint)
+        Sprint.updateUsingDbReadyData(dbConnector, CollectDbReadyDataSprint)
 
         print('update table: board')
-        board.updateUsingDbReadyData(dbConnector, dbReadyDataBoard)
+        Board.updateUsingDbReadyData(dbConnector, dbReadyDataBoard)
 
         print('update table: issue(only related with Sprint)')
-        issue.updateUsingDbReadyData(dbConnector, CollectDbReadyDataIssue)
+        Issue.updateUsingDbReadyData(dbConnector, CollectDbReadyDataIssue)
 
         print('update table: sprintIssueLink')
-        sprintIssueLink.updateUsingDbReadyData(dbConnector, CollectDbReadySprintIssueLink)
+        SprintIssueLink.updateUsingDbReadyData(dbConnector, CollectDbReadySprintIssueLink)
 
         print('update table: boardSprintLink')
-        boardSprintLink.updateUsingDbReadyData(dbConnector, CollectDbReadyDataBoardSprintLink)
+        BoardSprintLink.updateUsingDbReadyData(dbConnector, CollectDbReadyDataBoardSprintLink)
 
         print('update table: issue(total)')
-        issue.update(dbConnector, self.responseProcessor, responseIssue)
+        Issue.update(dbConnector, self.responseProcessor, responseIssue)
         

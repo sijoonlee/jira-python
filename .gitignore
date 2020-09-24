@@ -1,4 +1,5 @@
 .vscode
+test.py
 config.py
 /ratehubResponse
 /__pycache__/
